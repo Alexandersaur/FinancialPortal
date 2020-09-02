@@ -25,10 +25,10 @@ namespace FinancialPortal.Models
         //This is the projected total of this category for the month based on the budget items
         [NotMapped]
         [Display(Name = "Target Amount")]
-        public decimal TargetAmount 
+        public decimal TargetAmount
         {
             get
-            { 
+            {
                 var target = db.BudgetItems.Where(bI => bI.BudgetId == Id).Count();
                 return target != 0 ? db.BudgetItems.Where(bI => bI.BudgetId == Id).Sum(s => s.TargetAmount) : 0;
             }
@@ -41,3 +41,4 @@ namespace FinancialPortal.Models
             OwnerId = HttpContext.Current.User.Identity.GetUserId();
         }
     }
+}

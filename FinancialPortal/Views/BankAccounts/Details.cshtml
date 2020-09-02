@@ -1,0 +1,90 @@
+﻿@model FinancialPortal.Models.BankAccount
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BankAccount</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Household.HouseholdName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Household.HouseholdName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Owner.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Owner.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AccountName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AccountName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Created)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Created)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartingBalance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartingBalance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CurrentBalance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CurrentBalance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WarningBalance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WarningBalance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsDeleted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AccountType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AccountType)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

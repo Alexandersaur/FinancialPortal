@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using FinancialPortal.Enums;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -26,7 +27,7 @@ namespace FinancialPortal.Models
         [Display(Name = "Delete Account")]
         public bool IsDeleted { get; set; }
         public virtual ICollection<Transaction> Transactions { get; set; }
-        //public AccountType AccountType { get; set; }
+        public AccountType AccountType { get; set; }
         public BankAccount(decimal startingBalance, decimal warningBalance, string accountName)
         {
             Transactions = new HashSet<Transaction>();
