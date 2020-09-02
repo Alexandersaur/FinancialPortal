@@ -182,6 +182,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\FileUploadValidator.cs" />
+    <Compile Include="Helpers\ImageUploadValidator.cs" />
+    <Compile Include="Helpers\RoleHelper.cs" />
+    <Compile Include="Helpers\StringUtilities.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BankAccount.cs" />
     <Compile Include="Models\Budget.cs" />
@@ -291,7 +296,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Avatars\" />
     <Folder Include="Extensions\" />
-    <Folder Include="Helpers\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>

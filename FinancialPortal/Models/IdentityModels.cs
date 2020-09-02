@@ -67,18 +67,16 @@ namespace FinancialPortal.Models
         }
         public DbSet<BudgetItem> BudgetItems { get; set; }
 
-        public System.Data.Entity.DbSet<FinancialPortal.Models.BankAccount> BankAccounts { get; set; }
+        public DbSet<BankAccount> BankAccounts { get; set; }
 
-        public System.Data.Entity.DbSet<FinancialPortal.Models.Household> Households { get; set; }
+        public DbSet<Household> Households { get; set; }
 
-        public System.Data.Entity.DbSet<FinancialPortal.Models.ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<Budget> Budgets { get; set; }
 
-        public System.Data.Entity.DbSet<FinancialPortal.Models.Budget> Budgets { get; set; }
+        public DbSet<Invitation> Invitations { get; set; }
 
-        public System.Data.Entity.DbSet<FinancialPortal.Models.Invitation> Invitations { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
 
-        public System.Data.Entity.DbSet<FinancialPortal.Models.Notification> Notifications { get; set; }
-
-        public System.Data.Entity.DbSet<FinancialPortal.Models.Transaction> Transactions { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
     }
 }

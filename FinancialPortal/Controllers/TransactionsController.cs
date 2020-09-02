@@ -41,7 +41,7 @@ namespace FinancialPortal.Controllers
         {
             ViewBag.AccountId = new SelectList(db.BankAccounts, "Id", "OwnerId");
             ViewBag.BudgetItemId = new SelectList(db.BudgetItems, "Id", "ItemName");
-            ViewBag.OwnerId = new SelectList(db.ApplicationUsers, "Id", "FirstName");
+            ViewBag.OwnerId = new SelectList(db.Users, "Id", "FirstName");
             return View();
         }
 
@@ -61,7 +61,7 @@ namespace FinancialPortal.Controllers
 
             ViewBag.AccountId = new SelectList(db.BankAccounts, "Id", "OwnerId", transaction.AccountId);
             ViewBag.BudgetItemId = new SelectList(db.BudgetItems, "Id", "ItemName", transaction.BudgetItemId);
-            ViewBag.OwnerId = new SelectList(db.ApplicationUsers, "Id", "FirstName", transaction.OwnerId);
+            ViewBag.OwnerId = new SelectList(db.Users, "Id", "FirstName", transaction.OwnerId);
             return View(transaction);
         }
 
@@ -79,7 +79,7 @@ namespace FinancialPortal.Controllers
             }
             ViewBag.AccountId = new SelectList(db.BankAccounts, "Id", "OwnerId", transaction.AccountId);
             ViewBag.BudgetItemId = new SelectList(db.BudgetItems, "Id", "ItemName", transaction.BudgetItemId);
-            ViewBag.OwnerId = new SelectList(db.ApplicationUsers, "Id", "FirstName", transaction.OwnerId);
+            ViewBag.OwnerId = new SelectList(db.Users, "Id", "FirstName", transaction.OwnerId);
             return View(transaction);
         }
 
@@ -98,7 +98,7 @@ namespace FinancialPortal.Controllers
             }
             ViewBag.AccountId = new SelectList(db.BankAccounts, "Id", "OwnerId", transaction.AccountId);
             ViewBag.BudgetItemId = new SelectList(db.BudgetItems, "Id", "ItemName", transaction.BudgetItemId);
-            ViewBag.OwnerId = new SelectList(db.ApplicationUsers, "Id", "FirstName", transaction.OwnerId);
+            ViewBag.OwnerId = new SelectList(db.Users, "Id", "FirstName", transaction.OwnerId);
             return View(transaction);
         }
 
