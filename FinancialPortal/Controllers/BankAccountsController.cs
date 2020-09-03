@@ -49,18 +49,17 @@ namespace FinancialPortal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,HouseholdId,OwnerId,AccountName,Created,StartingBalance,CurrentBalance,WarningBalance,IsDeleted,AccountType")] BankAccount bankAccount)
+        public ActionResult Create(decimal startingBalance, decimal warningBalance, string accountName, int householdId)
         {
-            if (ModelState.IsValid)
-            {
-                db.BankAccounts.Add(bankAccount);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.HouseholdId = new SelectList(db.Households, "Id", "HouseholdName", bankAccount.HouseholdId);
-            ViewBag.OwnerId = new SelectList(db.Users, "Id", "FirstName", bankAccount.OwnerId);
-            return View(bankAccount);
+            var bankAccount = new BankAccount(startingBalance, warningBalance, accountName);
+            bankAccount.HouseholdId = householdId;
+            db.BankAccounts.Add(bankAccount);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+           
+            //ViewBag.HouseholdId = new SelectList(db.Households, "Id", "HouseholdName", bankAccount.HouseholdId);
+            //ViewBag.OwnerId = new SelectList(db.Users, "Id", "FirstName", bankAccount.OwnerId);
+            //return View(bankAccount);
         }
 
         // GET: BankAccounts/Edit/5

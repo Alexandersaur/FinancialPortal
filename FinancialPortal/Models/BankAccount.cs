@@ -37,6 +37,7 @@ namespace FinancialPortal.Models
             Created = DateTime.Now;
             AccountName = accountName;
             OwnerId = HttpContext.Current.User.Identity.GetUserId();
+            //Household = HttpContext.Current.User.Identity.GetHouseholdId();
         }
         public BankAccount()
         {
