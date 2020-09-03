@@ -1,9 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@using FinancialPortal.Extensions
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 3 | Dashboard</title>
+    <title>Financial Portal JS</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Font Awesome -->
@@ -26,6 +27,8 @@
     <link href="~/Content/summernote-bs4.css" rel="stylesheet" />
     <!-- Google Font: Source Sans Pro -->
     <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link rel="icon" href="~/favicon.ico" type="image/x-icon" />
+    <link href="~/Content/datatables.min.css" rel="stylesheet" />
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
@@ -38,7 +41,7 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="index3.html" class="nav-link">Home</a>
+                    <a href="@Url.Action("Index","Home")" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link">Contact</a>
@@ -58,12 +61,20 @@
             </form>
 
             <!-- Right navbar links -->
+            @if (Request.IsAuthenticated)
+            {
+                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "sideLogoutForm", @class = "navbar-right" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <a class="h6 text-black navbar-right" href="javascript:document.getElementById('sideLogoutForm').submit()">Log off <i class="fas fa-sign-out-alt text-black mt-3"></i></a>
+                }
+            }
             <ul class="navbar-nav ml-auto">
                 <!-- Notifications Dropdown Menu -->
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
                         <i class="far fa-bell"></i>
-                        <span class="badge badge-warning navbar-badge">15</span>
+                        <span class="badge badge-warning navbar-badge"></span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <span class="dropdown-item dropdown-header">15 Notifications</span>
@@ -92,23 +103,23 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="index3.html" class="brand-link">
+            <a href="@Url.Action("Index","Home")" class="brand-link">
                 @*<img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-                     style="opacity: .8">*@
-                <span class="brand-text font-weight-light">Financial Portal</span>
+                style="opacity: .8">*@
+                <span class="brand-text font-weight-light">Financial Portal JS</span>
             </a>
 
             <!-- Sidebar -->
             <div class="sidebar">
                 <!-- Sidebar user panel (optional) -->
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                @*<div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
                         <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
                         <a href="#" class="d-block">Jeremy Steward</a>
                     </div>
-                </div>
+                </div>*@
 
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
@@ -123,7 +134,7 @@
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
+                            @*<ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="./index.html" class="nav-link active">
                                         <i class="far fa-circle nav-icon"></i>
@@ -142,9 +153,9 @@
                                         <p>Dashboard v3</p>
                                     </a>
                                 </li>
-                            </ul>
+                            </ul>*@
                         </li>
-                        <li class="nav-item">
+                        @*<li class="nav-item">
                             <a href="pages/widgets.html" class="nav-link">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
@@ -206,9 +217,9 @@
                                     </a>
                                 </li>
                             </ul>
-                        </li>
+                        </li>*@
 
-                        <li class="nav-header">MULTI LEVEL EXAMPLE</li>
+                        @*<li class="nav-header">MULTI LEVEL EXAMPLE</li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="fas fa-circle nav-icon"></i>
@@ -291,7 +302,7 @@
                                 <i class="nav-icon far fa-circle text-info"></i>
                                 <p>Informational</p>
                             </a>
-                        </li>
+                        </li>*@
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -300,10 +311,14 @@
         </aside>
         <!--Content Wrapper. Contains page content-->
         <div class="content-wrapper">
+            <h1>My Household Id is: <b>@User.Identity.GetHouseholdId()</b></h1>
+            <h1>My FullName is: <b>@User.Identity.GetFullName()</b></h1>
+            <h1>My Avatar is:<b> @User.Identity.GetAvatarPath()</b></h1>
+            <br/>
             @RenderBody()
         </div>
         <footer class="main-footer">
-            <strong>Copyright &copy; 2020 <a href="#">Put footer from bug tracker</a>.</strong>
+            <strong>Copyright &copy; 2020 <a href="//jeremysteward.com" target="_blank">Jeremy Steward</a>.</strong>
             All rights reserved.
             <div class="float-right d-none d-sm-inline-block">
                 <b>Version</b> 1.0.0
@@ -340,7 +355,11 @@
         <script src="~/Scripts/jquery.overlayScrollbars.min.js"></script>
         <!-- AdminLTE App -->
         <script src="~/Scripts/adminlte.js"></script>
+        <script src="~/Scripts/datatables.min.js"></script>>
 
         @RenderSection("scripts", required: false)
+        <script>
+            $('table.table').DataTable();
+        </script>
 </body>
 </html>

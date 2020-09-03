@@ -206,6 +206,7 @@
   <ItemGroup>
     <Content Include="Content\adminlte.min.css" />
     <Content Include="Content\all.min.css" />
+    <Content Include="Content\datatables.min.css" />
     <Content Include="Content\daterangepicker.css" />
     <Content Include="Content\icheck-bootstrap.min.css" />
     <Content Include="Content\jqvmap.min.css" />
@@ -223,6 +224,7 @@
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\Chart.min.js" />
     <Content Include="Scripts\dashboard.js" />
+    <Content Include="Scripts\datatables.min.js" />
     <Content Include="Scripts\daterangepicker.js" />
     <Content Include="Scripts\demo.js" />
     <Content Include="Scripts\jquery-ui.min.js" />

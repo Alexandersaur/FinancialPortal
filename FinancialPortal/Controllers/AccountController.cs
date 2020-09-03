@@ -154,10 +154,10 @@ namespace FinancialPortal.Controllers
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName };
-                if(model.Avatar != null)
-                {
+                //if(model.Avatar != null)
+                //{
                     //The code that generates the AvatarPath goes here
-                };
+                //};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

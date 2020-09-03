@@ -252,7 +252,7 @@ namespace FinancialPortal.Controllers
         {
             var user = db.Users.Find(User.Identity.GetUserId());
             var model = new UpdateProfileVM(user);
-            return View(user);
+            return View(model);
         }
 
         //POST: /Manage/UpdateProfile
