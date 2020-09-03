@@ -179,6 +179,8 @@
     <Compile Include="Controllers\TransactionsController.cs" />
     <Compile Include="Enums\AccountType.cs" />
     <Compile Include="Enums\TransactionType.cs" />
+    <Compile Include="Extensions\AuthorizeExtensions.cs" />
+    <Compile Include="Extensions\IdentityExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -199,6 +201,7 @@
     <Compile Include="Models\Transaction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\UpdateProfileVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\adminlte.min.css" />
@@ -305,8 +308,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Avatars\" />
-    <Folder Include="Extensions\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -326,6 +327,7 @@
     <Content Include="fonts\fa-solid-900.woff" />
     <Content Include="fonts\fa-solid-900.woff2" />
     <None Include="packages.config" />
+    <Content Include="Views\Manage\UpdateProfile.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
