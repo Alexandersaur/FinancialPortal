@@ -15,5 +15,9 @@ namespace FinancialPortal.Extensions
             context.GetOwinContext().Authentication.SignOut();
             await context.GetOwinContext().Get<ApplicationSignInManager>().SignInAsync(user, isPersistent: false, rememberBrowser: false);
         }
+        public static void AutoLogOut(this HttpContextBase context)
+        {
+            context.GetOwinContext().Authentication.SignOut();
+        }
     }
 }

@@ -9,6 +9,8 @@ namespace FinancialPortal.ViewModels
     public class BudgetWizardVM
     {
         public Budget Budget { get; set; }
-        public ICollection<BudgetItem> BudgetItems { get; set; }
+        public BudgetItem BudgetItems1 { get; set; }
+        public BudgetItem BudgetItems2 { get; set; }
+        public BudgetItem BudgetItems3 { get; set; }
     }
 }

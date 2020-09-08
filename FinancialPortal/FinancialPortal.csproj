@@ -181,11 +181,13 @@
     <Compile Include="Enums\TransactionType.cs" />
     <Compile Include="Extensions\AuthorizeExtensions.cs" />
     <Compile Include="Extensions\IdentityExtensions.cs" />
+    <Compile Include="Extensions\InvitationExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\FileUploadValidator.cs" />
     <Compile Include="Helpers\ImageUploadValidator.cs" />
+    <Compile Include="Helpers\InvitationHelper.cs" />
     <Compile Include="Helpers\RoleHelper.cs" />
     <Compile Include="Helpers\StringUtilities.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -333,6 +335,8 @@
     <Content Include="fonts\fa-solid-900.woff2" />
     <None Include="packages.config" />
     <Content Include="Views\Manage\UpdateProfile.cshtml" />
+    <Content Include="Views\Households\ConfigureHouse.cshtml" />
+    <Content Include="Views\Account\AcceptInvitation.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

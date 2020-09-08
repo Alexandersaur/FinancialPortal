@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using FinancialPortal.Models;
+using System.Net.Mail;
 
 namespace FinancialPortal
 {
@@ -20,6 +21,11 @@ namespace FinancialPortal
         {
             // Plug in your email service here to send an email.
             return Task.FromResult(0);
+        }
+
+        internal Task SendAsync(MailMessage emailMessage)
+        {
+            throw new NotImplementedException();
         }
     }
 

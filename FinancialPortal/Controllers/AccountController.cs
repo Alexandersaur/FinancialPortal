@@ -10,6 +10,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using FinancialPortal.Models;
 using FinancialPortal.Helpers;
+using Microsoft.Owin.Security.OAuth.Messages;
+using FinancialPortal.Extensions;
 
 namespace FinancialPortal.Controllers
 {
@@ -19,6 +21,7 @@ namespace FinancialPortal.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         private RoleHelper roleHelper = new RoleHelper();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         public AccountController()
         {
@@ -59,6 +62,10 @@ namespace FinancialPortal.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                AuthorizeExtensions.AutoLogOut(HttpContext);
+            }
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -177,6 +184,98 @@ namespace FinancialPortal.Controllers
 
             // If we got this far, something failed, redisplay form
             return View(model);
+        }
+
+        //GET: /Account/AcceptInvitation
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult AcceptInvitation(string recipientEmail, string code)
+        {
+            var realGuid = Guid.Parse(code);
+            var invitation = db.Invitations.FirstOrDefault(i => i.RecipientEmail == recipientEmail && i.Code == realGuid);
+            if(invitation == null)
+            {
+                //Need to create this fail case view - no invitation found
+                //return View("NotFoundError", invitation);
+                return View("Error", invitation);
+            }
+            var expirationDate = invitation.Created.AddDays(invitation.TTL);
+            if(invitation.IsValid && DateTime.Now < expirationDate)
+            {
+                var householdName = db.Households.Find(invitation.HouseholdId).HouseholdName;
+                ViewBag.Greeting = $"Thank you for accepting my invitation to join the {householdName} House!";
+                var model = new AcceptInvitationVM()
+                {
+                    InvitationId = invitation.Id,
+                    Email = recipientEmail,
+                    Code = realGuid,
+                    HouseholdId = invitation.HouseholdId
+                };
+                return View(model);
+            }
+            //return View("AcceptError", invitation);
+            return View("Error", invitation);
+        }
+
+        // POST: /Account/AcceptInvitation
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [AllowAnonymous]
+        public async Task<ActionResult> AcceptInvitation(AcceptInvitationVM model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, HouseholdId = model.HouseholdId };
+                //if(model.Avatar != null)
+                //{
+                //The code that generates the AvatarPath goes here
+                //};
+                var result = await UserManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                    roleHelper.UpdateUserRole(user.Id, "Member");
+                    InvitationHelper.MarkAsInvalid(model.InvitationId);
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
+                    // Send an email with this link
+                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+                    return RedirectToAction("Index", "Home");
+                }
+                AddErrors(result);
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
+        [Authorize(Roles = "New User")]
+        [HttpPost]
+        public async Task<ActionResult> ManualJoin (string code)
+        {
+            var user = db.Users.Find(User.Identity.GetUserId());
+            var realGuid = Guid.Parse(code);
+            var invitation = db.Invitations.FirstOrDefault(i => i.RecipientEmail == user.Email && i.Code == realGuid);
+            if(invitation == null)
+            {
+                //return View("NotFoundError", invitation);
+                return View("Error", invitation);
+            }
+            var expirationDate = invitation.Created.AddDays(invitation.TTL);
+            if (invitation.IsValid && DateTime.Now < expirationDate)
+            {
+                InvitationHelper.MarkAsInvalid(invitation.Id);
+                user.HouseholdId = invitation.HouseholdId;
+                roleHelper.UpdateUserRole(user.Id, "Member");
+
+                await AuthorizeExtensions.RefreshAuthentication(HttpContext, user);
+                return RedirectToAction("Index", "Home");
+            }
+            //return View("AcceptError", invitation);
+            return View("Error", invitation);
         }
 
         //

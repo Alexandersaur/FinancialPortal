@@ -314,52 +314,91 @@
             <h1>My Household Id is: <b>@User.Identity.GetHouseholdId()</b></h1>
             <h1>My FullName is: <b>@User.Identity.GetFullName()</b></h1>
             <h1>My Avatar is:<b> @User.Identity.GetAvatarPath()</b></h1>
-            <br/>
+            <br />
             @RenderBody()
         </div>
-        <footer class="main-footer">
-            <strong>Copyright &copy; 2020 <a href="//jeremysteward.com" target="_blank">Jeremy Steward</a>.</strong>
-            All rights reserved.
-            <div class="float-right d-none d-sm-inline-block">
-                <b>Version</b> 1.0.0
+
+        <section id="manualJoinModal">
+            <div class="modal" id="manualJoin" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Manual Join</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            @using (Html.BeginForm("ManualJoin", "Account", FormMethod.Post, null))
+                            {
+                                <div class="form-group">
+                                    Invitation Code
+                                    <div class="col-md-10">
+                                        @Html.TextBox("Code", new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input type="submit" class="btn btn-default" value="Register" />
+                                    </div>
+                                </div>
+                            }
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </footer>
+        </section>
 
-        <!-- jQuery -->
-        <script src="~/Scripts/jquery.min.js"></script>
-        <!-- jQuery UI 1.11.4 -->
-        <script src="~/Scripts/jquery-ui.min.js"></script>
-        <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-        <script>
-            $.widget.bridge('uibutton', $.ui.button)
-        </script>
-        <!-- Bootstrap 4 -->
-        <script src="~/Scripts/bootstrap.bundle.min.js"></script>
-        <!-- ChartJS -->
-        <script src="~/Scripts/Chart.min.js"></script>
-        <!-- Sparkline -->
-        <script src="~/Scripts/sparkline.js"></script>
-        <!-- JQVMap -->
-        <script src="~/Scripts/jquery.vmap.min.js"></script>
-        <script src="~/Scripts/jquery.vmap.usa.js"></script>
-        <!-- jQuery Knob Chart -->
-        <script src="~/Scripts/jquery.knob.min.js"></script>
-        <!-- daterangepicker -->
-        <script src="~/Scripts/moment.min.js"></script>
-        <script src="~/Scripts/daterangepicker.js"></script>
-        <!-- Tempusdominus Bootstrap 4 -->
-        <script src="~/Scripts/tempusdominus-bootstrap-4.min.js"></script>
-        <!-- Summernote -->
-        <script src="~/Scripts/summernote-bs4.min.js"></script>
-        <!-- overlayScrollbars -->
-        <script src="~/Scripts/jquery.overlayScrollbars.min.js"></script>
-        <!-- AdminLTE App -->
-        <script src="~/Scripts/adminlte.js"></script>
-        <script src="~/Scripts/datatables.min.js"></script>>
 
-        @RenderSection("scripts", required: false)
-        <script>
-            $('table.table').DataTable();
-        </script>
+            <footer class="main-footer">
+                <strong>Copyright &copy; 2020 <a href="//jeremysteward.com" target="_blank">Jeremy Steward</a>.</strong>
+                All rights reserved.
+                <div class="float-right d-none d-sm-inline-block">
+                    <b>Version</b> 1.5.5
+                </div>
+            </footer>
+
+            <!-- jQuery -->
+            <script src="~/Scripts/jquery.min.js"></script>
+            <!-- jQuery UI 1.11.4 -->
+            <script src="~/Scripts/jquery-ui.min.js"></script>
+            <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+            <script>
+                $.widget.bridge('uibutton', $.ui.button)
+            </script>
+            <!-- Bootstrap 4 -->
+            <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+            <!-- ChartJS -->
+            <script src="~/Scripts/Chart.min.js"></script>
+            <!-- Sparkline -->
+            <script src="~/Scripts/sparkline.js"></script>
+            <!-- JQVMap -->
+            <script src="~/Scripts/jquery.vmap.min.js"></script>
+            <script src="~/Scripts/jquery.vmap.usa.js"></script>
+            <!-- jQuery Knob Chart -->
+            <script src="~/Scripts/jquery.knob.min.js"></script>
+            <!-- daterangepicker -->
+            <script src="~/Scripts/moment.min.js"></script>
+            <script src="~/Scripts/daterangepicker.js"></script>
+            <!-- Tempusdominus Bootstrap 4 -->
+            <script src="~/Scripts/tempusdominus-bootstrap-4.min.js"></script>
+            <!-- Summernote -->
+            <script src="~/Scripts/summernote-bs4.min.js"></script>
+            <!-- overlayScrollbars -->
+            <script src="~/Scripts/jquery.overlayScrollbars.min.js"></script>
+            <!-- AdminLTE App -->
+            <script src="~/Scripts/adminlte.js"></script>
+            <script src="~/Scripts/datatables.min.js"></script>>
+
+            @RenderSection("scripts", required: false)
+            <script>
+                $('table.table').DataTable();
+            </script>
 </body>
 </html>
