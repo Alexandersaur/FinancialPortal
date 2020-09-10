@@ -12,7 +12,8 @@ namespace FinancialPortal.Models
     public class BankAccount
     {
         public int Id { get; set; }
-        public int HouseholdId { get; set; }
+        public int? HouseholdId { get; set; }
+        [Required]
         public string OwnerId { get; set; }
         public virtual Household Household { get; set; }
         public virtual ApplicationUser Owner { get; set; }

@@ -178,10 +178,12 @@
     <Compile Include="Controllers\NotificationsController.cs" />
     <Compile Include="Controllers\TransactionsController.cs" />
     <Compile Include="Enums\AccountType.cs" />
+    <Compile Include="Enums\ApplicationSettings.cs" />
     <Compile Include="Enums\TransactionType.cs" />
     <Compile Include="Extensions\AuthorizeExtensions.cs" />
     <Compile Include="Extensions\IdentityExtensions.cs" />
     <Compile Include="Extensions\InvitationExtensions.cs" />
+    <Compile Include="Extensions\TransactionExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -337,6 +339,9 @@
     <Content Include="Views\Manage\UpdateProfile.cshtml" />
     <Content Include="Views\Households\ConfigureHouse.cshtml" />
     <Content Include="Views\Account\AcceptInvitation.cshtml" />
+    <Content Include="Private.config" />
+    <Content Include="Views\Households\ExitDenied.cshtml" />
+    <Content Include="Views\Households\ChangeHead.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

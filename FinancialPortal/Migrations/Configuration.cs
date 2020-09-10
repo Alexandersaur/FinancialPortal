@@ -1,5 +1,6 @@
 namespace FinancialPortal.Migrations
 {
+    using FinancialPortal.Enums;
     using FinancialPortal.Models;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
@@ -47,7 +48,7 @@ namespace FinancialPortal.Migrations
             #endregion
 
             #region User Creation
-            var adminEmail = WebConfigurationManager.AppSettings["AdminEmail"];
+            var adminEmail = WebConfigurationManager.AppSettings[ApplicationSettings.demoAdmin.ToString()];
             var adminPassword = WebConfigurationManager.AppSettings["AdminPassword"];
             var userManager = new UserManager<ApplicationUser>
                              (new UserStore<ApplicationUser>(context));

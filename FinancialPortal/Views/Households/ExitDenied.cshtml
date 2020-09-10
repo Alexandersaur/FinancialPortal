@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "ExitDenied";
+}
+
+<h2>Exit Denied</h2>
+
+<div class="row">
+    <div class="col-lg-8 offset-2 text-center text-danger">
+        <p id="message">
+            @Html.Raw(TempData["Message"])
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-6 offset-3">
+        @Html.ActionLink("Back to Home", "Index", "Home", null, new { @class="btn btn-success"})
+    </div>    
+    <div class="col-6 offset-3">
+        @Html.ActionLink("Choose new Head of Household", "ChangeHead", "Households", null, new { @class = "btn btn-success" })
+    </div>
+</div>
+

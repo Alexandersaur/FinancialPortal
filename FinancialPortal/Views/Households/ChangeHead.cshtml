@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "ChangeHead";
+}
+
+<h2>Choose a new Head of Household</h2>
+
+<h4>Select another member of the Household to assume your role as the Head of Household. By clickng submit your role will be changed to Member and you may leave the Household at any time.</h4>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-8 offset-2">
+            @using(Html.BeginForm("ChangeHead", "Households", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken();
+                <div class="row">
+                    <div cass="col">
+                        @Html.DropDownList("NewHoH", null, "--Choose New Head--")
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <button type="submit" name="Leave" value="false" class="btn btn-danger">Reassign</button>
+                        <button type="submit" name="Leave" value="true" class="btn btn-danger">Reassign & Leave</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

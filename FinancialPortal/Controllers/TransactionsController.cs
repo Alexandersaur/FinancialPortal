@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using FinancialPortal.Extensions;
 using FinancialPortal.Models;
 
 namespace FinancialPortal.Controllers
@@ -39,7 +40,7 @@ namespace FinancialPortal.Controllers
         // GET: Transactions/Create
         public ActionResult Create()
         {
-            ViewBag.AccountId = new SelectList(db.BankAccounts, "Id", "OwnerId");
+            ViewBag.AccountId = new SelectList(db.BankAccounts, "Id", "AccountName");
             ViewBag.BudgetItemId = new SelectList(db.BudgetItems, "Id", "ItemName");
             ViewBag.OwnerId = new SelectList(db.Users, "Id", "FirstName");
             return View();
@@ -56,6 +57,10 @@ namespace FinancialPortal.Controllers
             {
                 db.Transactions.Add(transaction);
                 db.SaveChanges();
+                var thisTransaction = db.Transactions.Include(t => t.BudgetItem).FirstOrDefault(t => t.Id == transaction.Id);
+                //var thisTransaction2 = db.Transactions.Include("BudgetItem").FirstOrDefault(t => t.Id == transaction.Id);
+                transaction.UpdateBalances();
+
                 return RedirectToAction("Index");
             }
 
@@ -92,8 +97,11 @@ namespace FinancialPortal.Controllers
         {
             if (ModelState.IsValid)
             {
+                var oldTransaction = db.Transactions.AsNoTracking().FirstOrDefault(t => t.Id == transaction.Id);
                 db.Entry(transaction).State = EntityState.Modified;
                 db.SaveChanges();
+                var newTransaction = db.Transactions.AsNoTracking().FirstOrDefault(t => t.Id == transaction.Id);
+                newTransaction.EditTransaction(oldTransaction);
                 return RedirectToAction("Index");
             }
             ViewBag.AccountId = new SelectList(db.BankAccounts, "Id", "OwnerId", transaction.AccountId);
