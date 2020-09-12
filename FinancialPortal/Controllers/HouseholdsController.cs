@@ -234,7 +234,7 @@ namespace FinancialPortal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ChangeHeadAsync(string newHoH, bool leave)
         {
-            if (string.IsNullOrEmpty(newHoH))
+            if (string.IsNullOrEmpty(newHoH) || newHoH == User.Identity.GetUserId())
             {
                 return RedirectToAction("Index", "Home");
             }
@@ -250,7 +250,6 @@ namespace FinancialPortal.Controllers
                 db.SaveChanges();
                 roleHelper.UpdateUserRole(user.Id, "New User");
                 await AuthorizeExtensions.RefreshAuthentication(HttpContext, user);
-
             }
             else
             {
