@@ -192,6 +192,7 @@
     <Compile Include="Helpers\InvitationHelper.cs" />
     <Compile Include="Helpers\RoleHelper.cs" />
     <Compile Include="Helpers\StringUtilities.cs" />
+    <Compile Include="Helpers\UserHelper.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BankAccount.cs" />
@@ -226,6 +227,7 @@
     <Content Include="fonts\fa-solid-900.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="images\moneyprojs.png" />
     <Content Include="Scripts\adminlte.js" />
     <Content Include="Scripts\adminlte.min.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -342,6 +344,8 @@
     <Content Include="Private.config" />
     <Content Include="Views\Households\ExitDenied.cshtml" />
     <Content Include="Views\Households\ChangeHead.cshtml" />
+    <None Include="Properties\PublishProfiles\FinancialPortalJS - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\JSBugTracker - Web Deploy.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
