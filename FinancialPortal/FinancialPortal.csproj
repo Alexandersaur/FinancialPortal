@@ -228,6 +228,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="images\moneyprojs.png" />
+    <Content Include="images\pattern %282%29.jpeg" />
+    <Content Include="images\pattern %283%29.jpeg" />
+    <Content Include="images\pattern %284%29.jpeg" />
+    <Content Include="images\pattern %285%29.jpeg" />
+    <Content Include="images\pexels-burst-545054.jpg" />
     <Content Include="Scripts\adminlte.js" />
     <Content Include="Scripts\adminlte.min.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
