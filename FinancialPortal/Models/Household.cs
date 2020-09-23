@@ -20,12 +20,14 @@ namespace FinancialPortal.Models
         public virtual ICollection<BankAccount> Accounts { get; set; }
         public virtual ICollection<Budget> Budgets { get; set; }
         public virtual ICollection<Invitation> Invitations { get; set; }
+        //public virtual ICollection<Category> Categories { get; set; }
         public virtual ICollection<Notification> Notifications { get; set; }
         public Household()
         {
             Members = new HashSet<ApplicationUser>();
             Accounts = new HashSet<BankAccount>();
             Budgets = new HashSet<Budget>();
+            //Categories = new HashSet<Category>();
             Invitations = new HashSet<Invitation>();
             Notifications = new HashSet<Notification>();
             Created = DateTime.Now;

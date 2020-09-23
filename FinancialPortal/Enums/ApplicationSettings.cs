@@ -14,5 +14,7 @@ namespace FinancialPortal.Enums
         username,
         password,
         port,
+        AdminEmail,
+        MemberEmail
     }
 }

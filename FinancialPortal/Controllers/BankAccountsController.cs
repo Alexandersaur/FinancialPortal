@@ -49,14 +49,15 @@ namespace FinancialPortal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(decimal startingBalance, decimal warningBalance, string accountName, int householdId)
+        public ActionResult Create(BankAccount account, decimal startingBalance)
         {
-            var bankAccount = new BankAccount(startingBalance, warningBalance, accountName);
-            bankAccount.HouseholdId = householdId;
+            var bankAccount = new BankAccount(startingBalance, account.WarningBalance, account.AccountName);
+            bankAccount.HouseholdId = account.HouseholdId;
+            bankAccount.AccountType = account.AccountType;
             db.BankAccounts.Add(bankAccount);
             db.SaveChanges();
             return RedirectToAction("Index");
-           
+
             //ViewBag.HouseholdId = new SelectList(db.Households, "Id", "HouseholdName", bankAccount.HouseholdId);
             //ViewBag.OwnerId = new SelectList(db.Users, "Id", "FirstName", bankAccount.OwnerId);
             //return View(bankAccount);
@@ -96,6 +97,14 @@ namespace FinancialPortal.Controllers
             ViewBag.OwnerId = new SelectList(db.Users, "Id", "FirstName", bankAccount.OwnerId);
             return View(bankAccount);
         }
+
+        public PartialViewResult _BankAccountModal()
+        {
+            var model = new BankAccount();
+            return PartialView(model);
+        }
+
+
 
         // GET: BankAccounts/Delete/5
         public ActionResult Delete(int? id)

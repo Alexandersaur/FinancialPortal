@@ -209,6 +209,7 @@
     <Compile Include="ViewModels\BankAccountWizardVM.cs" />
     <Compile Include="ViewModels\BudgetWizardVM.cs" />
     <Compile Include="ViewModels\ConfigureHouseVM.cs" />
+    <Compile Include="ViewModels\HouseholdViewModel.cs" />
     <Compile Include="ViewModels\UpdateProfileVM.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -351,6 +352,9 @@
     <Content Include="Views\Households\ChangeHead.cshtml" />
     <None Include="Properties\PublishProfiles\FinancialPortalJS - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\JSBugTracker - Web Deploy.pubxml" />
+    <Content Include="Views\Shared\_BankAccountModal.cshtml" />
+    <Content Include="Views\Home\_HouseholdStatistics.cshtml" />
+    <Content Include="Views\Account\DemoLogin.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

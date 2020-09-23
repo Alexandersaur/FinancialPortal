@@ -1,0 +1,76 @@
+﻿
+@{ 
+    ViewBag.Title = "Log in";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Money Pro JS</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Font Awesome -->
+    <link href="~/Content/all.min.css" rel="stylesheet" />
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- icheck bootstrap -->
+    <link href="~/Content/icheck-bootstrap.min.css" rel="stylesheet" />
+    <!-- Theme style -->
+    <link href="~/Content/adminlte.min.css" rel="stylesheet" />
+    <!-- Google Font: Source Sans Pro -->
+    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+</head>
+<body class="hold-transition login-page">
+    <div class="login-box">
+        @*<div class="login-logo">
+            <a href="../../index2.html"><b>MoneyPro</b>JS</a>
+        </div>*@
+        <!-- /.login-logo -->
+        <div class="card">
+            <div class="card-body login-card-body">
+                <p class="login-box-msg">Sign in to start your session</p>
+
+                <section id="loginForm">
+                    <div class="row" id="MemberRow">
+                        @using (Html.BeginForm("DemoLogin", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.Hidden("emailKey", "AdminEmail")
+                            @Html.Hidden("passwordKey", "AdminPassword")
+                            <div class="col">
+                                <button type="submit" class="btn btn-primary btn-block">Admin Login <i class="fa fa-ambulance"></i></button>
+                            </div>
+                        }
+                    </div>
+                    <div class="row" id="MemberRow">
+                        @using (Html.BeginForm("DemoLogin", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.Hidden("emailKey", "MemberEmail")
+                            @Html.Hidden("passwordKey", "MemberPassword")
+                            <div class="col">
+                                <button type="submit" class="btn btn-primary btn-block">Member Login <i class="fa fa-arrow-circle-right"></i></button>
+                            </div>
+                        }
+                    </div>
+                   
+                    
+                </section>
+            </div>
+            <!-- /.login-card-body -->
+        </div>
+    </div>
+   
+    <!-- /.login-box -->
+    <!-- jQuery -->
+    <script src="~/Scripts/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/Scripts/adminlte.min.js"></script>
+
+</body>
+</html>

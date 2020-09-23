@@ -34,6 +34,7 @@ namespace FinancialPortal.Models
             }
         }
         public virtual ICollection<BudgetItem> Items { get; set; }
+        public Budget(bool bs) { }
         public Budget()
         {
             Items = new HashSet<BudgetItem>();

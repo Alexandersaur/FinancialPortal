@@ -48,8 +48,10 @@ namespace FinancialPortal.Migrations
             #endregion
 
             #region User Creation
-            var adminEmail = WebConfigurationManager.AppSettings[ApplicationSettings.demoAdmin.ToString()];
+            var adminEmail = WebConfigurationManager.AppSettings[ApplicationSettings.AdminEmail.ToString()];
             var adminPassword = WebConfigurationManager.AppSettings["AdminPassword"];
+            var memberEmail = WebConfigurationManager.AppSettings[ApplicationSettings.MemberEmail.ToString()];
+            var memberPassword = WebConfigurationManager.AppSettings["MemberPassword"];
             var userManager = new UserManager<ApplicationUser>
                              (new UserStore<ApplicationUser>(context));
 
@@ -59,12 +61,97 @@ namespace FinancialPortal.Migrations
                 {
                     Email = adminEmail,
                     UserName = adminEmail,
-                    FirstName = "Jeremy",
-                    LastName = "Steward",
+                    FirstName = "Demo",
+                    LastName = "Admin",
                 }, adminPassword);
                 var userId = userManager.FindByEmail(adminEmail).Id;
                 userManager.AddToRole(userId, "Admin");
             }
+            if (!context.Users.Any(u => u.Email == memberEmail))
+            {
+                userManager.Create(new ApplicationUser()
+                {
+                    Email = memberEmail,
+                    UserName = memberEmail,
+                    FirstName = "Demo",
+                    LastName = "Member",
+                }, memberPassword);
+                var userId = userManager.FindByEmail(memberEmail).Id;
+                userManager.AddToRole(userId, "Member");
+            }
+            #endregion
+
+            #region Seed Household
+            Household newHouse = null;
+            if (!context.Households.Any())
+            {
+                newHouse = new Household
+                {
+                    Created = DateTime.Now,
+                    Greeting = "Hello Demo House",
+                    IsDeleted = false,
+                    HouseholdName = "Seeded House",
+                };
+                context.Households.Add(newHouse);
+            }
+            context.SaveChanges();
+            #endregion
+
+            #region Seed Bank Account
+            var ownerId = context.Users.FirstOrDefault(u => u.Email == adminEmail).Id;
+            if (!context.BankAccounts.Any())
+            {
+                context.BankAccounts.Add(new BankAccount
+                {
+                    AccountName = "Wells Fargo Checking",
+                    AccountType = AccountType.Checking,
+                    Created = DateTime.Now,
+                    CurrentBalance = 5000,
+                    HouseholdId = newHouse.Id,
+                    IsDeleted = false,
+                    OwnerId = ownerId,
+                    StartingBalance = 5000,
+                    WarningBalance = 500,
+                });
+            context.SaveChanges();
+            }
+            #endregion
+
+            #region Seed Budget
+            Budget budget = null;
+            if (!context.Budgets.Any())
+            {
+                budget = new Budget(true)
+                {
+                    BudgetName = "Utilities",
+                    Created = DateTime.Now,
+                    HouseholdId = newHouse.Id,
+                    OwnerId = ownerId,
+                    CurrentAmount = 0,
+                };
+                context.Budgets.Add(budget);
+                context.SaveChanges();
+            };
+            
+            #endregion
+
+            #region Seed Item
+            if (!context.BudgetItems.Any())
+            {
+                context.BudgetItems.Add(new BudgetItem()
+                {
+                   CurrentAmount = 0,
+                   TargetAmount = 250,
+                   BudgetId = budget.Id,
+                   Created = DateTime.Now,
+                   ItemName = "Gas Bill",
+                   IsDeleted = false,
+                });
+                context.SaveChanges();
+            }
+            #endregion
+
+            #region Seed Transaction(s)
             #endregion
         }
     }
