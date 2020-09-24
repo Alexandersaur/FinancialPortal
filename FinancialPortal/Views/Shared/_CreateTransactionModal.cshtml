@@ -1,0 +1,40 @@
+﻿@using FinancialPortal.Models
+@model Transaction
+
+@using (Html.BeginForm("Create", "Transactions", FormMethod.Post, new { id = "modalCreateTransactionForm" }))
+{
+@Html.AntiForgeryToken()
+                @Html.Hidden("AccountId", Model.AccountId)
+                                <div class="form-horizontal">
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.BudgetItemId, "BudgetItemId", htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.DropDownList("BudgetItemId", null, htmlAttributes: new { @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.TransactionType, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.EnumDropDownListFor(model => model.TransactionType, htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.TransactionType, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Memo, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.Memo, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Memo, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>}

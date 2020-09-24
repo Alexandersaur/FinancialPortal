@@ -1,0 +1,121 @@
+﻿@using FinancialPortal.Models
+@model Budget
+@{ ViewBag.Title = "Virtual Wallet | Dashboard";
+                Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Budget Dashboard - @Model.BudgetName @Html.ActionLink("Delete", "Delete", "Budgets", new { id = Model.Id }, new { @class = "btn btn-danger" })</h1>
+
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col">
+            <div class="small-box bg-success">
+                <div class="inner">
+                    <h3>Current Amount</h3>
+
+                    <h4>$@Model.CurrentAmount</h4>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-check"></i>
+                </div>
+
+            </div>
+        </div>
+        <div class="col">
+            <div class="small-box bg-primary">
+                <div class="inner">
+                    <h3>Target Amount</h3>
+
+                    <h4>$@Model.TargetAmount</h4>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-dollar-sign"></i>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Budget Items <button class="btn btn-primary" data-toggle="modal" data-target="#modal-createbudgetitem">Create Item</button></h3>
+                </div>
+                <div class="card-body">
+                    @if (Model.Items.Count() <= 0)
+                    {
+        <p class="text-center">No Items For Budget</p> }
+                    else
+                    {
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.Label("Name")
+                    </th>
+                    <th>
+                        @Html.Label("Created")
+                    </th>
+                    <th>
+                        @Html.Label("Current Amount")
+                    </th>
+                    <th>
+                        @Html.Label("Target Amount")
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Items)
+                {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.ItemName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Created)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CurrentAmount)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TargetAmount)
+    </td>
+    <td>
+        @Html.ActionLink("Details", "Dashboard", "BudgetItems", new { id = item.Id }, null)
+    </td>
+</tr>}
+            </tbody>
+        </table>}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="modal fade" id="modal-createbudgetitem">
+    <div class="modal-dialog">
+        <div class="modal-content bg-success">
+            <div class="modal-header">
+                <h4 class="modal-title">Create Budget Item</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @Html.Action("_CreateBudgetItemModal", "BudgetItems", new { budgetId = Model.Id })
+            </div>
+            <div class="modal-footer justify-content-between">
+                <a href="javascript:document.getElementById('modalBudgetItemForm').submit()" class="btn btn-primary">Create</a>
+            </div>
+        </div>
+    </div>
+</div>

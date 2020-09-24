@@ -1,0 +1,16 @@
+﻿@using FinancialPortal.Models
+@model Budget
+
+
+@using (Html.BeginForm("Create", "Budgets", FormMethod.Post, new { id = "modalCreateBudgetForm" }))
+{
+@Html.AntiForgeryToken()
+                @Html.Hidden("HouseholdId", Model.HouseholdId)
+
+                                <div class="form-group">
+                                    @Html.Label("Name")
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.BudgetName, new { htmlAttributes = new { @class = "form-control" } })
+                                    </div>
+                                </div>}
+

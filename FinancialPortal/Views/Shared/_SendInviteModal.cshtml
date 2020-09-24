@@ -1,0 +1,18 @@
+﻿
+@using FinancialPortal.Models
+@model Invitation
+
+
+@using (Html.BeginForm("Create", "Invitations", FormMethod.Post, new { id = "modalSendForm" }))
+{
+@Html.AntiForgeryToken()
+                @Html.HiddenFor(model => model.HouseholdId)
+                                @Html.HiddenFor(model => model.Created)
+                                                @Html.HiddenFor(model => model.TTL)
+                                                                @Html.HiddenFor(model => model.IsValid)
+                                                                                <div class="form-group">
+                                                                                    @Html.Label("Recipient Email")
+                                                                                    <div class="col-md-10">
+                                                                                        @Html.EditorFor(model => model.RecipientEmail, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                    </div>
+                                                                                </div>}

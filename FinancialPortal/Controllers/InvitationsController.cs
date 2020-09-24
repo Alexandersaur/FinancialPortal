@@ -109,7 +109,12 @@ namespace FinancialPortal.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
+        public PartialViewResult _SendInviteModal()
+        {
+            var hhId = User.Identity.GetHouseholdId();
+            var invitation = new Invitation((int)hhId);
+            return PartialView(invitation);
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -1,0 +1,107 @@
+﻿@using FinancialPortal.Models
+@model ApplicationUser
+@{ ViewBag.Title = "User Dashboard"; }
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>User Dashboard</h1>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+
+                <div class="card card-widget widget-user">
+                    <!-- Add the bg color to the header using any of the bg-* classes -->
+                    <div class="widget-user-header bg-info">
+                        <h3 class="widget-user-username">@Model.FullName <a data-toggle="modal" data-target="#modal-manageaccount"><i class="fas fa-user-edit"></i></a></h3>
+                    </div>
+                    <div class="widget-user-image">
+                        <img class="img-circle elevation-2" src="@Model.AvatarPath" alt="User Avatar">
+                    </div>
+                    <div class="card-footer">
+                        <div class="row">
+
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                </div>
+                <!-- /.widget-user -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="modal fade" id="modal-manageaccount">
+    <div class="modal-dialog">
+        <div class="modal-content bg-info">
+            <div class="modal-header">
+                <h4 class="modal-title">Edit your Account</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="col-6 text-center">
+                    <h3>Name</h3>
+                    @using (Html.BeginForm("ChangeName", "Manage", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+        @Html.AntiForgeryToken()
+                        <h5>
+                            @Html.TextBox("firstName", null, new { @placeholder = "First Name", @style = "Width:70%" })
+                        </h5>
+                                        <h5>
+                                            @Html.TextBox("lastName", null, new { @placeholder = "Last Name", @style = "Width:70%" })
+                                        </h5>
+                                                        <h5>
+                                                            <button type="submit" class="btn" style="background-color:cornflowerblue; width:70%; color:white">Change Name</button>
+                                                        </h5>}
+                </div>
+                <div class="col-6 text-center">
+                    <h3>Password</h3>
+                    <h3 style="margin-top:5.5px; color:blue; cursor:pointer;" onclick="window.location.href='@Url.Action("ChangePassword", "Manage")'">
+                        Change Password
+                    </h3>
+                </div>
+            </div>
+            <div class="row" style="margin-top:4rem">
+                <div class="col text-center">
+                    <h3>
+                        Profile Picture
+                    </h3>
+                    <h3>
+                        <img src="@Model.AvatarPath" height="200" />
+                    </h3>
+                </div>
+                <div class="col text-center">
+                    @using (Html.BeginForm("ChangeAvatar", "Manage", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+        @Html.AntiForgeryToken()
+                        <div class="row">
+                            <div class="col text-center">
+                                <h3>Update Profile Picture</h3>
+                            </div>
+                        </div>
+                                        <div class="row" style="margin-top:4rem">
+                                            <div class="col" style="left:38px">
+                                                <input type="file" name="file" id="file" />
+                                            </div>
+                                        </div>
+                                                        <div class="row" style="margin-top:4rem">
+                                                            <div class="col text-center">
+                                                                <button type="submit" class="btn" style="width:60%; background-color:cornflowerblue; color:white">Update Picture</button>
+                                                            </div>
+                                                        </div>}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

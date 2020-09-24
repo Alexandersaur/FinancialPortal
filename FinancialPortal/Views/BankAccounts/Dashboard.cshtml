@@ -1,0 +1,178 @@
+﻿@using FinancialPortal.Helpers
+@using FinancialPortal.Models
+@model BankAccount
+@{ ViewBag.Title = "Bank Account Dashboard";
+                Layout = "~/Views/Shared/_Layout.cshtml";
+    RoleHelper roleHelper = new RoleHelper();
+
+                var accountWarning = "";
+                if (TempData["WarningBalance"] != null)
+                {
+                    accountWarning = TempData["WarningBalance"].ToString();
+                } }
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>@Model.AccountName @Html.ActionLink("Delete", "Delete", "BankAccounts", new { id = Model.Id }, new { @class = "btn btn-danger" })</h1>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<section class="content">
+    <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-success">
+                    <div class="inner">
+                        <h3>$@Model.CurrentBalance</h3>
+
+                        <p>Current Balance</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-warning">
+                    <div class="inner">
+                        <h3>$@Model.WarningBalance</h3>
+
+                        <p>Warning Balance</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-primary">
+                    <div class="inner">
+                        <h3>@roleHelper.GetFullName(Model.OwnerId)</h3>
+
+                        <p>Account Owner</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-person-add"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3>@Model.AccountType.ToString()</h3>
+
+                        <p>Account Type</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-info-circle"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- ./col -->
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">Transactions <button class="btn btn-primary" data-toggle="modal" data-target="#modal-createtransaction">Create Transaction</button></h5>
+
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.Label("Budget Item")
+                                    </th>
+                                    <th>
+                                        @Html.Label("Transaction Type")
+                                    </th>
+                                    <th>
+                                        @Html.Label("Date")
+                                    </th>
+                                    <th>
+                                        @Html.Label("Amount")
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Transactions)
+                                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BudgetItem.ItemName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TransactionType)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Created)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Amount)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Details", "Details", "Transactions", new { id = item.Id }, null) |
+                            @Html.ActionLink("Delete", "Delete", "Transactions", new { id = item.Id })
+                        </td>
+                    </tr>}
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="modal fade" id="modal-createtransaction">
+    <div class="modal-dialog">
+        <div class="modal-content bg-success">
+            <div class="modal-header">
+                <h4 class="modal-title">Create Transaction</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @Html.Action("_CreateTransactionModal", "Transactions", new { accountId = Model.Id })
+            </div>
+            <div class="modal-footer justify-content-between">
+                <a href="javascript:document.getElementById('modalCreateTransactionForm').submit()" class="btn btn-primary">Send</a>
+            </div>
+        </div>
+    </div>
+    <!-- /.modal-content -->
+</div>
+@section Scripts
+{
+    <script>
+	if ('@accountWarning' != "") {
+		var message = '@Html.Raw(accountWarning)';
+		Swal.fire({
+			icon: 'error',
+			title: 'Account Warning',
+			html: message
+		})
+	}
+    </script>
+}

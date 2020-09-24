@@ -3,7 +3,7 @@
 @model HouseholdDashboardVM
 
 @{ ViewBag.Title = "Household";
-    RoleHelper roleHelper = new RoleHelper(); }
+                RoleHelper roleHelper = new RoleHelper(); }
 <section class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
@@ -44,8 +44,8 @@
     </div>
 </div>}
 </div> }
-else
-{
+            else
+            {
 <div class="row">
     <div class="col">
         <div class="owl-carousel">
@@ -92,8 +92,7 @@ else
                         <td>
                             @Html.ActionLink("Details", "UserDashboard", "Account", new { id = item.Id }, null)
                         </td>
-                    </tr>
-}
+                    </tr>}
                             </tbody>
                         </table>
                     </div>
@@ -138,8 +137,7 @@ else
                         <td>
                             @Html.ActionLink("Details", "Dashboard", "Budgets", new { id = item.Id }, null)
                         </td>
-                    </tr>
-}
+                    </tr>}
                             </tbody>
                         </table>
 

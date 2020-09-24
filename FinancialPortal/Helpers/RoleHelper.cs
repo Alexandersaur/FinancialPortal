@@ -26,6 +26,13 @@ namespace FinancialPortal.Helpers
         {
             return null;
         }
+        public string GetFullName(string userId)
+        {
+            var user = db.Users.Find(userId);
+            var firstName = user.FirstName;
+            var lastName = user.LastName;
+            return firstName + " " + lastName;
+        }
         public bool IsUserInRole(string userId, string roleName)
         {
             return userManager.IsInRole(userId, roleName);
@@ -77,6 +84,20 @@ namespace FinancialPortal.Helpers
                     resultList.Add(user);
             }
             return resultList;
+        }
+        public int GetPercentPaid(Budget budget)
+        {
+            if (budget.TargetAmount == 0)
+            {
+                return 0;
+            }
+            var percentPaid = (int)decimal.Round((budget.CurrentAmount / budget.TargetAmount) * 100, 0);
+
+            if (percentPaid > 100)
+            {
+                percentPaid = 100;
+            }
+            return percentPaid;
         }
     }
 }

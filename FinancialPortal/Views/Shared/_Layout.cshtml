@@ -122,15 +122,15 @@
             </a>
             <!-- Sidebar -->
             <div class="sidebar">
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                @*<div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        @*<img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">*@
-                        @*<img src="@Model.AvatarPath" class="img-circle resize" />*@
+                        <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                        <img src="@Model.AvatarPath" class="img-circle resize" />
                     </div>
                     <div class="info; d-block" style="color:white">
                         Logged in as: <b>@ViewBag.Role</b>
                     </div>
-                </div>
+                </div>*@
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -192,6 +192,37 @@
                             }
                         </li>
                     </ul>
+                    @*<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <li class="nav-item">
+                            <a href="@Url.Action("Dashboard", "Home")" class="nav-link">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>
+                                    Dashboard
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("Dashboard", "Households")" class="nav-link">
+                                <i class="nav-icon fas fa-home"></i>
+                                <p>
+                                    Household
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link bg-success" id="edit-button" data-toggle="modal" data-target="#modal-sendinvite">
+                                <i class="fas fa-envelope"></i> <p>Invite User to House</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link bg-danger" id="edit-button">
+                                    <i class="fas fa-sign-out-alt nav-icon"></i><p>Log off</p>
+                                </a>}
+                        </li>
+                    </ul>*@
                 </nav>
                 <!-- /.sidebar-menu -->
             </div>
@@ -199,22 +230,22 @@
         </aside>
         <!--Content Wrapper. Contains page content-->
 
-            <div class="content-wrapper">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bankAccountModal">
+        <div class="content-wrapper">
+            @*<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bankAccountModal">
                 Launch demo modal
-            </button>
-                <br />
-                @RenderBody()
-            </div>
+            </button>*@
+            <br />
+            @RenderBody()
+        </div>
 
-            <footer class="main-footer">
-                <strong>Copyright &copy; 2020 <a href="//jeremysteward.com" target="_blank">Jeremy Steward</a>.</strong>
-                All rights reserved.
-                <div class="float-right d-none d-sm-inline-block">
-                    <b>Version</b> 1.5.5
-                </div>
-            </footer>
-        
+        <footer class="main-footer">
+            <strong>Copyright &copy; 2020 <a href="//jeremysteward.com" target="_blank">Jeremy Steward</a>.</strong>
+            All rights reserved.
+            <div class="float-right d-none d-sm-inline-block">
+                <b>Version</b> 1.5.5
+            </div>
+        </footer>
+
         <section id="manualJoinModal">
             <div class="modal" id="manualJoin" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
@@ -274,7 +305,25 @@
             </div>
         </section>
 
-
+        <div class="modal fade" id="modal-sendinvite">
+            <div class="modal-dialog">
+                <div class="modal-content bg-success">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Create Account</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        @Html.Action("_SendInviteModal", "Invitations")
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <a href="javascript:document.getElementById('modalSendForm').submit()" class="btn btn-primary">Send</a>
+                    </div>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
 
         <!-- jQuery -->
         <script src="~/Scripts/jquery.min.js"></script>

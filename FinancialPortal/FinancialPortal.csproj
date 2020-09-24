@@ -187,6 +187,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\BudgetHelper.cs" />
     <Compile Include="Helpers\FileUploadValidator.cs" />
     <Compile Include="Helpers\ImageUploadValidator.cs" />
     <Compile Include="Helpers\InvitationHelper.cs" />
@@ -209,6 +210,8 @@
     <Compile Include="ViewModels\BankAccountWizardVM.cs" />
     <Compile Include="ViewModels\BudgetWizardVM.cs" />
     <Compile Include="ViewModels\ConfigureHouseVM.cs" />
+    <Compile Include="ViewModels\HomeDashboardVM.cs" />
+    <Compile Include="ViewModels\HouseholdDashboardVM.cs" />
     <Compile Include="ViewModels\HouseholdViewModel.cs" />
     <Compile Include="ViewModels\UpdateProfileVM.cs" />
   </ItemGroup>
@@ -355,6 +358,17 @@
     <Content Include="Views\Shared\_BankAccountModal.cshtml" />
     <Content Include="Views\Home\_HouseholdStatistics.cshtml" />
     <Content Include="Views\Account\DemoLogin.cshtml" />
+    <Content Include="Views\Households\Dashboard.cshtml" />
+    <Content Include="Views\BankAccounts\Dashboard.cshtml" />
+    <Content Include="Views\Account\UserDashboard.cshtml" />
+    <Content Include="Views\Budgets\Dashboard.cshtml" />
+    <Content Include="Views\Shared\_CreateBudgetModal.cshtml" />
+    <Content Include="Views\Shared\_SendInviteModal.cshtml" />
+    <Content Include="Views\Home\Dashboard.cshtml" />
+    <Content Include="Views\Shared\_CreateAccountModal.cshtml" />
+    <Content Include="Views\Shared\_CreateBudgetItemModal.cshtml" />
+    <Content Include="Views\Shared\_CreateTransactionModal.cshtml" />
+    <Content Include="Views\Shared\_CreateTransactionModalFromItem.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
