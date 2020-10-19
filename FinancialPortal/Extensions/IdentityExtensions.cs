@@ -23,6 +23,21 @@ namespace FinancialPortal.Extensions
                 return null;
             }
         }
+        public static string GetHouseholdName(this IIdentity user)
+        {
+            var claimsIdentity = (ClaimsIdentity)user;
+            var householdClaim = claimsIdentity.Claims.FirstOrDefault(c => c.Type == "HouseholdName");
+            if (householdClaim != null)
+            {
+                var result = householdClaim.Value != "" ? (householdClaim.Value) : "";
+                return result;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public static string GetFullName(this IIdentity user)
         {
             var claimsIdentity = (ClaimsIdentity)user;

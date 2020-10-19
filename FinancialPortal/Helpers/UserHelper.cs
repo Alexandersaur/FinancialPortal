@@ -5,12 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace BugTracker.Helpers
+namespace FinancialPortal.Helpers
 {
 
     public class UserHelper
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        private RoleHelper roleHelper = new RoleHelper();
 
         public string GetFullName(string userId)
         {
@@ -47,6 +48,15 @@ namespace BugTracker.Helpers
         public string GetUserRole(string userId)
         {
             return null;
+        }
+        public List<ApplicationUser> GetUserList()
+        {
+            return db.Users.ToList();
+        }
+
+        public List<ApplicationUser> GetUserList(string role)
+        {
+            return roleHelper.UsersInRole(role).ToList();
         }
     }
 

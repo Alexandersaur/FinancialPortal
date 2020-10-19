@@ -34,7 +34,7 @@
                 <p class="login-box-msg">Sign in to start your session</p>
 
                 <section id="loginForm">
-                    <div class="row" id="MemberRow">
+                    <div class="row" id="AdminRow">
                         @using (Html.BeginForm("DemoLogin", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                         {
                             @Html.AntiForgeryToken()

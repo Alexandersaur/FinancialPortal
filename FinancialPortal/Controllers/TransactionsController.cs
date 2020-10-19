@@ -51,7 +51,7 @@ namespace FinancialPortal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,AccountId,BudgetItemId,OwnerId,TransactionType,Created,Amount,Memo,IsDeleted")] Transaction transaction)
+        public ActionResult Create(Transaction transaction, int acctId)
         {
             if (ModelState.IsValid)
             {
@@ -67,7 +67,7 @@ namespace FinancialPortal.Controllers
             ViewBag.AccountId = new SelectList(db.BankAccounts, "Id", "OwnerId", transaction.AccountId);
             ViewBag.BudgetItemId = new SelectList(db.BudgetItems, "Id", "ItemName", transaction.BudgetItemId);
             ViewBag.OwnerId = new SelectList(db.Users, "Id", "FirstName", transaction.OwnerId);
-            return View(transaction);
+            return RedirectToAction("Details", "BankAccounts", new { id = acctId});
         }
 
         // GET: Transactions/Edit/5

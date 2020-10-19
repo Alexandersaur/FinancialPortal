@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using FinancialPortal.Models;
+using FinancialPortal.ViewModels;
 
 namespace FinancialPortal.Controllers
 {
@@ -28,12 +29,21 @@ namespace FinancialPortal.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            BankAccountViewModel model = new BankAccountViewModel();
             BankAccount bankAccount = db.BankAccounts.Find(id);
             if (bankAccount == null)
             {
                 return HttpNotFound();
             }
-            return View(bankAccount);
+            model.BankAccount = bankAccount;
+            //model.MonthlyTransactions = bankAccount.Transactions.Where(t => t.Created.Month == DateTime.Today.Month).Count();
+            //model.MonthlySpending = bankAccount.Transactions.Where(t => t.TransactionType == Enums.TransactionType.Withdrawal && t.Created.Month == DateTime.Today.Month).Sum(t => t.Amount);
+            //model.MonthlyDeposits = bankAccount.Transactions.Where(t => t.TransactionType == Enums.TransactionType.Deposit && t.Created.Month == DateTime.Today.Month).Sum(t => t.Amount);
+            model.MonthlyTransactions = bankAccount.Transactions.Count();
+            model.MonthlySpending = bankAccount.Transactions.Where(t => t.TransactionType == Enums.TransactionType.Withdrawal).Sum(t => t.Amount);
+            model.MonthlyDeposits = bankAccount.Transactions.Where(t => t.TransactionType == Enums.TransactionType.Deposit).Sum(t => t.Amount);
+
+            return View(model);
         }
 
         // GET: BankAccounts/Create

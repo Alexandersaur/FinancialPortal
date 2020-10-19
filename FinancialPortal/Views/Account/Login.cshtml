@@ -31,12 +31,65 @@
             background-repeat: no-repeat;
             background-size: cover;
         }
+        .btn:hover {
+            box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+        }
+
+        .btn-admin {
+            background-color: #4e89ae;
+            color: white;
+        }
+
+            .btn-admin:hover {
+                background-color: white;
+                border: 2px solid #4e89ae;
+            }
+
+                .btn-admin:hover span {
+                    display: none
+                }
+
+                .btn-admin:hover:before {
+                    content: "Full Project Access";
+                    font: bold;
+                    color: #4e89ae;
+                }
+
+        .btn-member {
+            background-color: #43658b;
+            color: white;
+        }
+
+            .btn-member:hover {
+                background-color: white;
+                border: 2px solid #43658b;
+            }
+
+                .btn-member:hover span {
+                    display: none
+                }
+
+                .btn-member:hover:before {
+                    content: "Demo Member";
+                    color: #43658b;
+                }
+
     </style>
 </head>
 <body class="hold-transition login-page">
     <div class="login-box">
         <!-- /.login-logo -->
         <div class="card border-dark">
+            @if (Request.IsAuthenticated)
+            {
+                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "sideLogoutForm", @class = "navbar-right" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <p style="text-align:center">
+                        <a href="javascript:document.getElementById('sideLogoutForm').submit()" style="text-align:center; width:100%; font-size:x-small">( Remember to Log Out! )</a>
+                    </p>
+                }
+            }
             <div class="login-logo">
                 <img src="~/Images/moneyprojs.png" alt="BugZap JS Logo" class="brand-image"
                      style="
@@ -93,14 +146,14 @@
                 </section>
 
                 @*<div class="social-auth-links text-center mb-3">
-                    <p>- OR -</p>
-                    <a href="#" class="btn btn-block btn-primary">
-                        <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
-                    </a>
-                    <a href="#" class="btn btn-block btn-dark">
-                        <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
-                    </a>
-                </div>*@
+                <p>- OR -</p>
+                <a href="#" class="btn btn-block btn-primary">
+                    <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
+                </a>
+                <a href="#" class="btn btn-block btn-dark">
+                    <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
+                </a>
+            </div>*@
                 <!-- /.social-auth-links -->
 
                 <p class="mb-0">
@@ -109,30 +162,32 @@
                 <p class="mb-0">
                     @Html.ActionLink("Register as a new user", "Register")
                 </p>
-                <p class="mb-0">
+                @*<p class="mb-0">
                     @Html.ActionLink("Resend Email Confirmation", "ResendEmailConfirmation")
-                </p>
+                </p>*@
             </div>
             <!-- /.login-card-body -->
         </div>
-        @*<div class="col-4" style="padding-left:30px; padding-right:30px">
-            @using (Html.BeginForm("DemoLogin", "Account", FormMethod.Post))
-            {
-                @Html.AntiForgeryToken();
-                @Html.Hidden("emailKey", "AdminEmail")
-                <div>
-                    <button type="submit" class="btn btn-admin btn-block btn-flat"><span>Demo Admin Login</span></button>
-                </div>
-            }
-            @using (Html.BeginForm("DemoLogin", "Account", FormMethod.Post))
-            {
-                @Html.AntiForgeryToken();
-                @Html.Hidden("emailKey", "MemberEmail")
-                <div>
-                    <button type="submit" class="btn btn-projmanager btn-block btn-flat"><span>Demo Member Login</span></button>
-                </div>
-            }
-        </div>*@
+        <div class="login-card-body">
+            <div>
+                @using (Html.BeginForm("DemoLogin", "Account", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken();
+                    @Html.Hidden("emailKey", "AdminEmail")
+                    <div>
+                        <button type="submit" class="btn btn-admin btn-block btn-flat"><span>Demo Admin Login</span></button>
+                    </div>
+                }
+                @using (Html.BeginForm("DemoLogin", "Account", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken();
+                    @Html.Hidden("emailKey", "MemberEmail")
+                    <div>
+                        <button type="submit" class="btn btn-member btn-block btn-flat"><span>Demo Member Login</span></button>
+                    </div>
+                }
+            </div>
+        </div>
     </div>
     <!-- /.login-box -->
     <!-- jQuery -->
