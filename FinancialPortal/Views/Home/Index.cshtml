@@ -1,4 +1,8 @@
-﻿<!-- Content Header (Page header) -->
+﻿@using Microsoft.AspNet.Identity;
+@using FinancialPortal.Extensions
+@using FinancialPortal.Helpers;
+
+<!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
         @if (User.IsInRole("Head"))
@@ -62,14 +66,21 @@
                 </div>
             </div>
         }
-        @if (User.IsInRole("New User") || User.IsInRole("Member"))
+        @if (User.IsInRole("New User") || User.IsInRole("Member") || User.IsInRole("Heead"))
         {
+            <h1 class="m-0 text-dark" style="        font-size: 400%;
+        text-align: center;
+        color: #2f3e46
+">
+                <b>Overview for @User.Identity.GetFullName()</b>
+            </h1>
+            <br />
             <div class="row">
                 <div class="col-lg-3 col-3">
                     <div class="small-box elevation-2" style="
         background-color: #84a98c;
         color: white">
-                        <div class="inner">
+                        <div class="inner" style="text-align:center">
                             <dl>
                                 <dt>
                                     <b>Total Balance</b>
@@ -85,7 +96,7 @@
                     <div class="small-box elevation-2" style="
         background-color: #84a98c;
         color: white">
-                        <div class="inner">
+                        <div class="inner" style="text-align:center">
                             <dl>
                                 <dt>
                                     <b>Total Budget</b>
@@ -101,7 +112,7 @@
                     <div class="small-box elevation-2" style="
         background-color: #84a98c;
         color: white">
-                        <div class="inner">
+                        <div class="inner" style="text-align:center">
                             <dl>
                                 <dt>
                                     <b>Monthly Spending</b>
@@ -117,7 +128,7 @@
                     <div class="small-box elevation-2" style="
         background-color: #84a98c;
         color: white">
-                        <div class="inner">
+                        <div class="inner" style="text-align:center">
                             <dl>
                                 <dt>
                                     <b>Monthly Deposits</b>
@@ -148,28 +159,28 @@
 
 @using (Html.BeginForm("Create", "Households", FormMethod.Post))
 {
-        <div class="modal" id="createHouseholdModal">
-            <div class="modal-dialog" >
-                <div class="modal-content" style="background-color: #84a98c; height:215px; color:white; text-align: center">
-                    @Html.AntiForgeryToken()
-                    <div class="modal-header">
-                        <h2><b>Create Household</b></h2>
-                        <button type="button" class="close text-black" data-dismiss="modal" aria-hidden="false">x</button>
-                    </div>
-                    <div class="modal-body displayFlex">
-                        @Html.Label("Name", new { htmlAttributes = new { @class = "form-control " } })
-                        @Html.Editor("HouseholdName", new { @class = "text-danger" })
-                    </div>
-                    <div class="modal-body">
-                        @Html.Label("Greeting", new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.Editor("Greeting", new { @class = "text-danger" })
-                    </div>
-                    <div class="modal-footer">
-                        <input type="submit" value="Create" class="btn backgroundWhite colorBlack" />
-                    </div>
+    <div class="modal" id="createHouseholdModal">
+        <div class="modal-dialog">
+            <div class="modal-content" style="background-color: #84a98c; height:215px; color:white; text-align: center">
+                @Html.AntiForgeryToken()
+                <div class="modal-header">
+                    <h2><b>Create Household</b></h2>
+                    <button type="button" class="close text-black" data-dismiss="modal" aria-hidden="false">x</button>
+                </div>
+                <div class="modal-body displayFlex">
+                    @Html.Label("Name", new { htmlAttributes = new { @class = "form-control " } })
+                    @Html.Editor("HouseholdName", new { @class = "text-danger" })
+                </div>
+                <div class="modal-body">
+                    @Html.Label("Greeting", new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.Editor("Greeting", new { @class = "text-danger" })
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" value="Create" class="btn backgroundWhite colorBlack" />
                 </div>
             </div>
         </div>
+    </div>
 }
 <!--Create Household Ends-->
 <!--Join Household Begin-->
@@ -207,8 +218,8 @@
                 @Html.Action("_BankAccountModal", "BankAccounts")
             </div>
             @*<div class="modal-footer">
-                <input type="submit" value="Create" class="btn backgroundGoldenRod text-white w-50" />
-            </div>*@
+                    <input type="submit" value="Create" class="btn backgroundGoldenRod text-white w-50" />
+                </div>*@
         </div>
     </div>
 </div>

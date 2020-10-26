@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using FinancialPortal.Models;
 using FinancialPortal.ViewModels;
+using FinancialPortal.Helpers;
 
 namespace FinancialPortal.Controllers
 {
@@ -42,7 +43,11 @@ namespace FinancialPortal.Controllers
             model.MonthlyTransactions = bankAccount.Transactions.Count();
             model.MonthlySpending = bankAccount.Transactions.Where(t => t.TransactionType == Enums.TransactionType.Withdrawal).Sum(t => t.Amount);
             model.MonthlyDeposits = bankAccount.Transactions.Where(t => t.TransactionType == Enums.TransactionType.Deposit).Sum(t => t.Amount);
-
+            //model.TotalBalance = bankAccount
+            //model.TotalBudget = 
+            //model.TotalMonthlyDeposits = 
+            //model.TotalMonthlySpending = 
+            model.BudgetItemId = new SelectList(db.BudgetItems, "Id", "ItemName");
             return View(model);
         }
 

@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using FinancialPortal.Extensions;
 using FinancialPortal.Models;
+using Microsoft.AspNet.Identity;
 
 namespace FinancialPortal.Controllers
 {
@@ -51,23 +52,24 @@ namespace FinancialPortal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Transaction transaction, int acctId)
+        public ActionResult Create([Bind(Include = "AccountId,TransactionType,Amount,BudgetItemId,Memo")] Transaction transaction)
         {
             if (ModelState.IsValid)
             {
+                transaction.OwnerId = User.Identity.GetUserId();
                 db.Transactions.Add(transaction);
                 db.SaveChanges();
                 var thisTransaction = db.Transactions.Include(t => t.BudgetItem).FirstOrDefault(t => t.Id == transaction.Id);
                 //var thisTransaction2 = db.Transactions.Include("BudgetItem").FirstOrDefault(t => t.Id == transaction.Id);
                 transaction.UpdateBalances();
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "BankAccounts", new { id = transaction.AccountId });
             }
 
             ViewBag.AccountId = new SelectList(db.BankAccounts, "Id", "OwnerId", transaction.AccountId);
             ViewBag.BudgetItemId = new SelectList(db.BudgetItems, "Id", "ItemName", transaction.BudgetItemId);
             ViewBag.OwnerId = new SelectList(db.Users, "Id", "FirstName", transaction.OwnerId);
-            return RedirectToAction("Details", "BankAccounts", new { id = acctId});
+            return RedirectToAction("Details", "BankAccounts", new { id = transaction.AccountId});
         }
 
         // GET: Transactions/Edit/5

@@ -4,72 +4,81 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h1 class="m-0 text-dark" style="        font-size: 400%;
+        text-align: center;
+        color: #2f3e46
+">
+    <b>All Transactions</b>
+</h1>
 
-<p>
+
+<p style="text-align:center">
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Account.OwnerId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BudgetItem.ItemName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Owner.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TransactionType)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Created)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Amount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Memo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsDeleted)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Account.OwnerId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BudgetItem.ItemName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Owner.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TransactionType)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Created)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Amount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Memo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsDeleted)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
-
+    <thead>
+        <tr>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Account.OwnerId)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.BudgetItem.ItemName)
+            </th>
+            <th>
+                Submitter
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TransactionType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Created)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Memo)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.IsDeleted)
+                </th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Account.OwnerId)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.BudgetItem.ItemName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Owner.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TransactionType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Created)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Memo)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.IsDeleted)
+                    </td>*@
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @*@Html.ActionLink("Details", "Details", new { id = item.Id }) |*@
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>

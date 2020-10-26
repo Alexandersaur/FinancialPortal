@@ -1,53 +1,151 @@
-﻿@model IEnumerable<FinancialPortal.Models.Household>
+﻿@*@model FinancialPortal.ViewModels.BankAccountViewModel*@
 
-@{
-    ViewBag.Title = "Index";
-}
 
-<h2>Households</h2>
+@using Microsoft.AspNet.Identity;
+@using FinancialPortal.Extensions
+@using FinancialPortal.Helpers;
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.HouseholdName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Greeting)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Created)
-            </th>
-            @*<th>
-                @Html.DisplayNameFor(model => model.IsDeleted)
-            </th>*@
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+
+<h1 class="m-0 text-dark" style="        
+    font-size: 400%;
+    text-align: center;
+    color: #2f3e46">
+    <b>Overview for @User.Identity.GetFullName()</b>
+</h1>
+<br />
+<div class="row">
+    <div class="col-lg-3 col-3">
+        <div class="small-box elevation-2" style="
+        background-color: #84a98c;
+        color: white">
+            <div class="inner" style="text-align:center">
+                <dl>
+                    <dt>
+                        <b>Total Balance</b>
+                    </dt>
+                    <dd>
+                        @*@Html.DisplayFor(model => model.BankAccount.TotalBalance)*@
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-3">
+        <div class="small-box elevation-2" style="
+        background-color: #84a98c;
+        color: white">
+            <div class="inner" style="text-align:center">
+                <dl>
+                    <dt>
+                        <b>Total Budget</b>
+                    </dt>
+                    <dd>
+                        @*@Html.DisplayFor(model => model.BankAccount.TotalBudget)*@
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-3">
+        <div class="small-box elevation-2" style="
+        background-color: #84a98c;
+        color: white">
+            <div class="inner" style="text-align:center">
+                <dl>
+                    <dt>
+                        <b>Monthly Spending</b>
+                    </dt>
+                    <dd>
+                        @*@Html.DisplayFor(model => model.BankAccount.TotalMonthlySpending)*@
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-3">
+        <div class="small-box elevation-2" style="
+        background-color: #84a98c;
+        color: white">
+            <div class="inner" style="text-align:center">
+                <dl>
+                    <dt>
+                        <b>Monthly Deposits</b>
+                    </dt>
+                    <dd>
+                        @*@Html.DisplayFor(model => model.BankAccount.TotalMonhtlyDeposits)*@
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<div class="row mb-2">
+        <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Dashboard</h1>
+        </div> /.col
+        <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active">Dashboard v1</li>
+            </ol>
+        </div> /.col
+    </div> /.row*@
+    </div><!-- /.container-fluid -->
+</div>
+
+
+
+@*@model IEnumerable<FinancialPortal.Models.Household>
+
+    @{
+        ViewBag.Title = "Index";
+    }
+
+    <h2>Households</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.HouseholdName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Greeting)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Created)
-                </td>
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.IsDeleted)
-                </td>*@
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.HouseholdName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Greeting)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Created)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsDeleted)
+                </th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HouseholdName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Greeting)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Created)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsDeleted)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>*@

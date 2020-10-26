@@ -14,8 +14,8 @@ namespace FinancialPortal.Helpers
         public int BankAccountsCount()
         {
             var hhId = HttpContext.Current.User.Identity.GetHouseholdId();
-
-            return db.BankAccounts.Where(hh => hh.HouseholdId == hhId).ToList().Count;
+            var count = db.BankAccounts.Where(hh => hh.HouseholdId == hhId).ToList().Count;
+            return count;
         }
 
         public List<BankAccount> ListBankAccounts()

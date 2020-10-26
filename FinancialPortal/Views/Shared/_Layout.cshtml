@@ -150,7 +150,7 @@
                             </a>
                         </li>
                         <li class="nav-item has-treeview">
-                            <a href="@Url.Action("Index","BankAccounts")" class="nav-link" style="background-color:#52796f">
+                            <a href="#" class="nav-link" style="background-color:#52796f">
                                 <i class="nav-icon fas fa-edit"></i>
                                 <p>
                                     Bank Accounts
@@ -160,16 +160,18 @@
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="@Url.Action("Index","BankAccounts")" class="nav-link">
-                                        @*<i class="far fa-circle nav-icon"></i>*@
-                                        All Accounts
+                                        View All Bank Accounts
                                     </a>
                                 </li>
-                                @*<li class="nav-item">
-                    <a href="@Url.Action("Create","BankAccounts")" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p><i>+ Add Bank Account</i></p>
-                    </a>
-                </li>*@
+                                @if (accountsHelper.BankAccountsCount() > 0)
+                                {
+                                    foreach (var account in accountsHelper.ListBankAccounts())
+                                    {                                      
+                                        <li class="nav-item">
+                                            @Html.ActionLink(account.AccountName, "Details", "BankAccounts", new { Id = account.Id }, new { @class = "nav-link" })
+                                        </li> 
+                                    }
+                                }   
                             </ul>
                         </li>
                         <li class="nav-item has-treeview">
@@ -179,9 +181,9 @@
                                 <i class="fas fa-angle-right right"></i>
                             </a>
                             <ul class="nav nav-treeview">
-                                <li class="nav-item"><a href="@Url.Action("CreateDeposit", "Transactions")" class="nav-link">New Deposit</a></li>
-                                <li class="nav-item"><a href="@Url.Action("CreateWithdrawal", "Transactions")" class="nav-link">New Withdrawal</a></li>
-                                <li class="nav-item"><a href="@Url.Action("Index", "Transactions")" class="nav-link">All Transactions</a></li>
+                                <li class="nav-item"><a href="@Url.Action("CreateDeposit", "Transactions")" class="nav-link">Add New Deposit</a></li>
+                                <li class="nav-item"><a href="@Url.Action("CreateWithdrawal", "Transactions")" class="nav-link">Add New Withdrawal</a></li>
+                                <li class="nav-item"><a href="@Url.Action("Index", "Transactions")" class="nav-link">View All Transactions</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">

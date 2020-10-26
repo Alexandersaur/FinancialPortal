@@ -75,6 +75,12 @@ namespace FinancialPortal.Controllers
             return View(household);
         }
 
+        [HttpGet]
+        public ActionResult Members()
+        {
+            return View();
+        }
+
         // GET: Households/ConfigureHouse
         [HttpGet]
         //[Authorize(Roles = "Head")]
