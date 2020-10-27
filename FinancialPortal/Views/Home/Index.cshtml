@@ -8,6 +8,22 @@
         @if (User.IsInRole("Head"))
         {
             <div class="row">
+                <div class="col">
+                    <div class="small-box" style="background-color: #52796f; height:215px; color:white">
+                        <div class="inner">
+                            @*<h3><a href="#" data-toggle="modal" data-target="#joinHouseholdModal">Join Household</a></h3>*@
+                            <h3>Join Household</h3>
+                            <p>If you have been sent a private link to join an existing Household, you will be able to enter it here and follow the instructions in your email to access the account.</p>
+                        </div>
+                        <div class="icon">
+                            @*<i class="ion ion-person-add"></i>*@
+                        </div>
+                        <a href="#" data-toggle="modal" data-target="#joinHouseholdModal" class="small-box-footer"><b><i>Join!</i></b> <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
                 @*<div class="col-lg-3 col-6">
                         <div class="small-box" style="background-color:cad2c5; color:white">
                             <div class="inner">
@@ -37,24 +53,12 @@
                         <a href="#" data-toggle="modal" data-target="#createHouseholdModal" class="small-box-footer"><i><b>Create!</b></i> <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
+
                 <div class="col">
                     <div class="small-box" style="background-color: #52796f; height:215px; color:white">
                         <div class="inner">
-                            @*<h3><a href="#" data-toggle="modal" data-target="#joinHouseholdModal">Join Household</a></h3>*@
-                            <h3>Join Household</h3>
-                            <p>If you have been sent a private link to join an existing Household, you will be able to enter it here and follow the instructions in your email to access the account.</p>
-                        </div>
-                        <div class="icon">
-                            @*<i class="ion ion-person-add"></i>*@
-                        </div>
-                        <a href="#" data-toggle="modal" data-target="#joinHouseholdModal" class="small-box-footer"><b><i>Join!</i></b> <i class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="small-box" style="background-color: #2f3e46; height:215px; color:white">
-                        <div class="inner">
                             @*<h3><a href="#" data-toggle="modal" data-target="#addBankAccountModal">Add Bank Account</a></h3>*@
-                            <h3>Add Bank Account</h3>
+                            <h3>Create Bank Account</h3>
                             <p>You can specify the details of a new Bank Account, including starting balance, warning balance, and type of account. Once added, bank accounts can be linked to budgets.</p>
 
                         </div>
@@ -62,6 +66,19 @@
                             @*<i class="ion ion-pie-graph"></i>*@
                         </div>
                         <a href="#" data-toggle="modal" data-target="#addBankAccountModal" class="small-box-footer"><b><i>Add!</i></b> <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="small-box" style="background-color: #2f3e46; height:215px; color:white">
+                        <div class="inner">
+                            @*<h3><a href="#" data-toggle="modal" data-target="#joinHouseholdModal">Join Household</a></h3>*@
+                            <h3>Create Budget</h3>
+                            <p>Specify the amount of money that you would like to designate toward certain categories each month. For example, targets could be created for food, gas, utilities, etc.</p>
+                        </div>
+                        <div class="icon">
+                            @*<i class="ion ion-person-add"></i>*@
+                        </div>
+                        <a href="#" data-toggle="modal" data-target="#joinHouseholdModal" class="small-box-footer"><b><i>Create!</i></b> <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>

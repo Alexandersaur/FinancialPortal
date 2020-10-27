@@ -158,20 +158,21 @@
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
+                                @if (accountsHelper.BankAccountsCount() > 0)
+                                {
+                                    foreach (var account in accountsHelper.ListBankAccounts())
+                                    {
+                                        <li class="nav-item">
+                                            @Html.ActionLink(account.AccountName, "Details", "BankAccounts", new { Id = account.Id }, new { @class = "nav-link" })
+                                        </li>
+
+                                    }
+                                }
                                 <li class="nav-item">
                                     <a href="@Url.Action("Index","BankAccounts")" class="nav-link">
                                         View All Bank Accounts
                                     </a>
                                 </li>
-                                @if (accountsHelper.BankAccountsCount() > 0)
-                                {
-                                    foreach (var account in accountsHelper.ListBankAccounts())
-                                    {                                      
-                                        <li class="nav-item">
-                                            @Html.ActionLink(account.AccountName, "Details", "BankAccounts", new { Id = account.Id }, new { @class = "nav-link" })
-                                        </li> 
-                                    }
-                                }   
                             </ul>
                         </li>
                         <li class="nav-item has-treeview">
@@ -181,16 +182,20 @@
                                 <i class="fas fa-angle-right right"></i>
                             </a>
                             <ul class="nav nav-treeview">
-                                <li class="nav-item"><a href="@Url.Action("CreateDeposit", "Transactions")" class="nav-link">Add New Deposit</a></li>
-                                <li class="nav-item"><a href="@Url.Action("CreateWithdrawal", "Transactions")" class="nav-link">Add New Withdrawal</a></li>
+                                @*<li class="nav-item"><a href="@Url.Action("CreateDeposit", "Transactions")" class="nav-link">Add New Deposit</a></li>
+                <li class="nav-item"><a href="@Url.Action("CreateWithdrawal", "Transactions")" class="nav-link">Add New Withdrawal</a></li>*@
                                 <li class="nav-item"><a href="@Url.Action("Index", "Transactions")" class="nav-link">View All Transactions</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("Members","Households")" class="nav-link" style="background-color:#52796f">
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link" style="background-color:#52796f">
                                 <i class="far fa-handshake nav-icon"></i>
                                 <p>Members</p>
+                                <i class="fas fa-angle-right right"></i>
                             </a>
+                            <ul class="nav nav-treeview">
+                             <li class="nav-item"><a href="@Url.Action("Members", "Households")" class="nav-link">View All Members</a></li>
+                            </ul>
                         </li>
                         <hr />
                         <li>
@@ -201,9 +206,9 @@
                                     @Html.AntiForgeryToken()
                                     <div class="nav-link">
                                         @*<i class="nav-icon fas fa-crosshairs"></i>*@
-                                            <i class="fas fa-sign-out-alt text-light mt-3"></i>
-                                            <a class="h6" href="javascript:document.getElementById('sideLogoutForm').submit()" style="color:white"> Log Out</a>
-                                            @*<i class="fas fa-angle-left right"></i>*@
+                                        <i class="fas fa-sign-out-alt text-light mt-3"></i>
+                                        <a class="h6" href="javascript:document.getElementById('sideLogoutForm').submit()" style="color:white"> Log Out</a>
+                                        @*<i class="fas fa-angle-left right"></i>*@
                                     </div>
                                 }
                             }

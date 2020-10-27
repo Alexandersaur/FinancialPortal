@@ -27,11 +27,9 @@ namespace FinancialPortal.Extensions
             UpdateBankBalance(transaction);
 
             //Deposits do not effect Budget or BudgetIte so we can test for the transaction type before calling those methods
-            if (transaction.TransactionType == TransactionType.Withdrawal)
-            {
-                UpdateBudgetAmount(transaction);
-                UpdateBudgetItemAmount(transaction);
-            }
+
+            UpdateBudgetAmount(transaction);
+            UpdateBudgetItemAmount(transaction);
         }
 
         public static void EditTransaction(this Transaction newTransaction, Transaction oldTransaction)
@@ -43,11 +41,11 @@ namespace FinancialPortal.Extensions
         {
             var bankAccount = db.BankAccounts.Find(transaction.AccountId);
             //I will test the TransactionType to decide what to do
-            if(transaction.TransactionType == TransactionType.Deposit)
+            if (transaction.TransactionType == TransactionType.Deposit)
             {
                 bankAccount.CurrentBalance += transaction.Amount;
             }
-            else if(transaction.TransactionType == TransactionType.Withdrawal)
+            else if (transaction.TransactionType == TransactionType.Withdrawal)
             {
                 bankAccount.CurrentBalance -= transaction.Amount;
             }
@@ -78,15 +76,35 @@ namespace FinancialPortal.Extensions
         {
             //var budget = db.Budgets.FirstOrDefault(b => b.Id == transaction.BudgetItem.BudgetId);
             var budgetItem = db.BudgetItems.Find(transaction.BudgetItemId);
-            var budget = db.Budgets.Find(budgetItem.BudgetId);
-            budget.CurrentAmount += transaction.Amount;
-            db.SaveChanges();
+            var budget = db.Budgets.Find(budgetItem?.BudgetId);
+            if (budget != null)
+            {
+                if (transaction.TransactionType == TransactionType.Deposit)
+                {
+                    budget.CurrentAmount += transaction.Amount;
+                }
+                else if (transaction.TransactionType == TransactionType.Withdrawal)
+                {
+                    budget.CurrentAmount -= transaction.Amount;
+                }
+                db.SaveChanges();
+            }
         }
         private static void UpdateBudgetItemAmount(Transaction transaction)
         {
             var budgetItem = db.BudgetItems.Find(transaction.BudgetItemId);
-            budgetItem.CurrentAmount += transaction.Amount;
-            db.SaveChanges();
+            if (budgetItem != null)
+            {
+                if (transaction.TransactionType == TransactionType.Deposit)
+                {
+                    budgetItem.CurrentAmount += transaction.Amount;
+                }
+                else if (transaction.TransactionType == TransactionType.Withdrawal)
+                {
+                    budgetItem.CurrentAmount -= transaction.Amount;
+                }
+                db.SaveChanges();
+            }
         }
 
         //Additional functionality you need to write

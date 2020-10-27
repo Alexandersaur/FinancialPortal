@@ -7,14 +7,17 @@
     //UserRolesHelper roleHelper = new UserRolesHelper(); 
 }
 
+<h1 class="m-0 text-dark" style="        font-size: 400%;
+        text-align: center;
+        color: #2f3e46
+">
+    <b>Members</b>
+</h1>
 
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-12">
-            <div class="card">
-                <div class="card-header">
-                    <h2>Members</h2>
-                </div>
+            <div class="card"  >
                 <div class="row justify-content-center">
                     <div class="card-body col-11">
                         <div class="table-responsive">
@@ -39,16 +42,16 @@
                                     @foreach (var item in userHelper.GetUserList().OrderBy(u => u.LastName))
                                     {
                         <tr>
-                            <td class="text-light">
+                            <td class="text-dark">
                                 @item.FirstName
                             </td>
-                            <td class="text-light">
+                            <td class="text-dark">
                                 @item.LastName
                             </td>
-                            <td class="text-light">
+                            <td class="text-dark">
                                 @item.Email
                             </td>
-                            <td class="text-light">
+                            <td class="text-dark">
                                 @item.UserName
                             </td>
                         </tr>}

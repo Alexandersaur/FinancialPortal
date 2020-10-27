@@ -1,4 +1,5 @@
 ﻿@model FinancialPortal.ViewModels.BankAccountViewModel
+    @using FinancialPortal.Enums
 
 @{
     ViewBag.Title = "Details";
@@ -103,54 +104,52 @@
                 {
                     @Html.AntiForgeryToken()
                     @Html.Hidden("Transaction.AccountId", Model.BankAccount.Id)
-            <div class="row">
-                <div class="col-3" style="text-align:center">
-                    <div class="form-horizontal">
-                        <div class="form-group">
-                            <b>Amount</b>
-                            @Html.Label("", htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col">
-                                @Html.EditorFor(model => model.Transaction.Amount, new { htmlAttributes = new { @class = "form-control" } })
+                    <div class="row">
+                        <div class="col-2" style="text-align:center">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <b>Amount</b>
+                                    @Html.Label("", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col">
+                                        @Html.EditorFor(model => model.Transaction.Amount, new { htmlAttributes = new { @class = "form-control" } })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2" style="text-align:center">
+                            <div class="form-group">
+                                <b>Transaction Type</b>
+                                @Html.Label("", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col">
+                                    @Html.EnumDropDownListFor(model => model.Transaction.TransactionType, htmlAttributes: new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2" style="text-align:center">
+                            <div class="form-group">
+                                <b>Memo</b>
+                                @Html.Label("", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col">
+                                    @Html.EditorFor(model => model.Transaction.Memo, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2" style="text-align:center">
+                            <div class="form-group">
+                                <b>Budget</b>
+                                <div class="col">
+                                    @Html.DropDownListFor(model => model.Transaction.BudgetItemId, Model.BudgetItemId, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4" style="text-align:center">
+                            <div class="form-group">
+                                <div class="col">
+                                    <input id="button1" type="submit" class="btn" value="Add Transaction" />
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-3" style="text-align:center">
-                    <div class="form-group">
-                        <b>Transaction Type</b>
-                        @Html.Label("", htmlAttributes: new { @class = "control-label col-md-2" })
-                        @*@Html.LabelFor(model => model.TransactionType, htmlAttributes: new { @class = "control-label col-md-2" })*@
-                        <div class="col">
-                            @Html.EnumDropDownListFor(model => model.Transaction.TransactionType, htmlAttributes: new { @class = "form-control" })
-                            @*@Html.EnumDropDownListFor(model => model.TransactionType, htmlAttributes: new { @class = "form-control" })*@
-                        </div>
-                    </div>
-                </div>
-                <div class="col-3" style="text-align:center">
-                    <div class="form-group">
-                        <b>Memo</b>
-                        @Html.Label("", htmlAttributes: new { @class = "control-label col-md-2" })
-                        @*@Html.LabelFor(model => model.Memo, htmlAttributes: new { @class = "control-label col-md-2" })*@
-                        <div class="col">
-                            @Html.EditorFor(model => model.Transaction.Memo, new { htmlAttributes = new { @class = "form-control" } })
-                            @*@Html.EditorFor(model => model.Memo, new { htmlAttributes = new { @class = "form-control" } })*@
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Transaction.BudgetItemId, "BudgetItemId", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.DropDownListFor(model => model.BudgetItemId, null, htmlAttributes: new { @class = "form-control" })
-                    </div>
-                </div>
-                <div class="col-3" style="text-align:center">
-                    <div class="form-group">
-                        <div class="col">
-                            <input id="button1" type="submit" class="btn" value="Add Transaction" />
-                        </div>
-                    </div>
-                </div>
-            </div>
                 }
             </div>
         </div>
@@ -158,14 +157,16 @@
 
     <div class="row">
         <div class="col">
-            <div class="small-box elevation-2" style="
-        background-color: #2f3e46;
-        color: white">
+            <div class="small-box elevation-2" style="        background-color: #84a98c;
+        color: black">
                 <table class="table">
                     <thead>
                         <tr>
                             <th>
                                 Amount
+                            </th>
+                            <th>
+                                Budget
                             </th>
                             <th>
                                 Memo
@@ -177,11 +178,23 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in Model.BankAccount.Transactions)
+                        @foreach (var item in Model.BankAccount.Transactions.OrderByDescending(c => c.Created))
                         {
                         <tr>
+                            @if (item.TransactionType == TransactionType.Withdrawal)
+                            {
+                                <td style="color:red">
+                                    -[@item.Amount.ToString("C")]
+                                </td>
+                            }
+                            else
+                            {
+                                <td style="color:green">
+                                    @item.Amount.ToString("C")
+                                </td>
+                            }
                             <td>
-                                @Html.DisplayFor(modelItem => item.Amount)
+                                @Html.DisplayFor(modelItem => item.BudgetItem.ItemName)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Memo)
@@ -191,7 +204,7 @@
                             </td>
                             <td>
                                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
                             </td>
                         </tr>
                         }
