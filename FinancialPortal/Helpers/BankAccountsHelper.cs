@@ -28,6 +28,7 @@ namespace FinancialPortal.Helpers
             return accounts;
         }
 
+
         public decimal TotalBalance()
         {
             var accounts = ListBankAccounts();

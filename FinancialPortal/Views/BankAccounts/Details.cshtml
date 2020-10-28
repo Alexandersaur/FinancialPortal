@@ -15,20 +15,30 @@
         margin: 4px 2px;
         cursor: pointer;
     }
+    #topbox {
+        background-color: #84a98c;
+        margin-top: 0px;
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+        border-bottom: 5px double white;
+    }
 </style>
 
-<h1 class="m-0 text-dark" style="        font-size: 400%;
-        text-align: center;
-        color: #2f3e46
-">
-    <b>@Html.DisplayFor(model => model.BankAccount.AccountName) Snapshot</b>
-</h1>
-<br />
 <div class="container">
+    <div class="row">
+        <div class="col" id="topbox">
+            <div style="background-color: #84a98c">
+                <h1 style="font-size: 400%; text-align: center; color: #2f3e46">
+                    <b>@Html.DisplayFor(model => model.BankAccount.AccountName)</b>
+                </h1>
+            </div>
+        </div>
+    </div>
+    <hr />
     <div class="row">
         <div class="col-lg-3 col-3">
             <div class="small-box elevation-2" style="
-        background-color: #84a98c;
+        background-color: #52796f;
         color: white">
                 <div class="inner" style="text-align:center">
                     <dl>
@@ -43,8 +53,7 @@
             </div>
         </div>
         <div class="col-lg-3 col-3">
-            <div class="small-box elevation-2" style="
-        background-color: #84a98c;
+            <div class="small-box elevation-2" style="        background-color: #52796f;
         color: white">
                 <div class="inner" style="text-align:center">
                     <dl>
@@ -59,8 +68,7 @@
             </div>
         </div>
         <div class="col-lg-3 col-3">
-            <div class="small-box elevation-2" style="
-        background-color: #84a98c;
+            <div class="small-box elevation-2" style="        background-color: #52796f;
         color: white">
                 <div class="inner" style="text-align:center">
                     <dl>
@@ -75,8 +83,7 @@
             </div>
         </div>
         <div class="col-lg-3 col-3">
-            <div class="small-box elevation-2" style="
-        background-color: #84a98c;
+            <div class="small-box elevation-2" style="        background-color: #52796f;
         color: white">
                 <div class="inner" style="text-align:center">
                     <dl>
@@ -94,18 +101,16 @@
 
     <div class="row">
         <div class="col-12">
-            <div class="small-box elevation-2" style="
-        background-color: #52796f;
+            <div class="small-box elevation-2" style="        background-color: #2f3e46;
         color: white">
-                <div style="text-align:center">
-                    <h3><b>Add Transaction</b></h3>
-                </div>
+
                 @using (Html.BeginForm("Create", "Transactions", FormMethod.Post))
                 {
                     @Html.AntiForgeryToken()
                     @Html.Hidden("Transaction.AccountId", Model.BankAccount.Id)
+                    <br />
                     <div class="row">
-                        <div class="col-2" style="text-align:center">
+                        <div class="col" style="text-align:center">
                             <div class="form-horizontal">
                                 <div class="form-group">
                                     <b>Amount</b>
@@ -116,7 +121,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-2" style="text-align:center">
+                        <div class="col" style="text-align:center">
                             <div class="form-group">
                                 <b>Transaction Type</b>
                                 @Html.Label("", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -125,7 +130,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-2" style="text-align:center">
+                        <div class="col" style="text-align:center">
                             <div class="form-group">
                                 <b>Memo</b>
                                 @Html.Label("", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -134,7 +139,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-2" style="text-align:center">
+                        <div class="col" style="text-align:center">
                             <div class="form-group">
                                 <b>Budget</b>
                                 <div class="col">
@@ -142,10 +147,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-4" style="text-align:center">
+                        <div class="col" style="text-align:center">
                             <div class="form-group">
                                 <div class="col">
-                                    <input id="button1" type="submit" class="btn" value="Add Transaction" />
+                                    <input id="button1" type="submit" class="btn" value="ADD TRANSACTION" />
                                 </div>
                             </div>
                         </div>
@@ -154,62 +159,65 @@
             </div>
         </div>
     </div>
-
     <div class="row">
         <div class="col">
             <div class="small-box elevation-2" style="        background-color: #84a98c;
         color: black">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>
-                                Amount
-                            </th>
-                            <th>
-                                Budget
-                            </th>
-                            <th>
-                                Memo
-                            </th>
-                            <th>
-                                Date
-                            </th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model.BankAccount.Transactions.OrderByDescending(c => c.Created))
-                        {
-                        <tr>
-                            @if (item.TransactionType == TransactionType.Withdrawal)
+                <div class="container">
+                    <div style="text-align:center">
+                        <h3 style="color:white"><b>All Transactions</b></h3>
+                    </div>                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Amount
+                                </th>
+                                <th>
+                                    Budget
+                                </th>
+                                <th>
+                                    Memo
+                                </th>
+                                <th>
+                                    Date
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.BankAccount.Transactions.OrderByDescending(c => c.Created))
                             {
-                                <td style="color:red">
-                                    -[@item.Amount.ToString("C")]
-                                </td>
+                                <tr>
+                                    @if (item.TransactionType == TransactionType.Withdrawal)
+                                    {
+                                        <td style="color:red">
+                                            -[@item.Amount.ToString("C")]
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td style="color:green">
+                                            @item.Amount.ToString("C")
+                                        </td>
+                                    }
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.BudgetItem.ItemName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Memo)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Created)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                                    </td>
+                                </tr>
                             }
-                            else
-                            {
-                                <td style="color:green">
-                                    @item.Amount.ToString("C")
-                                </td>
-                            }
-                            <td>
-                                @Html.DisplayFor(modelItem => item.BudgetItem.ItemName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Memo)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Created)
-                            </td>
-                            <td>
-                                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                            </td>
-                        </tr>
-                        }
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

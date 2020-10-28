@@ -22,5 +22,41 @@ namespace FinancialPortal.Utilities
             }
             return percentPaid;
         }
+
+        //public int BudgetsCount()
+        //{
+        //    var hhId = HttpContext.Current.User.Identity.GetHouseholdId();
+        //    var count = db.BankAccounts.Where(hh => hh.HouseholdId == hhId).ToList().Count;
+        //    return count;
+        //}
+
+        //public List<BankAccount> ListBudgets()
+        //{
+        //    List<BankAccount> accounts = new List<BankAccount>();
+        //    var hhId = HttpContext.Current.User.Identity.GetHouseholdId();
+
+        //    accounts.AddRange(db.BankAccounts.Where(hh => hh.HouseholdId == hhId).ToList());
+
+        //    return accounts;
+        //}
+
+        //public int BudgetItemsCount()
+        //{
+        //    var hhId = HttpContext.Current.User.Identity.GetHouseholdId();
+        //    var count = db.BankAccounts.Where(hh => hh.HouseholdId == hhId).ToList().Count;
+        //    return count;
+        //}
+
+        //public List<BankAccount> ListBudgetItems()
+        //{
+        //    List<BankAccount> accounts = new List<BankAccount>();
+        //    var hhId = HttpContext.Current.User.Identity.GetHouseholdId();
+
+        //    accounts.AddRange(db.BankAccounts.Where(hh => hh.HouseholdId == hhId).ToList());
+
+        //    return accounts;
+        //}
     }
+
+
 }

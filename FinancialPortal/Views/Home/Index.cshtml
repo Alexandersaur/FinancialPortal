@@ -3,262 +3,224 @@
 @using FinancialPortal.Helpers;
 
 <!-- Content Header (Page header) -->
-<div class="content-header">
-    <div class="container-fluid">
-        @if (User.IsInRole("Head"))
-        {
-            <div class="row">
-                <div class="col">
-                    <div class="small-box" style="background-color: #52796f; height:215px; color:white">
-                        <div class="inner">
-                            @*<h3><a href="#" data-toggle="modal" data-target="#joinHouseholdModal">Join Household</a></h3>*@
-                            <h3>Join Household</h3>
-                            <p>If you have been sent a private link to join an existing Household, you will be able to enter it here and follow the instructions in your email to access the account.</p>
-                        </div>
-                        <div class="icon">
-                            @*<i class="ion ion-person-add"></i>*@
-                        </div>
-                        <a href="#" data-toggle="modal" data-target="#joinHouseholdModal" class="small-box-footer"><b><i>Join!</i></b> <i class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-            </div>
+<style>
+    body {
+        background-color: #FFC9B9
+    }
 
-            <div class="row">
-                @*<div class="col-lg-3 col-6">
-                        <div class="small-box" style="background-color:cad2c5; color:white">
-                            <div class="inner">
+    .container-fluid {
+        background-color: #FFC9B9
+    }
 
-                                <h3>Admin</h3>
-                                <p>The Administrator can create and edit all Projects and Tickets, as well as assign all users to Projects and Tickets</p>
-                                <p>The Administrator has full access to BugZap JS software</p>
-
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-bag"></i>
-                            </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>*@
-                <div class="col">
-                    <div class="small-box" style="background-color: #84a98c; height:215px; color:white">
-                        <div class="inner">
-                            @*<h3><a href="#" data-toggle="modal" data-target="#createHouseholdModal">Create Household</a></h3>*@
-                            <h3>Create Household</h3>
-                            <p>Make a new Household for members to join. Once you have selected a Household name and greeting, you will be able to start adding new members and bank accounts.</p>
-
-                        </div>
-                        <div class="icon">
-                            @*<i class="ion ion-stats-bars"></i>*@
-                        </div>
-                        <a href="#" data-toggle="modal" data-target="#createHouseholdModal" class="small-box-footer"><i><b>Create!</b></i> <i class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="small-box" style="background-color: #52796f; height:215px; color:white">
-                        <div class="inner">
-                            @*<h3><a href="#" data-toggle="modal" data-target="#addBankAccountModal">Add Bank Account</a></h3>*@
-                            <h3>Create Bank Account</h3>
-                            <p>You can specify the details of a new Bank Account, including starting balance, warning balance, and type of account. Once added, bank accounts can be linked to budgets.</p>
-
-                        </div>
-                        <div class="icon">
-                            @*<i class="ion ion-pie-graph"></i>*@
-                        </div>
-                        <a href="#" data-toggle="modal" data-target="#addBankAccountModal" class="small-box-footer"><b><i>Add!</i></b> <i class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="small-box" style="background-color: #2f3e46; height:215px; color:white">
-                        <div class="inner">
-                            @*<h3><a href="#" data-toggle="modal" data-target="#joinHouseholdModal">Join Household</a></h3>*@
-                            <h3>Create Budget</h3>
-                            <p>Specify the amount of money that you would like to designate toward certain categories each month. For example, targets could be created for food, gas, utilities, etc.</p>
-                        </div>
-                        <div class="icon">
-                            @*<i class="ion ion-person-add"></i>*@
-                        </div>
-                        <a href="#" data-toggle="modal" data-target="#joinHouseholdModal" class="small-box-footer"><b><i>Create!</i></b> <i class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-            </div>
-        }
-        @if (User.IsInRole("New User") || User.IsInRole("Member") || User.IsInRole("Heead"))
-        {
-            <h1 class="m-0 text-dark" style="        font-size: 400%;
+    .small-box {
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: auto;
+        background-color: #52796f;
         text-align: center;
-        color: #2f3e46
-">
-                <b>Overview for @User.Identity.GetFullName()</b>
-            </h1>
-            <br />
-            <div class="row">
-                <div class="col-lg-3 col-3">
-                    <div class="small-box elevation-2" style="
+        margin-bottom: 7.5px;
+    }
+
+    .small-box-footer {
+        color: white;
+    }
+
+    #topbox {
         background-color: #84a98c;
-        color: white">
-                        <div class="inner" style="text-align:center">
-                            <dl>
-                                <dt>
-                                    <b>Total Balance</b>
-                                </dt>
-                                <dd>
-                                    @*@Html.DisplayFor(model => model.BankAccount.CurrentBalance)*@
-                                </dd>
-                            </dl>
-                        </div>
-                    </div>
+        margin-top: 0px;
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+        border-bottom: 5px double white;
+    }
+
+</style>
+
+<div class="container-fluid">
+    <div class="row" >
+        <div class="col" id="topbox">
+            <div style="background-color: #84a98c">
+                <h1 style="font-size: 400%; text-align: center; color: #2f3e46">
+                    <b>User Options</b>
+                </h1>
+            </div>
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="row">
+        <div class="col">
+            <div class="small-box">
+                <div class="inner">
+                    <h3>Join Households</h3>
+                    <p style="color:#FFC9B9">Make a new Household for members to join. Once you have selected a Household name and greeting, you will be able to start adding new members and bank accounts.</p>
+
                 </div>
-                <div class="col-lg-3 col-3">
-                    <div class="small-box elevation-2" style="
-        background-color: #84a98c;
-        color: white">
-                        <div class="inner" style="text-align:center">
-                            <dl>
-                                <dt>
-                                    <b>Total Budget</b>
-                                </dt>
-                                <dd>
-                                    @*@Html.DisplayFor(model => model.MonthlySpending)*@
-                                </dd>
-                            </dl>
-                        </div>
-                    </div>
+                <div class="icon">
+                    @*<i class="ion ion-stats-bars"></i>*@
                 </div>
-                <div class="col-lg-3 col-3">
-                    <div class="small-box elevation-2" style="
-        background-color: #84a98c;
-        color: white">
-                        <div class="inner" style="text-align:center">
-                            <dl>
-                                <dt>
-                                    <b>Monthly Spending</b>
-                                </dt>
-                                <dd>
-                                    @*@Html.DisplayFor(model => model.MonthlyDeposits)*@
-                                </dd>
-                            </dl>
-                        </div>
-                    </div>
+                <a href="#" data-toggle="modal" data-target="#joinHouseholdModal" class="small-box-footer"><i><b style="letter-spacing:2.5px">JOIN</b></i> <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="col">
+            <div class="small-box">
+                <div class="inner">
+                    <h3>Create Households</h3>
+                    <p style="color:#FFC9B9">Make a new Household for members to join. Once you have selected a Household name and greeting, you will be able to start adding new members and bank accounts.</p>
+
                 </div>
-                <div class="col-lg-3 col-3">
-                    <div class="small-box elevation-2" style="
-        background-color: #84a98c;
-        color: white">
-                        <div class="inner" style="text-align:center">
-                            <dl>
-                                <dt>
-                                    <b>Monthly Deposits</b>
-                                </dt>
-                                <dd>
-                                    @*@Html.DisplayFor(model => model.MonthlyTransactions)*@
-                                </dd>
-                            </dl>
-                        </div>
+                <div class="icon">
+                    @*<i class="ion ion-stats-bars"></i>*@
+                </div>
+                <a href="#" data-toggle="modal" data-target="#createHouseholdModal" class="small-box-footer"><i><b style="letter-spacing:2.5px">CREATE</b></i> <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="col">
+            <div class="small-box">
+                <div class="inner">
+                    <h3>Invite Members</h3>
+                    <p style="color:#FFC9B9">Specify the amount of money that you would like to designate toward certain categories each month. For example, targets could be created for food, gas, utilities, etc.</p>
+                </div>
+                <div class="icon">
+                    @*<i class="ion ion-person-add"></i>*@
+                </div>
+                <a href="#" data-toggle="modal" data-target="#" class="small-box-footer"><b><i style="letter-spacing:2.5px">INVITE</i></b> <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col">
+            <div class="small-box" style="background-color: #2f3e46">
+                <div class="inner">
+                    <h3>Add Bank Accounts</h3>
+                    <p style="color:#FFC9B9">You can specify the details of a new Bank Account, including starting balance, warning balance, and type of account. Once added, bank accounts can be linked to budgets.</p>
+
+                </div>
+                <div class="icon">
+                    @*<i class="ion ion-pie-graph"></i>*@
+                </div>
+                <a href="@Url.Action("Create", "BankAccounts")" class="small-box-footer"><b><i style="letter-spacing:2.5px">ADD</i></b> <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="small-box" style="background-color: #2f3e46">
+                <div class="inner">
+                    <h3>Add Budgets</h3>
+                    <p style="color:#FFC9B9">Specify the amount of money that you would like to designate toward certain categories each month. For example, targets could be created for food, gas, utilities, etc.</p>
+                </div>
+                <div class="icon">
+                    @*<i class="ion ion-person-add"></i>*@
+                </div>
+                <a href="#" data-toggle="modal" data-target="#joinHouseholdModal" class="small-box-footer"><b><i style="letter-spacing:2.5px">ADD</i></b> <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="small-box" style="background-color: #2f3e46">
+                <div class="inner">
+                    <h3>Add Categories</h3>
+                    <p style="color:#FFC9B9">You can specify the details of a new Bank Account, including starting balance, warning balance, and type of account. Once added, bank accounts can be linked to budgets.</p>
+
+                </div>
+                <div class="icon">
+                    @*<i class="ion ion-pie-graph"></i>*@
+                </div>
+                <a href="#" data-toggle="modal" data-target="#addBankAccountModal" class="small-box-footer"><b><i style="letter-spacing:2.5px">ADD</i></b><i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+<hr />
+
+    @*@using (Html.BeginForm("Create", "Households", FormMethod.Post))
+    {
+        <div class="modal" id="createHouseholdModal">
+            <div class="modal-dialog">
+                <div class="modal-content" style="background-color: #84a98c; height:215px; color:white; text-align: center">
+                    @Html.AntiForgeryToken()
+                    <div class="modal-header">
+                        <h2><b>Create Household</b></h2>
+                        <button type="button" class="close text-black" data-dismiss="modal" aria-hidden="false">x</button>
+                    </div>
+                    <div class="modal-body displayFlex">
+                        @Html.Label("Name", new { htmlAttributes = new { @class = "form-control " } })
+                        @Html.Editor("HouseholdName", new { @class = "text-danger" })
+                    </div>
+                    <div class="modal-body">
+                        @Html.Label("Greeting", new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.Editor("Greeting", new { @class = "text-danger" })
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" value="Create" class="btn backgroundWhite colorBlack" />
                     </div>
                 </div>
             </div>
-        }
-        @*<div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Dashboard</h1>
-                </div> /.col
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Dashboard v1</li>
-                    </ol>
-                </div> /.col
-            </div> /.row*@
-    </div><!-- /.container-fluid -->
-</div>
-<!-- /.content-header -->
+        </div>
+    }*@
+    <!--Create Household Ends-->
+    <!--Join Household Begin-->
+    @*@using (Html.BeginForm("ManualJoin", "Account", FormMethod.Post))
+    {
+        <div class="modal fade" id="joinHouseholdModal">
+            <div class="modal-dialog">
+                <div class="modal-content" style="background-color: #52796f; height:215px; color:white; text-align: center">
+                    @Html.AntiForgeryToken()
+                    <div class="modal-header">
+                        <h2><b>Join Household</b></h2>
+                        <button type="button" class="close text-black" data-dismiss="modal" aria-hidden="false">x</button>
+                    </div>
+                    <div class="modal-body displayFlex">
+                        Invitation Code:
+                        @Html.TextBox("Code", null, new { @class = "form-control mt-4" })
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" value="Submit" class="btn backgroundWhite colorBlack" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    }*@
+    <!--Join Household Ends-->
+    <!--Add Bank Account Begin-->
 
-@using (Html.BeginForm("Create", "Households", FormMethod.Post))
-{
-    <div class="modal" id="createHouseholdModal">
+    @*<div class="modal fade" id="addBankAccountModal">
         <div class="modal-dialog">
-            <div class="modal-content" style="background-color: #84a98c; height:215px; color:white; text-align: center">
-                @Html.AntiForgeryToken()
+            <div class="modal-content" style="background-color: #2f3e46; height:auto; color:white; text-align: center" id="addBankAccountModalContentContainer">
                 <div class="modal-header">
-                    <h2><b>Create Household</b></h2>
+                    <h2><b>Add Bank Account</b></h2>
                     <button type="button" class="close text-black" data-dismiss="modal" aria-hidden="false">x</button>
                 </div>
                 <div class="modal-body displayFlex">
-                    @Html.Label("Name", new { htmlAttributes = new { @class = "form-control " } })
-                    @Html.Editor("HouseholdName", new { @class = "text-danger" })
-                </div>
-                <div class="modal-body">
-                    @Html.Label("Greeting", new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.Editor("Greeting", new { @class = "text-danger" })
+                    @Html.Action("_BankAccountModal", "BankAccounts")
                 </div>
                 <div class="modal-footer">
-                    <input type="submit" value="Create" class="btn backgroundWhite colorBlack" />
-                </div>
+                        <input type="submit" value="Create" class="btn backgroundGoldenRod text-white w-50" />
+                    </div>
             </div>
         </div>
-    </div>
-}
-<!--Create Household Ends-->
-<!--Join Household Begin-->
-@using (Html.BeginForm("ManualJoin", "Account", FormMethod.Post))
-{
-    <div class="modal fade" id="joinHouseholdModal">
+    </div>*@
+
+    <!--Add Bank Account Ends-->
+    <!--User Setting Begin-->
+    @*<div class="modal fade" id="userSettingsModal">
         <div class="modal-dialog">
-            <div class="modal-content" style="background-color: #52796f; height:215px; color:white; text-align: center">
-                @Html.AntiForgeryToken()
+            <div class="modal-content">
                 <div class="modal-header">
-                    <h2><b>Join Household</b></h2>
-                    <button type="button" class="close text-black" data-dismiss="modal" aria-hidden="false">x</button>
+                    <h2 class="text-white"><b>User Settings</b></h2>
+                    <button type="button" class="close text-white" data-dismiss="modal" aria-hidden="false">x</button>
                 </div>
-                <div class="modal-body displayFlex">
-                    Invitation Code:
-                    @Html.TextBox("Code", null, new { @class = "form-control mt-4" })
+                <div class="modal-body displayFlex pt-4 pb-5">
+                    @Html.ActionLink("Change Name", "UpdateProfile", "Manage", null, new { @class = " btn backgroundWhite colorBlack" })
+                    @Html.ActionLink("Change Password", "ChangePassword", "Manage", null, new { @class = " btn backgroundWhite colorBlack" })
+                    @Html.ActionLink("Change Avatar", "#", "#", null, new { @class = " btn backgroundWhite colorBlack" })
                 </div>
                 <div class="modal-footer">
-                    <input type="submit" value="Submit" class="btn backgroundWhite colorBlack" />
-                </div>
+                        <input type="submit" value="Submit" class="btn backgroundWhite colorBlack" />
+                    </div>
             </div>
         </div>
-    </div>}
-<!--Join Household Ends-->
-<!--Add Bank Account Begin-->
-
-<div class="modal fade" id="addBankAccountModal">
-    <div class="modal-dialog">
-        <div class="modal-content" style="background-color: #2f3e46; height:auto; color:white; text-align: center" id="addBankAccountModalContentContainer">
-            <div class="modal-header">
-                <h2><b>Add Bank Account</b></h2>
-                <button type="button" class="close text-black" data-dismiss="modal" aria-hidden="false">x</button>
-            </div>
-            <div class="modal-body displayFlex">
-                @Html.Action("_BankAccountModal", "BankAccounts")
-            </div>
-            @*<div class="modal-footer">
-                    <input type="submit" value="Create" class="btn backgroundGoldenRod text-white w-50" />
-                </div>*@
-        </div>
-    </div>
-</div>
-
-<!--Add Bank Account Ends-->
-<!--User Setting Begin-->
-<div class="modal fade" id="userSettingsModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="text-white"><b>User Settings</b></h2>
-                <button type="button" class="close text-white" data-dismiss="modal" aria-hidden="false">x</button>
-            </div>
-            <div class="modal-body displayFlex pt-4 pb-5">
-                @Html.ActionLink("Change Name", "UpdateProfile", "Manage", null, new { @class = " btn backgroundWhite colorBlack" })
-                @Html.ActionLink("Change Password", "ChangePassword", "Manage", null, new { @class = " btn backgroundWhite colorBlack" })
-                @*@Html.ActionLink("Change Avatar", "#", "#", null, new { @class = " btn backgroundWhite colorBlack" })*@
-            </div>
-            @*<div class="modal-footer">
-                    <input type="submit" value="Submit" class="btn backgroundWhite colorBlack" />
-                </div>*@
-        </div>
-    </div>
-</div>
-    </div>
+    </div>*@

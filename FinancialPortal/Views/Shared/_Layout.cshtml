@@ -6,6 +6,32 @@
     BankAccountsHelper accountsHelper = new BankAccountsHelper();
     UserHelper userHelper = new UserHelper();
 }
+<style>
+    .content-wrapper {
+        background-color: #FFC9B9 !important
+    }
+
+    .main-footer {
+        background-color: #84a98c !important;
+        color: #2f3e46 !important
+    }
+
+    .sidebar-mini {
+        padding-bottom: 0px !important
+    }
+
+    .main-sidebar {
+        background-color: #2f3e46 !important
+    }
+
+    .sidebar-dark-primary {
+        background-color: #2f3e46 !important
+    }
+
+    .sidebar {
+        height: auto
+    }
+</style>
 
 <!DOCTYPE html>
 <html>
@@ -38,78 +64,10 @@
     <link rel="icon" href="~/favicon.ico" type="image/x-icon" />
     <link href="~/Content/datatables.min.css" rel="stylesheet" />
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+
+
+<body class="sidebar-mini">
     <div class="wrapper">
-
-         @*Navbar 
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-             Left navbar links 
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-                </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="@Url.Action("Index","Home")" class="nav-link">Home</a>
-                </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">Contact</a>
-                </li>
-            </ul>
-
-             SEARCH FORM 
-            <form class="form-inline ml-3">
-                <div class="input-group input-group-sm">
-                    <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-                    <div class="input-group-append">
-                        <button class="btn btn-navbar" type="submit">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                </div>
-            </form>
-
-             Right navbar links 
-            @if (Request.IsAuthenticated)
-            {
-                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "sideLogoutForm", @class = "navbar-right" }))
-                {
-                    @Html.AntiForgeryToken()
-                    <a class="h6 text-black navbar-right" href="javascript:document.getElementById('sideLogoutForm').submit()">Log off <i class="fas fa-sign-out-alt text-black mt-3"></i></a>
-                }
-            }
-            <ul class="navbar-nav ml-auto">
-                 Notifications Dropdown Menu 
-                <li class="nav-item dropdown">
-                    <a class="nav-link" data-toggle="dropdown" href="#">
-                        <i class="far fa-bell"></i>
-                        <span class="badge badge-warning navbar-badge"></span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <span class="dropdown-item dropdown-header">15 Notifications</span>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-envelope mr-2"></i> 4 new messages
-                            <span class="float-right text-muted text-sm">3 mins</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-users mr-2"></i> 8 friend requests
-                            <span class="float-right text-muted text-sm">12 hours</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-file mr-2"></i> 3 new reports
-                            <span class="float-right text-muted text-sm">2 days</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-                    </div>
-                </li>
-            </ul>
-        </nav>*@
-        <!-- /.navbar -->
-        <!-- Main Sidebar Container -->
-
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="@Url.Action("Index","Home")">
@@ -123,53 +81,48 @@
             </a>
             <!-- Sidebar -->
             <div class="sidebar">
-                @*<div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="image">
-                        <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-                        <img src="@Model.AvatarPath" class="img-circle resize" />
-                    </div>
-                    <div class="info; d-block" style="color:white">
-                        Logged in as: <b>@ViewBag.Role</b>
-                    </div>
-                </div>*@
-                <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        <li class="nav-item">
+                        <li class="nav-item" style="text-align:center">
                             <a href="@Url.Action("Index","Home")" class="nav-link">
                                 @*<i class="far fa-folder nav-icon"></i>*@
-                                <p style="color:white">Hello @User.Identity.GetFullName()!</p>
-                                @*<h1>My Avatar is:<b> @User.Identity.GetAvatarPath()</b></h1>*@
+                                <p style="color:white" ;>Hello <b>@User.Identity.GetFullName()!</b></p>
                             </a>
                         </li>
                         <hr />
                         <li class="nav-item">
                             <a href="@Url.Action("Index","Households")" class="nav-link" style="background-color:#52796f">
-                                <i class="far fa-folder nav-icon"></i>
+                                <i class="fas fa-camera-retro nav-icon"></i>
                                 <p>Financial Snapshot</p>
                             </a>
                         </li>
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link" style="background-color:#52796f">
-                                <i class="nav-icon fas fa-edit"></i>
+                                <i class="nav-icon fas fa-university"></i>
                                 <p>
                                     Bank Accounts
                                     <i class="fas fa-angle-right right"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
+                                <li class="nav-item" style="border-bottom:1px solid white">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-plus-circle"></i>
+                                        Add New Bank Account
+                                    </a>
+                                </li>
                                 @if (accountsHelper.BankAccountsCount() > 0)
                                 {
                                     foreach (var account in accountsHelper.ListBankAccounts())
                                     {
-                                        <li class="nav-item">
-                                            @Html.ActionLink(account.AccountName, "Details", "BankAccounts", new { Id = account.Id }, new { @class = "nav-link" })
-                                        </li>
-
+                            <li class="nav-item">
+                                @Html.ActionLink(account.AccountName, "Details", "BankAccounts", new { Id = account.Id }, new { @class = "nav-link" })
+                            </li>
                                     }
                                 }
-                                <li class="nav-item">
+                                <li class="nav-item" style="border-top:1px solid white">
                                     <a href="@Url.Action("Index","BankAccounts")" class="nav-link">
+                                        <i class="nav-icon fas fa-eye"></i>
                                         View All Bank Accounts
                                     </a>
                                 </li>
@@ -177,24 +130,108 @@
                         </li>
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link" style="background-color:#52796f">
-                                <i class="far fa-bell nav-icon"></i>
-                                <p>Transactions</p>
-                                <i class="fas fa-angle-right right"></i>
+                                <i class="nav-icon fas fa-credit-card"></i>
+                                <p>
+                                    Budgets
+                                    <i class="fas fa-angle-right right"></i>
+                                </p>
                             </a>
                             <ul class="nav nav-treeview">
-                                @*<li class="nav-item"><a href="@Url.Action("CreateDeposit", "Transactions")" class="nav-link">Add New Deposit</a></li>
-                <li class="nav-item"><a href="@Url.Action("CreateWithdrawal", "Transactions")" class="nav-link">Add New Withdrawal</a></li>*@
-                                <li class="nav-item"><a href="@Url.Action("Index", "Transactions")" class="nav-link">View All Transactions</a></li>
+                                <li class="nav-item" style="border-bottom:1px solid white">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-plus-circle"></i>
+                                        Add New Budget
+                                    </a>
+                                </li>
+                                @if (accountsHelper.BankAccountsCount() > 0)
+                                {
+                                    foreach (var account in accountsHelper.ListBankAccounts())
+                                    {
+                                        <li class="nav-item">
+                                            @Html.ActionLink(account.AccountName, "Details", "BankAccounts", new { Id = account.Id }, new { @class = "nav-link" })
+                                        </li>
+                                    }
+                                }
+                                <li class="nav-item" style="border-top:1px solid white">
+                                    <a href="@Url.Action("Index","BankAccounts")" class="nav-link">
+                                        <i class="nav-icon fas fa-eye"></i>
+                                        View All Budgets
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link" style="background-color:#52796f">
-                                <i class="far fa-handshake nav-icon"></i>
+                                <i class="nav-icon fas fa-sitemap"></i>
+                                <p>
+                                    Categories
+                                    <i class="fas fa-angle-right right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item" style="border-bottom:1px solid white">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-plus-circle"></i>
+                                        Add New Category
+                                    </a>
+                                </li>
+                                @if (accountsHelper.BankAccountsCount() > 0)
+                                {
+                                    foreach (var account in accountsHelper.ListBankAccounts())
+                                    {
+                                        <li class="nav-item">
+                                            @Html.ActionLink(account.AccountName, "Details", "BankAccounts", new { Id = account.Id }, new { @class = "nav-link" })
+                                        </li>
+                                    }
+                                }
+                                <li class="nav-item" style="border-top:1px solid white">
+                                    <a href="@Url.Action("Index","BankAccounts")" class="nav-link">
+                                        <i class="nav-icon fas fa-eye"></i>
+                                        View All Categories
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link" style="background-color:#52796f">
+                                <i class="far fa-money-bill-alt nav-icon"></i>
+                                <p>Transactions</p>
+                                <i class="fas fa-angle-right right"></i>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-plus-circle"></i>
+                                        Add New Transaction
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index","BankAccounts")" class="nav-link">
+                                        <i class="nav-icon fas fa-eye"></i>
+                                        View All Transactions
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link" style="background-color:#52796f">
+                                <i class="fas fa-users nav-icon"></i>
                                 <p>Members</p>
                                 <i class="fas fa-angle-right right"></i>
                             </a>
                             <ul class="nav nav-treeview">
-                             <li class="nav-item"><a href="@Url.Action("Members", "Households")" class="nav-link">View All Members</a></li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-plus-circle"></i>
+                                        Invite New Member
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index","BankAccounts")" class="nav-link">
+                                        <i class="nav-icon fas fa-eye"></i>
+                                        View All Members
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         <hr />
@@ -204,186 +241,154 @@
                                 using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "sideLogoutForm", @class = "navbar-right" }))
                                 {
                                     @Html.AntiForgeryToken()
-                                    <div class="nav-link">
+                                    <div class="nav-link" style="text-align:center; color: #ff3926">
                                         @*<i class="nav-icon fas fa-crosshairs"></i>*@
-                                        <i class="fas fa-sign-out-alt text-light mt-3"></i>
-                                        <a class="h6" href="javascript:document.getElementById('sideLogoutForm').submit()" style="color:white"> Log Out</a>
+                                        <i class="fas fa-sign-out-alt mt-3"></i>
+                                        <a class="h5" href="javascript:document.getElementById('sideLogoutForm').submit()" style="color: #ff3926; text-align:center"><b> Log Out</b></a>
                                         @*<i class="fas fa-angle-left right"></i>*@
                                     </div>
                                 }
                             }
                         </li>
                     </ul>
-                    @*<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        <li class="nav-item">
-                            <a href="@Url.Action("Dashboard", "Home")" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>
-                                    Dashboard
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("Dashboard", "Households")" class="nav-link">
-                                <i class="nav-icon fas fa-home"></i>
-                                <p>
-                                    Household
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link bg-success" id="edit-button" data-toggle="modal" data-target="#modal-sendinvite">
-                                <i class="fas fa-envelope"></i> <p>Invite User to House</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-                            {
-                                @Html.AntiForgeryToken()
-                                <a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link bg-danger" id="edit-button">
-                                    <i class="fas fa-sign-out-alt nav-icon"></i><p>Log off</p>
-                                </a>}
-                        </li>
-                    </ul>*@
-                </nav>
-                <!-- /.sidebar-menu -->
-            </div>
-            <!-- /.sidebar -->
-        </aside>
-        <!--Content Wrapper. Contains page content-->
 
+                </nav>
+            </div>
+        </aside>
         <div class="content-wrapper">
             @*<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bankAccountModal">
-                Launch demo modal
-            </button>*@
-            <br />
+                    Launch demo modal
+                </button>*@
             @RenderBody()
         </div>
 
-        <footer class="main-footer">
-            <strong>Copyright &copy; 2020 <a href="//jeremysteward.com" target="_blank">Jeremy Steward</a>.</strong>
-            All rights reserved.
+        <footer class="main-footer" style="border-top:5px double white;">
+            <strong>Copyright &copy; 2020 <a href="//jeremysteward.com" target="_blank" style="color:#FFC9B9">Jeremy Steward</a></strong>
+            - Visit my Portfolio!
             <div class="float-right d-none d-sm-inline-block">
-                <b>Version</b> 1.5.5
+                <b>Version</b> 2.1.5
             </div>
         </footer>
+    </div>
+</body>
+</html>
 
-        <section id="manualJoinModal">
-            <div class="modal" id="manualJoin" tabindex="-1" role="dialog">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Modal title</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            @using (Html.BeginForm("ManualJoin", "Account", FormMethod.Post, null))
-                            {
-                                <div class="form-group">
-                                    Invitation Code
-                                    <div class="col-md-10">
-                                        @Html.TextBox("Code", new { @class = "form-control" })
-                                    </div>
-                                </div>
 
-                                <div class="form-group">
-                                    <div class="col-md-offset-2 col-md-10">
-                                        <input type="submit" class="btn btn-default" value="Register" />
-                                    </div>
-                                </div>
-                            }
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary">Save changes</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </section>
-        <section id="bankAccountModalSection">
-            <!-- Modal -->
-            <div class="modal fade" id="bankAccountModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="bankAccountModalLabel">Modal title</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            @Html.Action("_BankAccountModal", "BankAccounts")
-                        </div>
-                        <div class="modal-footer">
-                            <a href="javascript:document.getElementById('modalAccountForm').submit()" class="btn btn-primary">Save Changes</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <div class="modal fade" id="modal-sendinvite">
-            <div class="modal-dialog">
-                <div class="modal-content bg-success">
+@*<section id="manualJoinModal">
+        <div class="modal" id="manualJoin" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">Create Account</h4>
+                        <h5 class="modal-title">Modal title</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    @*<div class="modal-body">
-                        @Html.Action("_SendInviteModal", "Invitations")
-                    </div>*@
-                    @*<div class="modal-footer justify-content-between">
-                        <a href="javascript:document.getElementById('modalSendForm').submit()" class="btn btn-primary">Send</a>
-                    </div>*@
+                    <div class="modal-body">
+                        @using (Html.BeginForm("ManualJoin", "Account", FormMethod.Post, null))
+                        {
+                            <div class="form-group">
+                                Invitation Code
+                                <div class="col-md-10">
+                                    @Html.TextBox("Code", new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" class="btn btn-default" value="Register" />
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
                 </div>
             </div>
-            <!-- /.modal-content -->
         </div>
 
-        <!-- jQuery -->
-        <script src="~/Scripts/jquery.min.js"></script>
-        <!-- jQuery UI 1.11.4 -->
-        <script src="~/Scripts/jquery-ui.min.js"></script>
-        <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-        <script>
-            $.widget.bridge('uibutton', $.ui.button)
-        </script>
-        <!-- Bootstrap 4 -->
-        <script src="~/Scripts/bootstrap.bundle.min.js"></script>
-        <!-- ChartJS -->
-        <script src="~/Scripts/Chart.min.js"></script>
-        <!-- Sparkline -->
-        <script src="~/Scripts/sparkline.js"></script>
-        <!-- JQVMap -->
-        <script src="~/Scripts/jquery.vmap.min.js"></script>
-        <script src="~/Scripts/jquery.vmap.usa.js"></script>
-        <!-- jQuery Knob Chart -->
-        <script src="~/Scripts/jquery.knob.min.js"></script>
-        <!-- daterangepicker -->
-        <script src="~/Scripts/moment.min.js"></script>
-        <script src="~/Scripts/daterangepicker.js"></script>
-        <!-- Tempusdominus Bootstrap 4 -->
-        <script src="~/Scripts/tempusdominus-bootstrap-4.min.js"></script>
-        <!-- Summernote -->
-        <script src="~/Scripts/summernote-bs4.min.js"></script>
-        <!-- overlayScrollbars -->
-        <script src="~/Scripts/jquery.overlayScrollbars.min.js"></script>
-        <!-- AdminLTE App -->
-        <script src="~/Scripts/adminlte.js"></script>
-        <script src="~/Scripts/datatables.min.js"></script>>
+    </section>*@
 
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")
-        @RenderSection("scripts", required: false)
-        <script>
-            $('table.table').DataTable();
-        </script>
-</body>
-</html>
+@*<section id="bankAccountModalSection">
+        <div class="modal fade" id="bankAccountModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="bankAccountModalLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        @Html.Action("_BankAccountModal", "BankAccounts")
+                    </div>
+                    <div class="modal-footer">
+                        <a href="javascript:document.getElementById('modalAccountForm').submit()" class="btn btn-primary">Save Changes</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>*@
+
+@*<div class="modal fade" id="modal-sendinvite">
+        <div class="modal-dialog">
+            <div class="modal-content bg-success">
+                <div class="modal-header">
+                    <h4 class="modal-title">Create Account</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                        @Html.Action("_SendInviteModal", "Invitations")
+                    </div>
+                <div class="modal-footer justify-content-between">
+                        <a href="javascript:document.getElementById('modalSendForm').submit()" class="btn btn-primary">Send</a>
+                    </div>
+            </div>
+        </div>
+    </div>*@
+
+<!-- jQuery -->
+<script src="~/Scripts/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="~/Scripts/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+    $.widget.bridge('uibutton', $.ui.button)
+</script>
+<!-- Bootstrap 4 -->
+<script src="~/Scripts/bootstrap.bundle.min.js"></script>
+<!-- ChartJS -->
+<script src="~/Scripts/Chart.min.js"></script>
+<!-- Sparkline -->
+<script src="~/Scripts/sparkline.js"></script>
+<!-- JQVMap -->
+<script src="~/Scripts/jquery.vmap.min.js"></script>
+<script src="~/Scripts/jquery.vmap.usa.js"></script>
+<!-- jQuery Knob Chart -->
+<script src="~/Scripts/jquery.knob.min.js"></script>
+<!-- daterangepicker -->
+<script src="~/Scripts/moment.min.js"></script>
+<script src="~/Scripts/daterangepicker.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="~/Scripts/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Summernote -->
+<script src="~/Scripts/summernote-bs4.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="~/Scripts/jquery.overlayScrollbars.min.js"></script>
+<!-- AdminLTE App -->
+<script src="~/Scripts/adminlte.js"></script>
+<script src="~/Scripts/datatables.min.js"></script>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@RenderSection("scripts", required: false)
+<script>
+    $('table.table').DataTable();
+</script>
+
+
