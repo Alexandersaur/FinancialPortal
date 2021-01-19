@@ -13,7 +13,10 @@
 
     .main-footer {
         background-color: #84a98c !important;
-        color: #2f3e46 !important
+        color: #2f3e46 !important;
+        position:fixed;
+        bottom:0;
+        width: 80%;
     }
 
     .sidebar-mini {
@@ -91,7 +94,7 @@
                         </li>
                         <hr />
                         <li class="nav-item">
-                            <a href="@Url.Action("Index","Households")" class="nav-link" style="background-color:#52796f">
+                            <a href="@Url.Action("Snapshot","BankAccounts")" class="nav-link" style="background-color:#52796f">
                                 <i class="fas fa-camera-retro nav-icon"></i>
                                 <p>Financial Snapshot</p>
                             </a>
@@ -106,7 +109,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item" style="border-bottom:1px solid white">
-                                    <a href="#" class="nav-link">
+                                    <a href="@Url.Action("Create", "BankAccounts")" class="nav-link">
                                         <i class="nav-icon fas fa-plus-circle"></i>
                                         Add New Bank Account
                                     </a>
@@ -384,8 +387,8 @@
 <script src="~/Scripts/adminlte.js"></script>
 <script src="~/Scripts/datatables.min.js"></script>
 
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/bootstrap")
+@*@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")*@
 @RenderSection("scripts", required: false)
 <script>
     $('table.table').DataTable();

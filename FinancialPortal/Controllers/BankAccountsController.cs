@@ -47,7 +47,8 @@ namespace FinancialPortal.Controllers
             //model.TotalBudget = 
             //model.TotalMonthlyDeposits = 
             //model.TotalMonthlySpending = 
-            model.BudgetItemId = new SelectList(db.BudgetItems, "Id", "ItemName");
+            var budgetItems = db.Budgets.Where(b => b.HouseholdId == bankAccount.HouseholdId).SelectMany(b => b.Items).ToList();
+            model.BudgetItemId = new SelectList(budgetItems, "Id", "ItemName");
             return View(model);
         }
 
@@ -145,6 +146,11 @@ namespace FinancialPortal.Controllers
             db.BankAccounts.Remove(bankAccount);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Snapshot()
+        {
+            return View();
         }
 
         protected override void Dispose(bool disposing)

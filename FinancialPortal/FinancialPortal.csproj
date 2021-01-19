@@ -174,6 +174,7 @@
     <Compile Include="Controllers\BankAccountsController.cs" />
     <Compile Include="Controllers\BudgetItemsController.cs" />
     <Compile Include="Controllers\BudgetsController.cs" />
+    <Compile Include="Controllers\ChartsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HouseholdsController.cs" />
     <Compile Include="Controllers\InvitationsController.cs" />
@@ -203,6 +204,8 @@
     <Compile Include="Models\BankAccount.cs" />
     <Compile Include="Models\Budget.cs" />
     <Compile Include="Models\BudgetItem.cs" />
+    <Compile Include="Models\ChartData.cs" />
+    <Compile Include="Models\FusionData.cs" />
     <Compile Include="Models\Household.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Invitation.cs" />
@@ -250,6 +253,10 @@
     <Content Include="Scripts\datatables.min.js" />
     <Content Include="Scripts\daterangepicker.js" />
     <Content Include="Scripts\demo.js" />
+    <Content Include="Scripts\fusionchart.powercharts.js" />
+    <Content Include="Scripts\fusioncharts.charts.js" />
+    <Content Include="Scripts\fusioncharts.js" />
+    <Content Include="Scripts\fusioncharts.widgets.js" />
     <Content Include="Scripts\jquery-ui.min.js" />
     <Content Include="Scripts\jquery.knob.min.js" />
     <Content Include="Scripts\jquery.min.js" />
@@ -333,6 +340,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Avatars\" />
+    <Folder Include="Views\Charts\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -375,6 +383,7 @@
     <Content Include="Views\Shared\_CreateTransactionModal.cshtml" />
     <Content Include="Views\Shared\_CreateTransactionModalFromItem.cshtml" />
     <Content Include="Views\Households\Members.cshtml" />
+    <Content Include="Views\BankAccounts\Snapshot.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

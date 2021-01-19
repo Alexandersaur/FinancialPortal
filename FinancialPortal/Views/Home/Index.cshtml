@@ -33,6 +33,7 @@
         margin-left: 0px !important;
         margin-right: 0px !important;
         border-bottom: 5px double white;
+
     }
 
 </style>
@@ -55,7 +56,9 @@
             <div class="small-box">
                 <div class="inner">
                     <h3>Join Households</h3>
-                    <p style="color:#FFC9B9">Make a new Household for members to join. Once you have selected a Household name and greeting, you will be able to start adding new members and bank accounts.</p>
+                    <p style="color:#FFC9B9">
+                        Become a member of a Household by entering a code given to you by the head of an existing Household.
+                    </p>
 
                 </div>
                 <div class="icon">
@@ -68,7 +71,9 @@
             <div class="small-box">
                 <div class="inner">
                     <h3>Create Households</h3>
-                    <p style="color:#FFC9B9">Make a new Household for members to join. Once you have selected a Household name and greeting, you will be able to start adding new members and bank accounts.</p>
+                    <p style="color:#FFC9B9">
+                     Create a Household name and greeting, allowing you to start adding new members and bank accounts.
+                    </p>
 
                 </div>
                 <div class="icon">
@@ -81,7 +86,9 @@
             <div class="small-box">
                 <div class="inner">
                     <h3>Invite Members</h3>
-                    <p style="color:#FFC9B9">Specify the amount of money that you would like to designate toward certain categories each month. For example, targets could be created for food, gas, utilities, etc.</p>
+                    <p style="color:#FFC9B9">
+                        Generate a code for new members to join your current Household, or send an invitation via email.
+                    </p>
                 </div>
                 <div class="icon">
                     @*<i class="ion ion-person-add"></i>*@
@@ -110,12 +117,15 @@
             <div class="small-box" style="background-color: #2f3e46">
                 <div class="inner">
                     <h3>Add Budgets</h3>
-                    <p style="color:#FFC9B9">Specify the amount of money that you would like to designate toward certain categories each month. For example, targets could be created for food, gas, utilities, etc.</p>
+                    <p style="color:#FFC9B9">
+                        Create a monthly budget across Bank Accounts within your Household to ensure that you keep your spending below a certain threshold.
+                    </p>
                 </div>
                 <div class="icon">
                     @*<i class="ion ion-person-add"></i>*@
                 </div>
-                <a href="#" data-toggle="modal" data-target="#joinHouseholdModal" class="small-box-footer"><b><i style="letter-spacing:2.5px">ADD</i></b> <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="@Url.Action("Create", "Budgets")" class="small-box-footer"><b><i style="letter-spacing:2.5px">ADD</i></b> <i class="fas fa-arrow-circle-right"></i></a>
+                @*<a href="#" data-toggle="modal" data-target="#joinHouseholdModal" class="small-box-footer"><b><i style="letter-spacing:2.5px">ADD</i></b> <i class="fas fa-arrow-circle-right"></i></a>*@
             </div>
         </div>
 
@@ -123,13 +133,16 @@
             <div class="small-box" style="background-color: #2f3e46">
                 <div class="inner">
                     <h3>Add Categories</h3>
-                    <p style="color:#FFC9B9">You can specify the details of a new Bank Account, including starting balance, warning balance, and type of account. Once added, bank accounts can be linked to budgets.</p>
+                    <p style="color:#FFC9B9">
+                        Allocate the amount of money that you would like to designate toward certain categories each month. For example, targets could be created for food, gas, utilities, etc.
+                    </p>
 
                 </div>
                 <div class="icon">
                     @*<i class="ion ion-pie-graph"></i>*@
                 </div>
-                <a href="#" data-toggle="modal" data-target="#addBankAccountModal" class="small-box-footer"><b><i style="letter-spacing:2.5px">ADD</i></b><i class="fas fa-arrow-circle-right"></i></a>
+                <a href="@Url.Action("Create", "BudgetItems")" class="small-box-footer"><b><i style="letter-spacing:2.5px">ADD</i></b> <i class="fas fa-arrow-circle-right"></i></a>
+                @*<a href="#" data-toggle="modal" data-target="#addBankAccountModal" class="small-box-footer"><b><i style="letter-spacing:2.5px">ADD</i></b><i class="fas fa-arrow-circle-right"></i></a>*@
             </div>
         </div>
     </div>

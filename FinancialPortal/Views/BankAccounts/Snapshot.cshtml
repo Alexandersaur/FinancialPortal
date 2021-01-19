@@ -1,0 +1,458 @@
+﻿@model FinancialPortal.ViewModels.BankAccountViewModel
+
+@using Microsoft.AspNet.Identity;
+@using FinancialPortal.Extensions
+@using FinancialPortal.Helpers;
+
+@{
+    ViewBag.Title = "Snapshot";
+}
+
+@*<style>
+        #container {
+            height: 400px;
+        }
+
+        .highcharts-figure, .highcharts-data-table table {
+            min-width: 310px;
+            max-width: 800px;
+            margin: 1em auto;
+        }
+
+        .highcharts-data-table table {
+            font-family: Verdana, sans-serif;
+            border-collapse: collapse;
+            border: 1px solid #EBEBEB;
+            margin: 10px auto;
+            text-align: center;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .highcharts-data-table caption {
+            padding: 1em 0;
+            font-size: 1.2em;
+            color: #555;
+        }
+
+        .highcharts-data-table th {
+            font-weight: 600;
+            padding: 0.5em;
+        }
+
+        .highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+            padding: 0.5em;
+        }
+
+        .highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+            background: #f8f8f8;
+        }
+
+        .highcharts-data-table tr:hover {
+            background: #f1f7ff;
+        }
+    </style>
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>*@
+
+@*<script>
+        Highcharts.chart('container', {
+            chart: {
+                type: 'pie',
+                options3d: {
+                    enabled: true,
+                    alpha: 45
+                }
+            },
+            title: {
+                text: 'Contents of Highsoft\'s weekly fruit delivery'
+            },
+            subtitle: {
+                text: '3D donut in Highcharts'
+            },
+            plotOptions: {
+                pie: {
+                    innerSize: 100,
+                    depth: 45
+                }
+            },
+            series: [{
+                name: 'Delivered amount',
+                data: [
+                    ['Bananas', 8],
+                    ['Kiwi', 3],
+                    ['Mixed nuts', 1],
+                    ['Oranges', 6],
+                    ['Apples', 8],
+                    ['Pears', 4],
+                    ['Clementines', 4],
+                    ['Reddish (bag)', 1],
+                    ['Grapes (bunch)', 1]
+                ]
+            }]
+        });
+    </script>
+
+    <figure class="highcharts-figure">
+        <div id="container"></div>
+        <p class="highcharts-description">
+            A variation of a 3D pie chart with an inner radius added.
+            These charts are often referred to as donut charts.
+        </p>
+    </figure>*@
+
+
+<h1 class="m-0 text-dark" style="
+    font-size: 400%;
+    text-align: center;
+    color: #2f3e46">
+    <b>Overview for @User.Identity.GetFullName()</b>
+</h1>
+<br />
+<div class="row">
+    <div class="col">
+        <div class="small-box elevation-2" style="
+        background-color: #84a98c;
+        color: white">
+            <div class="inner" style="text-align:center">
+                <dl>
+                    <dt>
+                        <b>Total Balance</b>
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.TotalBalance)
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="small-box elevation-2" style="
+        background-color: #84a98c;
+        color: white">
+            <div class="inner" style="text-align:center">
+                <dl>
+                    <dt>
+                        <b>Total Budget</b>
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.TotalBudget)
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="small-box elevation-2" style="
+        background-color: #84a98c;
+        color: white">
+            <div class="inner" style="text-align:center">
+                <dl>
+                    <dt>
+                        <b>Overall Monthly Spending</b>
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.TotalMonthlySpending)
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="small-box elevation-2" style="
+        background-color: #84a98c;
+        color: white">
+            <div class="inner" style="text-align:center">
+                <dl>
+                    <dt>
+                        <b>Overall Monthly Deposits</b>
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.TotalMonthlyDeposits)
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*Morris HTML*@
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+
+
+
+
+
+<div class="ajaxchart btn btn-sm btn-success" id="arrychart">Current</div>
+
+<div class="ajaxchart btn btn-sm btn-success" id="objectchart">Last</div>
+
+
+
+<div class="jumbotron">
+
+
+
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <div id="chart"></div>
+
+        </div>
+
+    </div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+@*Fusion HTML*@
+
+<div class="row">
+
+    <div class="col-md-12">
+
+        <div id="p-chart-container"></div>
+
+    </div>
+
+</div>
+
+<div class="row">
+
+    <div class="col-md-12">
+
+        <div id="acct-chart-container"></div>
+
+    </div>
+
+</div>
+
+@section scripts {
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+
+
+
+<script>
+
+
+        $(document).ready(function () {
+
+            $(".ajaxchart").click(function () {
+
+                var url = '@Url.Action("GetChartDataAjax", "Charts")' + '?type=' + $(this).html();
+
+                $.post(url).then(function (response) {
+
+                    $('#chart').empty();
+
+                    new Morris.Bar({
+
+                        element: 'chart',
+
+                        data: response,
+
+                        xkey: 'x',
+
+                        ykeys: ['y'],
+
+                        labels: ['Amount']
+
+                    });
+
+                })
+
+            })
+
+        })
+
+</script>
+
+
+
+@*Fusion Scripts*@
+
+<script src="~/Scripts/fusioncharts.js"></script>
+
+<script src="~/Scripts/fusioncharts.charts.js"></script>
+
+<script src="~/Scripts/fusioncharts.widgets.js"></script>
+
+<script src="~/Scripts/fusionchart.powercharts.js"></script>
+
+<script>
+
+
+        $(document).ready(function () {
+
+            var url = '@Url.Action("FusionDataAjax", "Charts")';
+
+            $.post(url).then(function (response) {
+
+                console.log(response)
+
+                data = response;
+
+                FusionCharts.ready(function (data) {
+
+                    var d = new Date();
+
+                    var months = ["January", "February", "March", "April", "May", "June",
+
+               "July", "August", "September", "October", "November", "December"];
+
+
+
+                    var monthName = months[d.getMonth()];
+
+                    var year = d.getFullYear();
+
+                    var revenueChart = new FusionCharts({
+
+                        type: 'column3d',
+
+                        renderAt: 'p-chart-container',
+
+                        width: '1020',
+
+                        height: '500',
+
+                        dataFormat: 'json',
+
+                        dataSource: {
+
+                            "chart": {
+
+                                "caption": "NYC_Budget Chart",
+
+                                "subCaption": "/Transactions/",
+
+                                "xAxisName": monthName + ' ' + year,
+
+                                "yAxisName": "Values (In USD)",
+
+                                "paletteColors": "#0075c2",
+
+                                "valueFontColor": "#ffffff",
+
+                                "baseFont": "Helvetica Neue,Arial",
+
+                                "captionFontSize": "14",
+
+                                "subcaptionFontSize": "14",
+
+                                "subcaptionFontBold": "0",
+
+                                "placeValuesInside": "1",
+
+                                "rotateValues": "1",
+
+                                "showShadow": "0",
+
+                                "divlineColor": "#999999",
+
+                                "divLineIsDashed": "1",
+
+                                "divlineThickness": "1",
+
+                                "divLineDashLen": "1",
+
+                                "divLineGapLen": "1",
+
+                                "canvasBgColor": "#ffffff"
+
+                            },
+
+
+
+                            "data": response
+
+                        }
+
+                    });
+
+                    revenueChart.render();
+
+                });
+
+            })
+
+        })
+
+</script>
+
+
+
+
+
+
+
+<script>
+        $(document).ready(function () {
+            var url = '@Url.Action("AccountDataAjax", "Charts")';
+            $.post(url).then(function (response) {
+                console.log(response)
+                data = response;
+                FusionCharts.ready(function (data) {
+                    var d = new Date();
+                    var months = ["January", "February", "March", "April", "May", "June",
+                        "July", "August", "September", "October", "November", "December"];
+
+                    var monthName = months[d.getMonth()];
+                    var year = d.getFullYear();
+                    var revenueChart = new FusionCharts({
+                        type: 'column3d',
+                        renderAt: 'acct-chart-container',
+                        width: '1020',
+                        height: '500',
+                        dataFormat: 'json',
+                        dataSource: {
+                            "chart": {
+                                "caption": "NYC_Budget Chart",
+                                "subCaption": "/Account/",
+                                "xAxisName": monthName + ' ' + year,
+                                "yAxisName": "Values (In USD)",
+                                "paletteColors": "#0075c2",
+                                "valueFontColor": "#ffffff",
+                                "baseFont": "Helvetica Neue,Arial",
+                                "captionFontSize": "14",
+                                "subcaptionFontSize": "14",
+                                "subcaptionFontBold": "0",
+                                "placeValuesInside": "1",
+                                "rotateValues": "1",
+                                "showShadow": "0",
+                                "divlineColor": "#999999",
+                                "divLineIsDashed": "1",
+                                "divlineThickness": "1",
+                                "divLineDashLen": "1",
+                                "divLineGapLen": "1",
+                                "canvasBgColor": "#ffffff"
+                            },
+                            "data": response
+                        }
+                    });
+                    revenueChart.render();
+                });
+            })
+        })
+</script>
+    }
