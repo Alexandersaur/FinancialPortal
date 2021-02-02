@@ -20,6 +20,9 @@ namespace FinancialPortal.ViewModels
         public decimal TotalMonthlyDeposits { get; set; }
         public Transaction Transaction { get; set; } = new Transaction();
         public SelectList BudgetItemId { get; set; }
+        public List<decimal> ApexSeries { get; set; } = new List<decimal>();
+        public List<string> ApexLabels { get; set; } = new List<string>();
+        public List<string> ApexColors { get; set; } = new List<string>();
 
         //public string Memo { get; set; }
         //public TransactionType TransactionType { get; set; }

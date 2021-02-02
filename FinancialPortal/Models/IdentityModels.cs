@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using FinancialPortal.Helpers;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -12,6 +13,7 @@ namespace FinancialPortal.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
+
         [Required]
         [Display(Name = "First Name")]
         [StringLength(50, MinimumLength = 2, ErrorMessage = "First Name must be between 2 and 50 characters")]
@@ -50,9 +52,14 @@ namespace FinancialPortal.Models
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
             var hhId = HouseholdId != null ? HouseholdId.ToString() : "";
+            UserHelper userHelper = new UserHelper();
+
             userIdentity.AddClaim(new Claim("HouseholdId", hhId));
+            userIdentity.AddClaim(new Claim("HouseholdName", Household.HouseholdName));
             userIdentity.AddClaim(new Claim("FullName", FullName));
+            userIdentity.AddClaim(new Claim("FirstName", FirstName));
             userIdentity.AddClaim(new Claim("AvatarPath", AvatarPath));
+            //userIdentity.AddClaim(new Claim("MemberRole", userHelper.GetUserRole()));
             // Add custom user claims here
             return userIdentity;
         }

@@ -21,10 +21,18 @@ namespace FinancialPortal.Helpers
             return firstName + " " + lastName;
         }
 
+        public string GetFirstName(string userId)
+        {
+            var user = db.Users.Find(userId);
+            var firstName = user.FirstName;
+            return firstName;
+        }
+
         public ApplicationUser getUser(string userId)
         {
             return db.Users.Find(userId);
         }
+
         public string LastNameFirst(string userId)
         {
             var user = db.Users.Find(userId);
@@ -40,10 +48,18 @@ namespace FinancialPortal.Helpers
 
         public string GetUserRole()
         {
-            var userId = HttpContext.Current.User.Identity.GetUserId();
-            var user = db.Users.Find(userId);
-            var roleId = user.Roles.Where(u => u.UserId == userId);
-            return null;
+            if (HttpContext.Current != null)
+            {
+                var userId = HttpContext.Current.User.Identity.GetUserId();
+                var user = db.Users.Find(userId);
+                var roleId = user.Roles.Where(u => u.UserId == userId).FirstOrDefault().RoleId;
+                var roleName = db.Roles.Find(roleId).Name;
+                return roleName;
+            }
+            else
+            {
+                return "";
+            }
         }
         public string GetUserRole(string userId)
         {

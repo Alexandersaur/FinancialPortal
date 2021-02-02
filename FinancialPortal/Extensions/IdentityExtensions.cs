@@ -23,6 +23,7 @@ namespace FinancialPortal.Extensions
                 return null;
             }
         }
+
         public static string GetHouseholdName(this IIdentity user)
         {
             var claimsIdentity = (ClaimsIdentity)user;
@@ -38,12 +39,22 @@ namespace FinancialPortal.Extensions
             }
         }
 
+
+
         public static string GetFullName(this IIdentity user)
         {
             var claimsIdentity = (ClaimsIdentity)user;
             var fullNameClaim = claimsIdentity.Claims.FirstOrDefault(c => c.Type == "FullName");
             return fullNameClaim != null ? fullNameClaim.Value : null;
         }
+
+        public static string GetFirstName(this IIdentity user)
+        {
+            var claimsIdentity = (ClaimsIdentity)user;
+            var firstNameClaim = claimsIdentity.Claims.FirstOrDefault(c => c.Type == "FirstName");
+            return firstNameClaim != null ? firstNameClaim.Value : null;
+        }
+
         public static string GetAvatarPath(this IIdentity user)
         {
             var claimsIdentity = (ClaimsIdentity)user;

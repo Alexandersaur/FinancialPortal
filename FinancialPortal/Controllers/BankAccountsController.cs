@@ -47,9 +47,20 @@ namespace FinancialPortal.Controllers
             //model.TotalBudget = 
             //model.TotalMonthlyDeposits = 
             //model.TotalMonthlySpending = 
-            model.BudgetItemId = new SelectList(db.BudgetItems, "Id", "ItemName");
+            var budgetItems = db.Budgets.Where(b => b.HouseholdId == bankAccount.HouseholdId).SelectMany(b => b.Items).ToList();
+            model.BudgetItemId = new SelectList(budgetItems, "Id", "ItemName");
+
+            foreach (var item in budgetItems)
+            {
+                model.ApexLabels.Add(item.ItemName);
+                model.ApexSeries.Add(item.Transactions.Where(t => t.TransactionType == Enums.TransactionType.Withdrawal && t.Created.Month == DateTime.Today.Month).Sum(t => t.Amount));
+                //model.ApexColors.Add
+            }
+
             return View(model);
         }
+
+
 
         // GET: BankAccounts/Create
         public ActionResult Create()
@@ -145,6 +156,11 @@ namespace FinancialPortal.Controllers
             db.BankAccounts.Remove(bankAccount);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Snapshot()
+        {
+            return View();
         }
 
         protected override void Dispose(bool disposing)

@@ -6,7 +6,9 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using FinancialPortal.Extensions;
 using FinancialPortal.Models;
+using Microsoft.AspNet.Identity;
 
 namespace FinancialPortal.Controllers
 {
@@ -39,8 +41,8 @@ namespace FinancialPortal.Controllers
         // GET: Budgets/Create
         public ActionResult Create()
         {
-            ViewBag.HouseholdId = new SelectList(db.Households, "Id", "HouseholdName");
-            ViewBag.OwnerId = new SelectList(db.Users, "Id", "FirstName");
+            //ViewBag.HouseholdId = new SelectList(db.Households, "Id", "HouseholdName");
+            //ViewBag.OwnerId = new SelectList(db.Users, "Id", "FirstName");
             return View();
         }
 
@@ -49,10 +51,13 @@ namespace FinancialPortal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,HouseholdId,OwnerId,Created,BudgetName,CurrentAmount")] Budget budget)
+        public ActionResult Create([Bind(Include = "Id,BudgetName,CurrentAmount")] Budget budget)
         {
             if (ModelState.IsValid)
             {
+                budget.HouseholdId = User.Identity.GetHouseholdId().Value;
+                budget.OwnerId = User.Identity.GetUserId();
+                budget.Created = DateTime.Now;
                 db.Budgets.Add(budget);
                 db.SaveChanges();
                 return RedirectToAction("Index");

@@ -13,6 +13,10 @@ namespace FinancialPortal.Controllers
             return View();
         }
 
+        public ActionResult Template()
+        {
+            return View();
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
