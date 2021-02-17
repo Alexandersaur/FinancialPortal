@@ -196,6 +196,8 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <span class="menu-text">Financial Snapshot</span>
                                 </a>
                             </li>
+                            <!--TODO * Ensure menu links aren't broken-->
+                            <!--TODO *** Improve submenu visuals-->
                             <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                                 <a href="@Url.Action("Index","BankAccounts")" class="menu-link menu-toggle">
                                     <span class="svg-icon menu-icon">
@@ -499,11 +501,13 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <i class="menu-arrow"></i>
                                     <ul class="menu-subnav">
                                         <li class="menu-item menu-item-parent" aria-haspopup="true">
+                                            <!--TODO *** Create landing page for members-->
                                             <span class="menu-link">
                                                 <span class="menu-text">Members</span>
                                             </span>
                                         </li>
                                         <li>
+                                            <!--TODO ***** Make sure logoff works correctly when logging back in-->
                                             @if (Request.IsAuthenticated)
                                             {
                                                 using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "sideLogoutForm", @class = "navbar-right" }))
@@ -697,6 +701,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                         </div>
                                         <!--end::Header-->
                                         <!--begin::Content-->
+                                        <!--TODO *** Select which menubar functionality to keep-->
                                         <div class="tab-content">
                                             <!--begin::Tabpane-->
                                             <div class="tab-pane active show p-8" id="topbar_notifications_notifications" role="tabpanel">
@@ -1245,6 +1250,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
                 @RenderBody()
 
+                <!--TODO * Improve footer-->
                 <!--begin::Footer-->
                 <div class="footer bg-white py-4 d-flex flex-lg-column" id="kt_footer">
                     <!--begin::Container-->
