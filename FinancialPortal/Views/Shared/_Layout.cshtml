@@ -62,6 +62,8 @@ License: You must have a valid license purchased only from themeforest(the above
 <!--end::Head-->
 <!--begin::Body-->
 <body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed aside-minimize-hoverable page-loading">
+@Html.Partial("_LoginPartial")
+
     <!--begin::Main-->
     <!--begin::Header Mobile-->
     <div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed">
@@ -168,13 +170,16 @@ License: You must have a valid license purchased only from themeforest(the above
                                             </span>
                                         </span>
                                     </span>
+                                    @if (Request.IsAuthenticated)
+                                    {
                                     <span class="menu-text">Logged in as: @userManager.GetRoles(User.Identity.GetUserId()).FirstOrDefault()</span>
+                                    }
                                 </a>
                             </li>
                             @*<li class="menu-section">
-                                <h4 class="menu-text">Overview</h4>
-                                <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
-                            </li>*@
+                                    <h4 class="menu-text">Overview</h4>
+                                    <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
+                                </li>*@
                             <li class="menu-section">
                                 <h4 class="menu-text">Navigation</h4>
                                 <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
@@ -232,27 +237,27 @@ License: You must have a valid license purchased only from themeforest(the above
                                                 </i>
                                                 <span class="menu-text">List All</span>
                                                 <span class="menu-label">
-                                                    <span class="label label-rounded label-primary">6</span>
+                                                    <span class="label label-rounded label-primary">@accountsHelper.BankAccountsCount()</span>
                                                 </span>
                                                 <i class="menu-arrow"></i>
                                             </a>
                                             <div class="menu-submenu">
                                                 <i class="menu-arrow"></i>
                                                 <ul class="menu-subnav">
-                                                    <li class="menu-item" aria-haspopup="true">
-                                                        <a href="custom/apps/user/list-default.html" class="menu-link">
-                                                            <i class="menu-bullet menu-bullet-dot">
-                                                                <span></span>
-                                                            </i>
-                                                            <span class="menu-text">List - Default</span>
-                                                        </a>
-                                                    </li>
+                                                    @*<li class="menu-item" aria-haspopup="true">
+                                                            <a href="custom/apps/user/list-default.html" class="menu-link">
+                                                                <i class="menu-bullet menu-bullet-dot">
+                                                                    <span></span>
+                                                                </i>
+                                                                <span class="menu-text">List - Default</span>
+                                                            </a>
+                                                        </li>*@
                                                     @if (accountsHelper.BankAccountsCount() > 0)
                                                     {
                                                         foreach (var account in accountsHelper.ListBankAccounts())
                                                         {
                                                             <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-                                                                <i class="menu-bullet menu-bullet-line">
+                                                                <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
                                                                 @Html.ActionLink(account.AccountName, "Details", "BankAccounts", new { Id = account.Id }, new { @class = "menu-link" })
@@ -261,12 +266,16 @@ License: You must have a valid license purchased only from themeforest(the above
                                                     }
                                                 </ul>
                                             </div>
+                                        </li>
+                                        <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                                             <a href="@Url.Action("Create","BankAccounts")" class="menu-link menu-toggle">
                                                 <i class="menu-bullet menu-bullet-line">
                                                     <span></span>
                                                 </i>
                                                 <span class="menu-text">Create New</span>
                                             </a>
+                                        </li>
+                                        <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                                             <a href="@Url.Action("Index","BankAccounts")" class="menu-link menu-toggle">
                                                 <i class="menu-bullet menu-bullet-line">
                                                     <span></span>
@@ -510,16 +519,8 @@ License: You must have a valid license purchased only from themeforest(the above
                                             <!--TODO ***** Make sure logoff works correctly when logging back in-->
                                             @if (Request.IsAuthenticated)
                                             {
-                                                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "sideLogoutForm", @class = "navbar-right" }))
-                                                {
-                                                    @Html.AntiForgeryToken()
-                                                    <div class="nav-link" style="text-align:center; color: #ff3926">
-                                                        @*<i class="nav-icon fas fa-crosshairs"></i>*@
-                                                        <i class="fas fa-sign-out-alt mt-3"></i>
-                                                        <a class="h5" href="javascript:document.getElementById('sideLogoutForm').submit()" style="color: #ff3926; text-align:center"><b> Log Out</b></a>
-                                                        @*<i class="fas fa-angle-left right"></i>*@
-                                                    </div>
-                                                }
+                                                <a class="h5" href="javascript:document.getElementById('sideLogoutForm').submit()" style="color: #ff3926; text-align:center"><b> Log Out</b></a>
+
                                             }
                                         </li>
                                         <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
@@ -1234,9 +1235,12 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <span class="text-muted font-weight-bold font-size-base d-none d-md-inline mr-1">Hi,</span>
                                     @*<span class="text-dark-50 font-weight-bolder font-size-base d-none d-md-inline mr-3">@User.Identity.GetUserName()</span>*@
                                     <span class="text-dark-50 font-weight-bolder font-size-base d-none d-md-inline mr-3">@User.Identity.GetFirstName()</span>
+                                    @if (Request.IsAuthenticated)
+                                    {
                                     <span class="symbol symbol-lg-35 symbol-25 symbol-light-success">
                                         <span class="symbol-label font-size-h5 font-weight-bold">@User.Identity.GetFirstName().Substring(0, 1)</span>
                                     </span>
+                                    }
                                 </div>
                             </div>
                             <!--end::User-->
@@ -1320,7 +1324,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <span class="navi-text text-muted text-hover-primary">jm@softplus.com</span>
                             </span>
                         </a>
-                        <a href="#" class="btn btn-sm btn-light-primary font-weight-bolder py-2 px-5">Sign Out</a>
+                        <a href="javascript:document.getElementById('sideLogoutForm').submit()" class="btn btn-sm btn-light-primary font-weight-bolder py-2 px-5">Sign Out</a>
                     </div>
                 </div>
             </div>

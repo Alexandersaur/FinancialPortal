@@ -2170,7 +2170,9 @@
     <Content Include="Scripts\fusioncharts.charts.js" />
     <Content Include="Scripts\fusioncharts.js" />
     <Content Include="Scripts\fusioncharts.widgets.js" />
+    <Content Include="Scripts\jquery-3.5.1.js" />
     <Content Include="Scripts\jquery-ui.min.js" />
+    <Content Include="Scripts\jquery.dataTables.min.js" />
     <Content Include="Scripts\jquery.knob.min.js" />
     <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\jquery.overlayScrollbars.min.js" />

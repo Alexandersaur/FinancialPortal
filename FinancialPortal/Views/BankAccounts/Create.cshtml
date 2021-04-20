@@ -4,7 +4,7 @@
     ViewBag.Title = "Create";
 }
 
-<style>
+@*<style>
     body {
         background-color: #FFC9B9
     }
@@ -35,7 +35,7 @@
         margin-right: 0px !important;
         border-bottom: 5px double white;
     }
-</style>
+</style>*@
 
 <div class="container-fluid">
     <div class="row">
@@ -109,6 +109,68 @@
     @*<div>
         @Html.ActionLink("Back to List", "Index")
     </div>*@
+
+<form class="form">
+    <div class="card-body">
+        <div class="form-group row">
+            <label class="col-lg-2 col-form-label text-lg-right">Full Name:</label>
+            <div class="col-lg-3">
+                <input type="email" class="form-control" placeholder="Enter full name" />
+                <span class="form-text text-muted">Please enter your full name</span>
+            </div>
+            <label class="col-lg-2 col-form-label text-lg-right">Contact Number:</label>
+            <div class="col-lg-3">
+                <input type="email" class="form-control" placeholder="Enter contact number" />
+                <span class="form-text text-muted">Please enter your contact number</span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-lg-2 col-form-label text-lg-right">Address:</label>
+            <div class="col-lg-3">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Enter your address" />
+                    <div class="input-group-append"><span class="input-group-text"><i class="la la-map-marker"></i></span></div>
+                </div>
+                <span class="form-text text-muted">Please enter your address</span>
+            </div>
+            <label class="col-lg-2 col-form-label text-lg-right">Postcode:</label>
+            <div class="col-lg-3">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Enter your postcode" />
+                    <div class="input-group-append"><span class="input-group-text"><i class="la la-bookmark-o"></i></span></div>
+                </div>
+                <span class="form-text text-muted">Please enter your postcode</span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-lg-2 col-form-label text-lg-right">Group:</label>
+            <div class="col-lg-3">
+                <div class="radio-inline">
+                    <label class="radio radio-solid">
+                        <input type="radio" name="example_2" checked="checked" value="2" />
+                        <span></span>
+                        Sales Person
+                    </label>
+                    <label class="radio radio-solid">
+                        <input type="radio" name="example_2" value="2" />
+                        <span></span>
+                        Customer
+                    </label>
+                </div>
+                <span class="form-text text-muted">Please select user group</span>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-10">
+                <button type="reset" class="btn btn-success mr-2">Submit</button>
+                <button type="reset" class="btn btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+</form>
 
     @section Scripts {
         @Scripts.Render("~/bundles/jqueryval")
