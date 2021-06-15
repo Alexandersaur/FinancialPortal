@@ -6,13 +6,13 @@
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
     <!--begin::Subheader-->
     <div class="subheader py-2 py-lg-6 subheader-solid" id="kt_subheader">
-        <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+        <div class="container-fluid d-flex align-items-center justify-content-around flex-wrap flex-sm-nowrap">
             <!--begin::Info-->
             <div class="d-flex align-items-center flex-wrap mr-1">
                 <!--begin::Page Heading-->
-                <div class="d-flex align-items-center flex-wrap mr-5">
+                <div class="d-flex align-items-baseline flex-wrap mr-5">
                     <!--begin::Page Title-->
-                    <h5 class="text-dark font-weight-bold my-1 mr-5 align-items-center">User Options</h5>
+                    <h5 class="text-dark font-weight-bold my-1 mr-5">User Options</h5>
                     <!--end::Page Title-->
                 </div>
                 <!--end::Page Heading-->
@@ -21,7 +21,8 @@
         </div>
     </div>
     <!--end::Subheader-->
-    @if (User.IsInRole("Admin"))
+
+    @if (User.Identity.GetHouseholdId() > 0)
     {
         <!--begin::Entry-->
         <div class="d-flex flex-column-fluid">
@@ -177,13 +178,12 @@
                     </div>
                 </div>
                 <!--end::Row-->
-
             </div>
             <!--end::Container-->
         </div>
         <!--end::Entry-->
     }
-    @if (User.IsInRole("Member"))
+    else
     {
         <!--begin::Entry-->
         <div class="d-flex flex-column-fluid">
@@ -205,7 +205,7 @@
                                         <div class="col-12 col-xl-7">
                                             <!--TODO *** Join existing household functionality-->
                                             <h4 class="text-danger font-weight-bolder">Join Existing Household</h4>
-                                            <p class="text-dark-50 my-5 font-size-xl font-weight-bold">Enter code sent to you from an existing household in order to join</p>
+                                            <p class="text-dark-75 my-5 font-size-xl font-weight-bold">Enter code sent to you from an kjth k tktjht kt ktjht k tktjht kj tktjhktjhtk tkjthktjt kt ktjh tktjthktj tktjhktjthkt kexisting tkjherlktjhwlekrtjhwlekjrhtlwkejrhtlwkjrtlwek wkerjht ekj ekrjth ekrjter kjehrkt erjthe rtjektjrekjrtk erkte krjterjthe rktjhe rktjer tjer ktjehrk tjehr ktejhrt kejrh tkejhhousehold in order to join</p>
                                             <a href="#" class="btn btn-danger font-weight-bold py-2 px-6">Join Now!</a>
                                         </div>
                                     </div>

@@ -2151,6 +2151,7 @@
     <Content Include="fonts\fa-solid-900.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="images\logo_transparent-ConvertImage.png" />
     <Content Include="images\logo_transparent.png" />
     <Content Include="images\moneyprojs.png" />
     <Content Include="images\pattern %282%29.jpeg" />

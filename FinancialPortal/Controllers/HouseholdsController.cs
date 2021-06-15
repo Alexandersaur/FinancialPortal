@@ -42,6 +42,12 @@ namespace FinancialPortal.Controllers
             return View(household);
         }
 
+        // GET: Households/Dashboard
+        public ActionResult Dashboard()
+        {
+            return View();
+        }
+
         // GET: Households/Create
         public ActionResult Create()
         {
