@@ -52,10 +52,11 @@ namespace FinancialPortal.Models
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
             var hhId = HouseholdId != null ? HouseholdId.ToString() : "";
+            var hhName = Household != null ? Household.HouseholdName : "";
             UserHelper userHelper = new UserHelper();
 
             userIdentity.AddClaim(new Claim("HouseholdId", hhId));
-            userIdentity.AddClaim(new Claim("HouseholdName", Household.HouseholdName));
+            userIdentity.AddClaim(new Claim("HouseholdName", hhName));
             userIdentity.AddClaim(new Claim("FullName", FullName));
             userIdentity.AddClaim(new Claim("FirstName", FirstName));
             userIdentity.AddClaim(new Claim("AvatarPath", AvatarPath));

@@ -49,9 +49,8 @@ namespace FinancialPortal.Migrations
 
             #region User Creation
             var adminEmail = WebConfigurationManager.AppSettings[ApplicationSettings.AdminEmail.ToString()];
-            var adminPassword = WebConfigurationManager.AppSettings["AdminPassword"];
             var memberEmail = WebConfigurationManager.AppSettings[ApplicationSettings.MemberEmail.ToString()];
-            var memberPassword = WebConfigurationManager.AppSettings["MemberPassword"];
+            var demoPassword = WebConfigurationManager.AppSettings["DemoPassword"];
             var userManager = new UserManager<ApplicationUser>
                              (new UserStore<ApplicationUser>(context));
 
@@ -63,7 +62,7 @@ namespace FinancialPortal.Migrations
                     UserName = adminEmail,
                     FirstName = "Demo",
                     LastName = "Admin",
-                }, adminPassword);
+                }, demoPassword);
                 var userId = userManager.FindByEmail(adminEmail).Id;
                 userManager.AddToRole(userId, "Admin");
             }
@@ -75,7 +74,7 @@ namespace FinancialPortal.Migrations
                     UserName = memberEmail,
                     FirstName = "Demo",
                     LastName = "Member",
-                }, memberPassword);
+                }, demoPassword);
                 var userId = userManager.FindByEmail(memberEmail).Id;
                 userManager.AddToRole(userId, "Member");
             }

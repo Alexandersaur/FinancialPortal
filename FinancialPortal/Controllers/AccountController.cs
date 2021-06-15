@@ -12,6 +12,7 @@ using FinancialPortal.Models;
 using FinancialPortal.Helpers;
 using Microsoft.Owin.Security.OAuth.Messages;
 using FinancialPortal.Extensions;
+using System.Web.Configuration;
 
 namespace FinancialPortal.Controllers
 {
@@ -97,6 +98,40 @@ namespace FinancialPortal.Controllers
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
                     return View(model);
+            }
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult DemoLogin()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            }
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DemoLogin(string emailKey, string passwordKey, string returnUrl)
+        {
+            var email = WebConfigurationManager.AppSettings[emailKey];
+            var password = WebConfigurationManager.AppSettings["DemoPassword"];
+            if (User.Identity.IsAuthenticated)
+            {
+                HttpContext.GetOwinContext().Authentication.SignOut();
+            }
+            var result = await SignInManager.PasswordSignInAsync(email, password, false, shouldLockout: false);
+            switch (result)
+            {
+                case SignInStatus.Success:
+                    return RedirectToLocal(returnUrl);
+                case SignInStatus.Failure:
+                default:
+                    ModelState.AddModelError("", "Invalid login attempt.");
+                    return View();
             }
         }
 
