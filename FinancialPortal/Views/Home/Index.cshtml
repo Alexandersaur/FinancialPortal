@@ -246,7 +246,10 @@
                                         <div class="col-12 col-xl-7">
                                             <h4 class="text-danger font-weight-bolder m-0">Create New Household</h4>
                                             <p class="text-dark-90 my-5 font-size-xl font-weight-bold">If you have just created an account and have not started your Household, you may do so here. Once you have set up a Household, you will be able to begin adding your bank accounts, family members, and budget goals. </p>
-                                            <a href="#" class="btn btn-danger font-weight-bold py-2 px-6">Create New!</a>
+                                            @*<a href="#" class="btn btn-danger font-weight-bold py-2 px-6">Create New!</a>*@
+                                            <button type="button" class="btn btn-danger font-weight-bold py-2 px-6" data-toggle="modal" data-target="#createHouseholdModalf">
+                                                Create New!
+                                            </button>
                                         </div>
                                         <div class="col-12 col-xl-5"></div>
                                     </div>
@@ -264,19 +267,51 @@
     }
 </div>
 <!--end::Content-->
-<!--<div class="container-fluid">
-    <div class="row">
-        <div class="col" id="topbox">
-            <div style="background-color: #84a98c">
-                <h1 style="font-size: 400%; text-align: center; color: #2f3e46">
-                    <b>User Options</b>
-                </h1>
+
+
+@using (Html.BeginForm("Create", "Households", FormMethod.Post))
+{ 
+    <div class="modal" id="createHouseholdModalf">
+        <div class="modal-dialog">
+            <div class="modal-content" text-align: center">
+                @Html.AntiForgeryToken()
+
+                <div class="modal-header">
+                    <h3 style="justify-content:center; display:flex; align-items:center; vertical-align:middle" class="card-title">
+                        Create Household
+                    </h3>
+                    <button type="button" class="close text-black" data-dismiss="modal" aria-hidden="false">x</button>
+                </div>
+                <!--begin::Form-->
+                <div class="modal-body">
+                    <div class="form-group form-group-last">
+                        <div class="alert alert-custom alert-default" role="alert">
+                            <div class="alert-icon"><i class="flaticon-warning text-primary"></i></div>
+                            <div class="alert-text">
+                                Information about creating a new household.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-body displayFlex">
+                        @Html.Label("Name of New Household", new { htmlAttributes = new { @class = "form-control form-control-solid" } })
+                        <br />
+                        @Html.Editor("HouseholdName", new { @class = "text-danger form-control form-control-solid" })
+                    </div>
+                    <div class="modal-body">
+                        @Html.Label("Create a Greeting", new { htmlAttributes = new { @class = "form-control form-control-solid" } })
+                        <br />
+                        @Html.Editor("Greeting", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="reset" class="btn btn-success mr-2">Submit</button>
+                </div>
+                <!--end::Form-->
             </div>
         </div>
     </div>
-
-    <hr />
-
+}
+<!--
 
     <div class="row">
         <div class="col">
@@ -410,90 +445,3 @@
     </div>
 </div>
 <hr />-->
-<!--@using (Html.BeginForm("Create", "Households", FormMethod.Post))
-    {
-        <div class="modal" id="createHouseholdModal">
-            <div class="modal-dialog">
-                <div class="modal-content" style="background-color: #84a98c; height:215px; color:white; text-align: center">
-                    @Html.AntiForgeryToken()
-                    <div class="modal-header">
-                        <h2><b>Create Household</b></h2>
-                        <button type="button" class="close text-black" data-dismiss="modal" aria-hidden="false">x</button>
-                    </div>
-                    <div class="modal-body displayFlex">
-                        @Html.Label("Name", new { htmlAttributes = new { @class = "form-control " } })
-                        @Html.Editor("HouseholdName", new { @class = "text-danger" })
-                    </div>
-                    <div class="modal-body">
-                        @Html.Label("Greeting", new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.Editor("Greeting", new { @class = "text-danger" })
-                    </div>
-                    <div class="modal-footer">
-                        <input type="submit" value="Create" class="btn backgroundWhite colorBlack" />
-                    </div>
-                </div>
-            </div>
-        </div>
-    }
-Create Household Ends
-Join Household Begin
-@using (Html.BeginForm("ManualJoin", "Account", FormMethod.Post))
-    {
-        <div class="modal fade" id="joinHouseholdModal">
-            <div class="modal-dialog">
-                <div class="modal-content" style="background-color: #52796f; height:215px; color:white; text-align: center">
-                    @Html.AntiForgeryToken()
-                    <div class="modal-header">
-                        <h2><b>Join Household</b></h2>
-                        <button type="button" class="close text-black" data-dismiss="modal" aria-hidden="false">x</button>
-                    </div>
-                    <div class="modal-body displayFlex">
-                        Invitation Code:
-                        @Html.TextBox("Code", null, new { @class = "form-control mt-4" })
-                    </div>
-                    <div class="modal-footer">
-                        <input type="submit" value="Submit" class="btn backgroundWhite colorBlack" />
-                    </div>
-                </div>
-            </div>
-        </div>
-    }
-Join Household Ends
-Add Bank Account Begin
-<div class="modal fade" id="addBankAccountModal">
-        <div class="modal-dialog">
-            <div class="modal-content" style="background-color: #2f3e46; height:auto; color:white; text-align: center" id="addBankAccountModalContentContainer">
-                <div class="modal-header">
-                    <h2><b>Add Bank Account</b></h2>
-                    <button type="button" class="close text-black" data-dismiss="modal" aria-hidden="false">x</button>
-                </div>
-                <div class="modal-body displayFlex">
-                    @Html.Action("_BankAccountModal", "BankAccounts")
-                </div>
-                <div class="modal-footer">
-                        <input type="submit" value="Create" class="btn backgroundGoldenRod text-white w-50" />
-                    </div>
-            </div>
-        </div>
-    </div>
-
-Add Bank Account Ends
-User Setting Begin
-<div class="modal fade" id="userSettingsModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 class="text-white"><b>User Settings</b></h2>
-                    <button type="button" class="close text-white" data-dismiss="modal" aria-hidden="false">x</button>
-                </div>
-                <div class="modal-body displayFlex pt-4 pb-5">
-                    @Html.ActionLink("Change Name", "UpdateProfile", "Manage", null, new { @class = " btn backgroundWhite colorBlack" })
-                    @Html.ActionLink("Change Password", "ChangePassword", "Manage", null, new { @class = " btn backgroundWhite colorBlack" })
-                    @Html.ActionLink("Change Avatar", "#", "#", null, new { @class = " btn backgroundWhite colorBlack" })
-                </div>
-                <div class="modal-footer">
-                        <input type="submit" value="Submit" class="btn backgroundWhite colorBlack" />
-                    </div>
-            </div>
-        </div>
-    </div>-->
