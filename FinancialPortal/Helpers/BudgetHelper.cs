@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using FinancialPortal.Extensions;
 using FinancialPortal.Models;
 
 namespace FinancialPortal.Utilities
 {
     public class BudgetHelper
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         public int GetPercentPaid(Budget budget)
         {
             if (budget.TargetAmount == 0)
@@ -23,12 +26,12 @@ namespace FinancialPortal.Utilities
             return percentPaid;
         }
 
-        //public int BudgetsCount()
-        //{
-        //    var hhId = HttpContext.Current.User.Identity.GetHouseholdId();
-        //    var count = db.BankAccounts.Where(hh => hh.HouseholdId == hhId).ToList().Count;
-        //    return count;
-        //}
+        public int BudgetsCount()
+        {
+            var hhId = HttpContext.Current.User.Identity.GetHouseholdId();
+            var count = db.BankAccounts.Where(hh => hh.HouseholdId == hhId).ToList().Count;
+            return count;
+        }
 
         //public List<BankAccount> ListBudgets()
         //{
