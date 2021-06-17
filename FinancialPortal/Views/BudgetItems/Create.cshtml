@@ -6,7 +6,6 @@
 
 @*<h2>Create</h2>
 
-
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
@@ -133,7 +132,7 @@
                                 @Html.ValidationMessageFor(model => model.CurrentAmount, "", new { @class = "text-danger" })
                             </div>
 
-                            <input type="submit" class="btn btn-primary mr-2" />
+                            <input type="submit" class="btn btn-success mr-2 w-100" />
                         </div>
                         <div class="col">
                             <div class="d-flex flex-column flex-center">

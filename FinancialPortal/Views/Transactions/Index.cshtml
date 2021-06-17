@@ -4,81 +4,99 @@
     ViewBag.Title = "Index";
 }
 
-<h1 class="m-0 text-dark" style="        font-size: 400%;
-        text-align: center;
-        color: #2f3e46
-">
-    <b>All Transactions</b>
-</h1>
 
+<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+    <!--begin::Subheader-->
+    <div class="subheader py-2 py-lg-6 subheader-solid" id="kt_subheader">
+        <div class="container-fluid d-flex align-items-center justify-content-around flex-wrap flex-sm-nowrap">
+            <!--begin::Info-->
+            <div class="d-flex align-items-center flex-wrap mr-1">
+                <!--begin::Page Heading-->
+                <div class="d-flex align-items-baseline flex-wrap mr-5">
+                    <!--begin::Page Title-->
+                    <h5 class="text-dark font-weight-bold my-1 mr-5">Index of Transactions</h5>
 
-<p style="text-align:center">
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.Account.OwnerId)
-                </th>*@
-            <th>
-                Budget
-            </th>
-            <th>
-                Submitter
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TransactionType)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Created)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Amount)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Memo)
-            </th>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.IsDeleted)
-                </th>*@
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.Account.OwnerId)
-                    </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.BudgetItem.ItemName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Owner.FirstName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TransactionType)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Created)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Amount)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Memo)
-                </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.IsDeleted)
-                    </td>*@
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @*@Html.ActionLink("Details", "Details", new { id = item.Id }) |*@
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+                    <!--end::Page Title-->
+                </div>
+                <!--end::Page Heading-->
+            </div>
+            <!--end::Info-->
+        </div>
+    </div>
+    <!--end::Subheader-->
+    <!--begin::Entry-->
+    <div class="d-flex flex-column-fluid">
+        <!--begin::Container-->
+        <div class="container">
+            <!--begin::Card-->
+            <div class="card card-custom">
+                <div class="card-body">
+                    <!--begin: Datatable-->
+                    <table class="table table-separate table-head-custom table-foot-custom table-checkable" id="kt_datatable">
+                        <thead>
+                            <tr>
+                                @*<th>Bank</th>*@
+                                <th>Budget</th>
+                                <th>Type</th>
+                                <th>Submitter</th>
+                                <th>Amount</th>
+                                <th>Created</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                @*<td>
+                                    @Html.DisplayFor(modelItem => item.)
+                                </td>*@
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.BudgetItem.ItemName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TransactionType)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Owner.FirstName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Amount)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Created)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                    @*@Html.ActionLink("Details", "Details", new { id = item.Id }) |*@
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                @*<th>Bank</th>*@
+                                <th>Budget</th>
+                                <th>Type</th>
+                                <th>Submitter</th>
+                                <th>Amount</th>
+                                <th>Created</th>
+                                <th></th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <!--end: Datatable-->
+                    <div class="container-fluid d-flex align-items-center justify-content-around flex-wrap flex-sm-nowrap">
+                        <a href="@Url.Action("Create","Transactions")" class="btn btn-success font-weight-bolder">
+                            <i class="la la-plus"></i>Add New Transaction
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!--end::Card-->
+        </div>
+        <!--end::Container-->
+    </div>
+    <!--end::Entry-->
+</div>

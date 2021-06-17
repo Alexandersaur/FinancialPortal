@@ -4,14 +4,8 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
-
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
+    @*<div class="form-horizontal">
         <h4>BudgetItem</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -73,10 +67,84 @@
             </div>
         </div>
     </div>
-}
+}*@
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+<div class="container-fluid">
+
+    <div class="card card-custom">
+        <div class="card-header" style="justify-content:center; display:flex; align-items:center; vertical-align:middle">
+            <h3 class="card-title">
+                Edit Category
+            </h3>
+        </div>
+        <!--begin::Form-->
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+    <form class="form">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="card-body">
+            <div class="form-group form-group-last">
+
+                <div class="alert alert-custom alert-default" role="alert">
+                    <span class="svg-icon svg-icon-success svg-icon-4x">
+                        <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Code\Git4.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <rect x="0" y="0" width="24" height="24" />
+                                <path d="M6,7 C7.1045695,7 8,6.1045695 8,5 C8,3.8954305 7.1045695,3 6,3 C4.8954305,3 4,3.8954305 4,5 C4,6.1045695 4.8954305,7 6,7 Z M6,9 C3.790861,9 2,7.209139 2,5 C2,2.790861 3.790861,1 6,1 C8.209139,1 10,2.790861 10,5 C10,7.209139 8.209139,9 6,9 Z" fill="#000000" fill-rule="nonzero" />
+                                <path d="M7,11.4648712 L7,17 C7,18.1045695 7.8954305,19 9,19 L15,19 L15,21 L9,21 C6.790861,21 5,19.209139 5,17 L5,8 L5,7 L7,7 L7,8 C7,9.1045695 7.8954305,10 9,10 L15,10 L15,12 L9,12 C8.27142571,12 7.58834673,11.8052114 7,11.4648712 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" />
+                                <path d="M18,22 C19.1045695,22 20,21.1045695 20,20 C20,18.8954305 19.1045695,18 18,18 C16.8954305,18 16,18.8954305 16,20 C16,21.1045695 16.8954305,22 18,22 Z M18,24 C15.790861,24 14,22.209139 14,20 C14,17.790861 15.790861,16 18,16 C20.209139,16 22,17.790861 22,20 C22,22.209139 20.209139,24 18,24 Z" fill="#000000" fill-rule="nonzero" />
+                                <path d="M18,13 C19.1045695,13 20,12.1045695 20,11 C20,9.8954305 19.1045695,9 18,9 C16.8954305,9 16,9.8954305 16,11 C16,12.1045695 16.8954305,13 18,13 Z M18,15 C15.790861,15 14,13.209139 14,11 C14,8.790861 15.790861,7 18,7 C20.209139,7 22,8.790861 22,11 C22,13.209139 20.209139,15 18,15 Z" fill="#000000" fill-rule="nonzero" />
+                            </g>
+                        </svg><!--end::Svg Icon-->
+                    </span>
+                    <div class="alert-text">
+                        Information about editing a Category.
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.BudgetId, "Budget", htmlAttributes: new { @class = "control-label" })
+                        @Html.DropDownList("BudgetId", null, htmlAttributes: new { @class = "form-control form-control-solid" })
+                        @Html.ValidationMessageFor(model => model.BudgetId, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ItemName, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.ItemName, new { htmlAttributes = new { @class = "form-control form-control-solid" } })
+                        @Html.ValidationMessageFor(model => model.ItemName, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.TargetAmount, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.TargetAmount, new { htmlAttributes = new { @class = "form-control form-control-solid" } })
+                        @Html.ValidationMessageFor(model => model.TargetAmount, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CurrentAmount, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.CurrentAmount, new { htmlAttributes = new { @class = "form-control form-control-solid" } })
+                        @Html.ValidationMessageFor(model => model.CurrentAmount, "", new { @class = "text-danger" })
+                    </div>
+
+                    <input type="submit" class="btn btn-success mr-2 w-100" />
+                </div>
+                <div class="col">
+                    <div class="d-flex flex-column flex-center">
+                        <!--begin::Image-->
+                        <div class="bgi-no-repeat bgi-size-cover rounded min-h-180px w-100" style="background-image: url('../../assets/media/stock-600x400/img-70.jpg');"></div>
+                        <!--end::Image-->
+                    </div>
+                </div>
+            </div>
+    </form>
+        }
+    </div>
 </div>
 
 @section Scripts {
