@@ -29,7 +29,7 @@ namespace FinancialPortal.Utilities
         public int BudgetsCount()
         {
             var hhId = HttpContext.Current.User.Identity.GetHouseholdId();
-            var count = db.BankAccounts.Where(hh => hh.HouseholdId == hhId).ToList().Count;
+            var count = db.Budgets.Where(hh => hh.HouseholdId == hhId).ToList().Count;
             return count;
         }
 

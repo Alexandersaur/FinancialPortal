@@ -18,6 +18,20 @@ namespace FinancialPortal.Helpers
             return count;
         }
 
+        public int BudgetsCount()
+        {
+            var hhId = HttpContext.Current.User.Identity.GetHouseholdId();
+            var count = db.Budgets.Where(hh => hh.HouseholdId == hhId).ToList().Count;
+            return count;
+        }
+
+        public int CategoriesCount()
+        {
+            var hhId = HttpContext.Current.User.Identity.GetHouseholdId();
+            var count = db.BudgetItems.Where(hh => hh.BudgetId == hhId).ToList().Count;
+            return count;
+        }
+
         public List<BankAccount> ListBankAccounts()
         {
             List<BankAccount> accounts = new List<BankAccount>();
@@ -26,6 +40,16 @@ namespace FinancialPortal.Helpers
             accounts.AddRange(db.BankAccounts.Where(hh => hh.HouseholdId == hhId).ToList());
 
             return accounts;
+        }
+
+        public List<Budget> ListBudgets()
+        {
+            List<Budget> budgets = new List<Budget>();
+            var hhId = HttpContext.Current.User.Identity.GetHouseholdId();
+
+            budgets.AddRange(db.Budgets.Where(hh => hh.HouseholdId == hhId).ToList());
+
+            return budgets;
         }
 
 

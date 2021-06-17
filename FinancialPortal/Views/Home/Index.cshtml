@@ -25,7 +25,7 @@
     @if (User.Identity.GetHouseholdId() > 0)
     {
         <!--begin::Entry-->
-        <div class="d-flex flex-column-fluid" style="padding-top:75px">
+        <div class="d-flex flex-column-fluid" style="padding-top:0px">
             <!--begin::Container-->
             <div class="container">
                 <!--begin::Row-->
@@ -56,10 +56,10 @@
                                                 <span class="nav-text font-size-lg py-2 font-weight-bolder text-center">All Banks</span>
                                             </a>
                                         </li>
-                                        <li class="nav-item d-flex col-sm flex-grow-1 flex-shrink-0 mr-3 mb-3 mb-lg-0">
-                                            <a href="@Url.Action("Create", "BankAccounts")">
-                                                <button type="reset" class="btn btn-success mr-2" style="color:white;">
-                                                    Add New Bank
+                                        <li class="nav-item d-flex col-sm flex-grow-1 flex-shrink-0">
+                                            <a class="nav-link d-flex flex-grow-1 rounded flex-column align-items-center" href="@Url.Action("Create", "BankAccounts")">
+                                                <button type="reset" class="btn btn-success mr-2  w-100" style="color:white;">
+                                                    Add New
                                                 </button>
                                             </a>
                                         </li>
@@ -83,10 +83,10 @@
                                                 <span class="nav-text font-size-lg py-2 font-weight-bolder text-center">All Budgets</span>
                                             </a>
                                         </li>
-                                        <li class="nav-item d-flex col-sm flex-grow-1 flex-shrink-0 mr-3 mb-3 mb-lg-0">
-                                            <a href="@Url.Action("Create", "Budgets")">
-                                                <button type="reset" class="btn btn-success mr-2" style="color:white;">
-                                                    Add New Budget
+                                        <li class="nav-item d-flex col-sm flex-grow-1 flex-shrink-0">
+                                            <a class="nav-link d-flex flex-grow-1 rounded flex-column align-items-center" href="@Url.Action("Create", "Budgets")">
+                                                <button type="reset" class="btn btn-success mr-2  w-100" style="color:white;">
+                                                    Add New
                                                 </button>
                                             </a>
                                         </li>
@@ -112,10 +112,10 @@
                                                 <span class="nav-text font-size-lg py-2 font-weight-bolder text-center">All Categories</span>
                                             </a>
                                         </li>
-                                        <li class="nav-item d-flex col-sm flex-grow-1 flex-shrink-0 mr-3 mb-3 mb-lg-0">
-                                            <a href="@Url.Action("Create", "BudgetItems")">
-                                                <button type="reset" class="btn btn-success mr-2" style="color:white;">
-                                                    Add New Category
+                                        <li class="nav-item d-flex col-sm flex-grow-1 flex-shrink-0">
+                                            <a class="nav-link d-flex flex-grow-1 rounded flex-column align-items-center" href="@Url.Action("Create", "BudgetItems")">
+                                                <button type="reset" class="btn btn-success mr-2  w-100" style="color:white;">
+                                                    Add New
                                                 </button>
                                             </a>
                                         </li>
@@ -140,10 +140,10 @@
                                                 <span class="nav-text font-size-lg py-2 font-weight-bolder text-center">All Transactions</span>
                                             </a>
                                         </li>
-                                        <li class="nav-item d-flex col-sm flex-grow-1 flex-shrink-0 mr-3 mb-3 mb-lg-0">
-                                            <a href="@Url.Action("Create", "Transactions")">
-                                                <button type="reset" class="btn btn-success mr-2" style="color:white;">
-                                                    Add New Transaction
+                                        <li class="nav-item d-flex col-sm flex-grow-1 flex-shrink-0">
+                                            <a class="nav-link d-flex flex-grow-1 rounded flex-column align-items-center" href="@Url.Action("Create", "Transactions")">
+                                                <button type="reset" class="btn btn-success mr-2  w-100" style="color:white;">
+                                                    Add New
                                                 </button>
                                             </a>
                                         </li>
@@ -169,10 +169,10 @@
                                                 <span class="nav-text font-size-lg py-2 font-weight-bolder text-center">Member List</span>
                                             </a>
                                         </li>
-                                        <li class="nav-item d-flex col-sm flex-grow-1 flex-shrink-0 mr-3 mb-3 mb-lg-0">
-                                            <a href="#">
-                                                <button type="reset" class="btn btn-success mr-2" style="color:white;">
-                                                    Invite New Member
+                                        <li class="nav-item d-flex col-sm flex-grow-1 flex-shrink-0">
+                                            <a class="nav-link d-flex flex-grow-1 rounded flex-column align-items-center" href="#">
+                                                <button type="reset" class="btn btn-success mr-2  w-100" style="color:white;">
+                                                    Invite!
                                                 </button>
                                             </a>
                                         </li>
@@ -377,7 +377,7 @@
                 <div class="icon">
                     <i class="ion ion-pie-graph"></i>
                 </div>
-                <a href="@Url.Action("Create", "BankAccounts")" class="small-box-footer"><b><i style="letter-spacing:2.5px">ADD</i></b> <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="Url.Action("Create", "BankAccounts")" class="small-box-footer"><b><i style="letter-spacing:2.5px">ADD</i></b> <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 

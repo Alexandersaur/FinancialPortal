@@ -4,45 +4,12 @@
     ViewBag.Title = "Index";
 }
 
-<style>
-    body {
-        background-color: #FFC9B9
-    }
-
-    .container-fluid {
-        background-color: #FFC9B9
-    }
-
-    .small-box {
-        color: white;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        height: auto;
-        background-color: #52796f;
-        text-align: center;
-        margin-bottom: 7.5px;
-    }
-
-    .small-box-footer {
-        color: white;
-    }
-
-    #topbox {
-        background-color: #84a98c;
-        margin-top: 0px;
-        margin-left: 0px !important;
-        margin-right: 0px !important;
-        border-bottom: 5px double white;
-    }
-</style>
-
 <div class="container-fluid">
     <div class="row">
         <div class="col" id="topbox">
-            <div style="background-color: #84a98c">
-                <h1 style="font-size: 400%; text-align: center; color: #2f3e46">
-                    <b>Category Index</b>
+            <div>
+                <h1 style="font-size: 400%; text-align: center;">
+                    <b>All Categories</b>
                 </h1>
             </div>
         </div>
@@ -101,7 +68,7 @@
                 </td>*@
                     <td>
                         @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                        @*@Html.ActionLink("Details", "Details", new { id = item.Id }) |*@
                         @Html.ActionLink("Delete", "Delete", new { id = item.Id })
                     </td>
                 </tr>
