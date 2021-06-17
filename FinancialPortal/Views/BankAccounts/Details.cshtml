@@ -15,21 +15,21 @@
 
 <div class="container">
     <!--begin::Subheader-->
-    <div class="subheader py-2 py-lg-6 subheader-solid" id="kt_subheader">
-        <div class="container-fluid d-flex align-items-center justify-content-around flex-wrap flex-sm-nowrap">
+    <!--<div class="subheader py-2 py-lg-6 subheader-solid" id="kt_subheader">
+        <div class="container-fluid d-flex align-items-center justify-content-around flex-wrap flex-sm-nowrap">-->
             <!--begin::Info-->
-            <div class="d-flex align-items-center flex-wrap mr-1">
+            <!--<div class="d-flex align-items-center flex-wrap mr-1">-->
                 <!--begin::Page Heading-->
-                <div class="d-flex align-items-baseline flex-wrap mr-5">
+                <!--<div class="d-flex align-items-baseline flex-wrap mr-5">-->
                     <!--begin::Page Title-->
-                    <h5 class="text-dark font-weight-bold my-1 mr-5">Bank Account Details</h5>
+                    <!--<h5 class="text-dark font-weight-bold my-1 mr-5">Bank Account Details</h5>-->
                     <!--end::Page Title-->
-                </div>
+                <!--</div>-->
                 <!--end::Page Heading-->
-            </div>
+            <!--</div>-->
             <!--end::Info-->
-        </div>
-    </div>
+        <!--</div>
+    </div>-->
     <!--end::Subheader-->
 
     <div class="row">
@@ -122,7 +122,7 @@
                                     <!--end::Symbol-->
                                     <!--begin::Text-->
                                     <div class="d-flex flex-column flex-grow-1">
-                                        <a href="#" class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-normal">Monthly Spending</a>
+                                        <a href="#" class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-normal">This Month's Spending</a>
                                         @*<span class="text-muted font-weight-bold">Successful Fellas</span>*@
                                     </div>
                                     <!--end::Text-->
@@ -152,7 +152,7 @@
                                     <!--end::Symbol-->
                                     <!--begin::Text-->
                                     <div class="d-flex flex-column flex-grow-1">
-                                        <a href="#" class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-normal">Monthly Deposits</a>
+                                        <a href="#" class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-normal">This Month's Deposits</a>
                                         @*<span class="text-muted font-weight-bold">Successful Fellas</span>*@
                                     </div>
                                     <!--end::Text-->
@@ -182,7 +182,7 @@
                                     <!--end::Symbol-->
                                     <!--begin::Text-->
                                     <div class="d-flex flex-column flex-grow-1">
-                                        <a href="#" class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-normal">Monthly Transactions</a>
+                                        <a href="#" class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-normal">This Month's Transactions</a>
                                         @*<span class="text-muted font-weight-bold">Achievements</span>*@
                                     </div>
                                     <!--end::Text-->
@@ -222,7 +222,7 @@
                 <!--begin::Header-->
                 <div class="card-header border-0 pt-5">
                     <h3 class="card-title align-items-start flex-column">
-                        <span class="card-label fw-bolder fs-3 mb-1">Transaction History</span>
+                        <span class="card-label fw-bolder fs-3 mb-1">Overall Bank History</span>
                         <br />
                         <span class="text-muted fw-bold fs-7">Deposits and Withdrawals</span>
                     </h3>
@@ -244,6 +244,25 @@
                 <!--end::Body-->
             </div>
             <!--end::Charts Widget 2-->
+            <!--begin::Card-->
+            <div class="card card-custom gutter-b">
+                <div class="card-header">
+                    <div class="card-title">
+                        <h3 class="card-label">Spending by Category</h3>
+                    </div>
+                </div>
+                <div class="card-toolbar" data-kt-buttons="true">
+                    <a class="btn btn-sm btn-color-muted btn-active btn-active-primary active px-4 me-1" id="kt_charts_widget_2_year_btn">Year</a>
+                    <a class="btn btn-sm btn-color-muted btn-active btn-active-primary px-4 me-1" id="kt_charts_widget_2_month_btn">Month</a>
+                    <a class="btn btn-sm btn-color-muted btn-active btn-active-primary px-4" id="kt_charts_widget_2_week_btn">Week</a>
+                </div>
+                <div class="card-body">
+                    <!--begin::Chart-->
+                    <div id="chart_11" class="d-flex justify-content-center"></div>
+                    <!--end::Chart-->
+                </div>
+            </div>
+            <!--end::Card-->
         </div>
     </div>
 
