@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using FinancialPortal.Models;
 using FinancialPortal.ViewModels;
 using FinancialPortal.Helpers;
+using FinancialPortal.Extensions;
 
 namespace FinancialPortal.Controllers
 {
@@ -19,7 +20,8 @@ namespace FinancialPortal.Controllers
         // GET: BankAccounts
         public ActionResult Index()
         {
-            var bankAccounts = db.BankAccounts.Include(b => b.Household).Include(b => b.Owner);
+            int hhId = User.Identity.GetHouseholdId().Value;
+            var bankAccounts = db.BankAccounts.Include(b => b.Household).Include(b => b.Owner).Where(b => b.HouseholdId == hhId);
             return View(bankAccounts.ToList());
         }
 
