@@ -49,6 +49,7 @@ namespace FinancialPortal.Controllers
         }
 
         // GET: Households/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();

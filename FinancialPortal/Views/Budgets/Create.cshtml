@@ -76,7 +76,7 @@
                     <div class="form-group form-group-last">
 
                         <div class="alert alert-custom alert-default" role="alert">
-                            <span class="svg-icon svg-icon-success svg-icon-4x">
+                            <span class="svg-icon svg-icon-success svg-icon-4x" style="padding-right:20px">
                                 <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Shopping\Wallet3.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                         <rect x="0" y="0" width="24" height="24" />
@@ -87,19 +87,19 @@
                                 </svg><!--end::Svg Icon-->
                             </span>
                             <div class="alert-text">
-                                Information about adding a new budget.
+                                Here you can careate a new monthly Budget for your Household. Please note that this Budget will take into consideration spending across all of your Bank Accounts, so you can keep an accurate account of how well you are sticking to your goals! For example, you might wish to create a Budget for "food" and you will be able to use Categories to keep track of all the different types of food spending within your Budget.
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                @Html.LabelFor(model => model.BudgetName, htmlAttributes: new { @class = "control-label" })
+                                @Html.LabelFor(model => model.BudgetName, "Name your Budget", htmlAttributes: new { @class = "control-label" })
                                 @Html.EditorFor(model => model.BudgetName, new { htmlAttributes = new { @class = "form-control form-control-solid" } })
                                 @Html.ValidationMessageFor(model => model.BudgetName, "", new { @class = "text-danger" })
                             </div>
                             <div class="form-group">
-                                @Html.LabelFor(model => model.CurrentAmount, htmlAttributes: new { @class = "control-label" })
+                                @Html.LabelFor(model => model.CurrentAmount, "Set the amount of your Budget", htmlAttributes: new { @class = "control-label" })
                                 @Html.EditorFor(model => model.CurrentAmount, new { htmlAttributes = new { @class = "form-control form-control-solid" } })
                                 @Html.ValidationMessageFor(model => model.CurrentAmount, "", new { @class = "text-danger" })
                             </div>
@@ -109,7 +109,9 @@
                         <div class="col">
                             <div class="d-flex flex-column flex-center">
                                 <!--begin::Image-->
-                                <div class="bgi-no-repeat bgi-size-cover rounded min-h-180px w-100" style="background-image: url('../../assets/media/stock-600x400/img-70.jpg');"></div>
+                                <div class="bgi-no-repeat bgi-size-cover rounded h-250px w-100" style=" 
+        background-image: url('../../images/pexels-content-pixie-4103435.jpg'); min-height:100%; min-width:100%;
+"></div>
                                 <!--end::Image-->
                             </div>
                         </div>

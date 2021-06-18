@@ -6,14 +6,14 @@
 
 
 
-    <!--using (Html.BeginForm())
-    {
-        Html.AntiForgeryToken()
+<!--using (Html.BeginForm())
+{
+    Html.AntiForgeryToken()
 
-        <div class="form-horizontal">-->
-            @*<h4>BankAccount</h4>
-                <hr />*@
-            <!--Html.ValidationSummary(true, "", new { class = "text-danger" })
+    <div class="form-horizontal">-->
+@*<h4>BankAccount</h4>
+    <hr />*@
+<!--Html.ValidationSummary(true, "", new { class = "text-danger" })
             <div class="form-group">
                 Html.LabelFor(model => model.HouseholdId, "Select Household", htmlAttributes: new { class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -65,7 +65,7 @@
 
 <div class="container-fluid">
     <div class="card card-custom">
-        <div class="card-header">
+        <div class="card-header" style="justify-content:center; display:flex; align-items:center; vertical-align:middle">
             <h3 class="card-title">
                 Create New Bank Account
             </h3>
@@ -82,7 +82,7 @@
                     <div class="form-group form-group-last">
 
                         <div class="alert alert-custom alert-default" role="alert">
-                            <span class="svg-icon svg-icon-success svg-icon-4x">
+                            <span class="svg-icon svg-icon-success svg-icon-4x style="padding-right:20px">
                                 <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Home\Building.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                         <rect x="0" y="0" width="24" height="24" />
@@ -93,7 +93,7 @@
                                 </svg><!--end::Svg Icon-->
                             </span>
                             <div class="alert-text">
-                                Information about adding a new bank account.
+                                Here you can add your Bank Account Information.
                             </div>
                         </div>
                     </div>
@@ -114,19 +114,26 @@
                                 @Html.EditorFor(model => model.WarningBalance, new { htmlAttributes = new { @class = "form-control form-control-solid" } })
                                 @Html.ValidationMessageFor(model => model.WarningBalance, "", new { @class = "text-danger" })
                             </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.HouseholdId, "Confirm Household", htmlAttributes: new { @class = "control-label" })
-                                @Html.DropDownList("HouseholdId", null, htmlAttributes: new { @class = "form-control form-control-solid" })
-                                @Html.ValidationMessageFor(model => model.HouseholdId, "", new { @class = "text-danger" })
-                            </div>
+                            @*<div class="form-group">
+                                    @Html.LabelFor(model => model.HouseholdId, "Confirm Household", htmlAttributes: new { @class = "control-label" })
+                                    @Html.DropDownList("HouseholdId", null, htmlAttributes: new { @class = "form-control form-control-solid" })
+                                    @Html.ValidationMessageFor(model => model.HouseholdId, "", new { @class = "text-danger" })
+                                </div>*@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.AccountType, "Account Type", htmlAttributes: new { @class = "control-label" })
                                 @Html.EnumDropDownListFor(model => model.AccountType, htmlAttributes: new { @class = "form-control form-control-solid" })
                                 @Html.ValidationMessageFor(model => model.AccountType, "", new { @class = "text-danger" })
                             </div>
-                            <input type="submit" class="btn btn-success mr-2 w-100" />
+                        </div>
+                        <input type="submit" class="btn btn-success mr-2 w-100" />
+                        <div class="col">
+                            <div class="d-flex flex-column flex-center">
+                                <!--begin::Image-->
+                                <div class="bgi-no-repeat bgi-size-cover rounded h-250px w-100" style="
+        background-image: url('../../images/pexels-scott-webb-323391.jpg'); min-height:100%; min-width:100%;
+"></div>
+                                <!--end::Image-->
+                            </div>
                         </div>
                     </div>
                     @*<div class="form-group">
