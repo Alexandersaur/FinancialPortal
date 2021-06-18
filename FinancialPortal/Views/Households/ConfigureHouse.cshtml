@@ -81,7 +81,7 @@
     <div class="card card-custom">
         <div class="card-header" style="justify-content:center; display:flex; align-items:center; vertical-align:middle">
             <h3 class="card-title">
-                Create New Budget
+                Configure your new Household
             </h3>
         </div>
         <!--begin::Form-->
@@ -108,48 +108,53 @@
                                 </svg><!--end::Svg Icon-->
                             </span>
                             <div class="alert-text">
-                                Now you can begin by setting up your first Household! 
+                                Now you can begin by setting up your Household! Here you will begin by creating your first Bank Account, Budget, and Category. In this app, a Budget can be thought of as a collection of Categories. By default, your Budgets and Categories will track in monthly increments. You will be able to create, edit, and delete your Budgets and Categories at your leisure. 
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                @Html.LabelFor(model => model.BankAccount.AccountName, htmlAttributes: new { @class = "control-label" })
+                                @Html.LabelFor(model => model.BankAccount.AccountName, "First Bank Account", htmlAttributes: new { @class = "control-label" })
                                 @Html.EditorFor(model => model.BankAccount.AccountName, new { htmlAttributes = new { @class = "form-control form-control-solid" } })
                                 @Html.ValidationMessageFor(model => model.BankAccount.AccountName, "", new { @class = "text-danger" })
                             </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.StartingBalance, htmlAttributes: new { @class = "control-label" })
+                                @Html.LabelFor(model => model.StartingBalance, "Starting Amount", htmlAttributes: new { @class = "control-label" })
                                 @Html.EditorFor(model => model.StartingBalance, new { htmlAttributes = new { @class = "form-control form-control-solid" } })
                                 @Html.ValidationMessageFor(model => model.StartingBalance, "", new { @class = "text-danger" })
                             </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.BankAccount.WarningBalance, htmlAttributes: new { @class = "control-label" })
+                                @Html.LabelFor(model => model.BankAccount.WarningBalance, "Warning Balance", htmlAttributes: new { @class = "control-label" })
                                 @Html.EditorFor(model => model.BankAccount.WarningBalance, new { htmlAttributes = new { @class = "form-control form-control-solid" } })
                                 @Html.ValidationMessageFor(model => model.BankAccount.WarningBalance, "", new { @class = "text-danger" })
                             </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.BankAccount.AccountType, htmlAttributes: new { @class = "control-label" })
+                                @Html.LabelFor(model => model.BankAccount.AccountType, "Bank Account Type", htmlAttributes: new { @class = "control-label" })
                                 @Html.EnumDropDownListFor(model => model.BankAccount.AccountType, htmlAttributes: new { @class = "form-control form-control-solid" })
                                 @Html.ValidationMessageFor(model => model.BankAccount.AccountType, "", new { @class = "text-danger" })
                             </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.Budget.BudgetName, htmlAttributes: new { @class = "control-label" })
+                                @Html.LabelFor(model => model.Budget.BudgetName, "First Budget Name", htmlAttributes: new { @class = "control-label" })
                                 @Html.EditorFor(model => model.Budget.BudgetName, new { htmlAttributes = new { @class = "form-control form-control-solid" } })
                                 @Html.ValidationMessageFor(model => model.Budget.BudgetName, "", new { @class = "text-danger" })
+                            </div>                            
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Budget.TargetAmount, "Target Spending Amount for First Budget", htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.Budget.TargetAmount, new { htmlAttributes = new { @class = "form-control form-control-solid" } })
+                                @Html.ValidationMessageFor(model => model.Budget.TargetAmount, "", new { @class = "text-danger" })
                             </div>
                             <div class="form-group">
-                                @Html.LabelFor(model => model.BudgetItem.ItemName, htmlAttributes: new { @class = "control-label" })
+                                @Html.LabelFor(model => model.BudgetItem.ItemName, "First Category Name", htmlAttributes: new { @class = "control-label" })
                                 @Html.EditorFor(model => model.BudgetItem.ItemName, new { htmlAttributes = new { @class = "form-control form-control-solid" } })
                                 @Html.ValidationMessageFor(model => model.BudgetItem.ItemName, "", new { @class = "text-danger" })
                             </div>
                             <div class="form-group">
-                                @Html.LabelFor(model => model.BudgetItem.TargetAmount, htmlAttributes: new { @class = "control-label" })
+                                @Html.LabelFor(model => model.BudgetItem.TargetAmount, "Target Spending Amount for First Category", htmlAttributes: new { @class = "control-label" })
                                 @Html.EditorFor(model => model.BudgetItem.TargetAmount, new { htmlAttributes = new { @class = "form-control form-control-solid" } })
                                 @Html.ValidationMessageFor(model => model.BudgetItem.TargetAmount, "", new { @class = "text-danger" })
                             </div>
@@ -159,7 +164,7 @@
                         <div class="col">
                             <div class="d-flex flex-column flex-center">
                                 <!--begin::Image-->
-                                <div class="bgi-no-repeat bgi-size-cover rounded h-250px w-100" style="background-image: url('../../images/pexels-content-pixie-4103435.jpg'); min-height:100%; min-width:100%;"></div>
+                                <div class="bgi-no-repeat bgi-size-cover rounded h-650px w-100" style="background-image: url('../../images/pexels-dominika-roseclay-912413.jpg'); min-height: 100%; min-width: 100%;"></div>
                                 <!--end::Image-->
                             </div>
                         </div>

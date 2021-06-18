@@ -18,6 +18,7 @@ namespace FinancialPortal.Controllers
         // GET: BudgetItems
         public ActionResult Index()
         {
+            int hhId = User.Identity.GetHouseholdId().Value;
             var budgetItems = db.BudgetItems.Include(b => b.Budget);
             return View(budgetItems.ToList());
         }

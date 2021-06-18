@@ -17,18 +17,18 @@
     <!--begin::Subheader-->
     <!--<div class="subheader py-2 py-lg-6 subheader-solid" id="kt_subheader">
         <div class="container-fluid d-flex align-items-center justify-content-around flex-wrap flex-sm-nowrap">-->
-            <!--begin::Info-->
-            <!--<div class="d-flex align-items-center flex-wrap mr-1">-->
-                <!--begin::Page Heading-->
-                <!--<div class="d-flex align-items-baseline flex-wrap mr-5">-->
-                    <!--begin::Page Title-->
-                    <!--<h5 class="text-dark font-weight-bold my-1 mr-5">Bank Account Details</h5>-->
-                    <!--end::Page Title-->
-                <!--</div>-->
-                <!--end::Page Heading-->
-            <!--</div>-->
-            <!--end::Info-->
-        <!--</div>
+    <!--begin::Info-->
+    <!--<div class="d-flex align-items-center flex-wrap mr-1">-->
+    <!--begin::Page Heading-->
+    <!--<div class="d-flex align-items-baseline flex-wrap mr-5">-->
+    <!--begin::Page Title-->
+    <!--<h5 class="text-dark font-weight-bold my-1 mr-5">Bank Account Details</h5>-->
+    <!--end::Page Title-->
+    <!--</div>-->
+    <!--end::Page Heading-->
+    <!--</div>-->
+    <!--end::Info-->
+    <!--</div>
     </div>-->
     <!--end::Subheader-->
 
@@ -193,22 +193,75 @@
                                 <!--end::Item-->
                             </div>
                             <!--end::Body-->
+                            <div class="row">
+                                <div class="col">
+                                    <div class="d-flex flex-center" id="kt_sticky_toolbar_chat_toggler_2" data-toggle="tooltip" title="" data-placement="right" data-original-title="Create a new budget to allocate money within">
+                                        @Html.ActionLink("Add Budget", "Create", "Budgets", null, new { @id = "button2", @class = "btn btn-success font-weight-bolder font-size-sm py-3 px-14" })
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="d-flex flex-center" id="kt_sticky_toolbar_chat_toggler_2" data-toggle="tooltip" title="" data-placement="right" data-original-title="Create a new category of savings targets within a budget">
+                                        @Html.ActionLink("Add Category", "Create", "BudgetItems", null, new { @id = "buttn2", @class = "btn btn-success font-weight-bolder font-size-sm py-3 px-14" })
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                                <hr />
+                                <div class="d-flex flex-column flex-center justify-content-around d-flex align-items-center">
+                                    <!--begin::Title-->
+                                    <a class="card-title font-weight-bolder  justify-content-around d-flex align-items-center text-dark-75 text-hover-primary font-size-h2 m-0 pt-7 pb-1">Instant-Add Transaction</a>
+                                    <!--end::Title-->
+                                    <!--begin::Text-->
+                                    <div class="font-weight-bold text-dark-50  justify-content-around d-flex align-items-center font-size-sm pb-7">Quickly add transactions to see results immediately</div>
+                                    <!--end::Text-->
+                                </div>
+                            @using (Html.BeginForm("Create", "Transactions", FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.Hidden("Transaction.AccountId", Model.BankAccount.Id)
+                                <div class="row">
+                                    <div class="col" style="text-align:center">
+                                        <div class="form-horizontal">
+                                            <div class="form-group">
+                                                <b>Amount</b>
+                                                @Html.Label("", htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.Transaction.Amount, new { htmlAttributes = new { @class = "form-control form-control-solid" } })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col" style="text-align:center">
+                                        <div class="form-group">
+                                            <b>Type</b>
+                                            @Html.Label("", htmlAttributes: new { @class = "control-label" })
+                                                @Html.EnumDropDownListFor(model => model.Transaction.TransactionType, htmlAttributes: new { @class = "form-control form-control-solid" })
+                                        </div>
+                                    </div>
+                                    <div class="col" style="text-align:center">
+                                        <div class="form-group">
+                                            <b>Category</b>
+                                                @Html.DropDownListFor(model => model.Transaction.BudgetItemId, Model.BudgetItemId, new { @class = "form-control form-control-solid" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col" style="text-align:center">
+                                        <div class="form-group">
+                                            <b>Memo</b>
+                                            @Html.Label("", htmlAttributes: new { @class = "control-label" })
+                                                @Html.EditorFor(model => model.Transaction.Memo, new { htmlAttributes = new { @class = "form-control form-control-solid" } })
+                                        </div>
+                                    </div>
+                                    <div class="col" style="text-align:center">
+                                        <div class="form-group">
+                                            <b>Submit</b>
+                                            @Html.Label("", htmlAttributes: new { @class = "control-label" })
+                                                <input id="button1" type="submit" class="btn btn-success font-weight-bolder font-size-sm py-3 px-14" value="Instant-Add!" />
+                                        </div>
+                                    </div>
+                                </div>
+                            }
                         </div>
                         <!--eng::Container-->
-                        <!--begin::Footer-->
-                        <div class="row">
-                            <div class="col">
-                                <div class="d-flex flex-center" id="kt_sticky_toolbar_chat_toggler_2" data-toggle="tooltip" title="" data-placement="right" data-original-title="Create a new budget to allocate money within">
-                                    @Html.ActionLink("Create New Budget", "Create", "Budgets", null, new { @id = "buttn2", @class = "btn btn-primary font-weight-bolder font-size-sm py-3 px-14" })
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="d-flex flex-center" id="kt_sticky_toolbar_chat_toggler_2" data-toggle="tooltip" title="" data-placement="right" data-original-title="Create a new category of savings targets within a budget">
-                                    @Html.ActionLink("Create New Category", "Create", "BudgetItems", null, new { @id = "buttn2", @class = "btn btn-primary font-weight-bolder font-size-sm py-3 px-14" })
-                                </div>
-                            </div>
-                        </div>
-                        <!--end::Footer-->
                     </div>
                     <!--end::Wrapper-->
                 </div>
@@ -220,20 +273,19 @@
             <!--begin::Charts Widget 2-->
             <div class="card card-xl-stretch mb-5 mb-xl-8">
                 <!--begin::Header-->
-                <div class="card-header border-0 pt-5">
-                    <h3 class="card-title align-items-start flex-column">
-                        <span class="card-label fw-bolder fs-3 mb-1">Overall Bank History</span>
-                        <br />
-                        <span class="text-muted fw-bold fs-7">Deposits and Withdrawals</span>
-                    </h3>
-                    <!--begin::Toolbar-->
-                    <div class="card-toolbar" data-kt-buttons="true">
-                        <a class="btn btn-sm btn-color-muted btn-active btn-active-primary active px-4 me-1" id="kt_charts_widget_2_year_btn">Year</a>
-                        <a class="btn btn-sm btn-color-muted btn-active btn-active-primary px-4 me-1" id="kt_charts_widget_2_month_btn">Month</a>
-                        <a class="btn btn-sm btn-color-muted btn-active btn-active-primary px-4" id="kt_charts_widget_2_week_btn">Week</a>
+                <div class="card-header justify-content-around d-flex align-items-center">
+                    <div class="card-title font-weight-bolder text-dark-75 align-items-center text-hover-primary font-size-h2 m-0 pt-7 pb-1">
+                        <h3 class="card-label card-title font-weight-bolder  justify-content-around d-flex align-items-center text-dark-75 text-hover-primary font-size-h2 m-0 pt-7 pb-1">Transaction History</h3>
                     </div>
-                    <!--end::Toolbar-->
                 </div>
+
+                <!--begin::Toolbar-->
+                @*<div class="card-toolbar" data-kt-buttons="true">
+            <a class="btn btn-sm btn-color-muted btn-active btn-active-primary active px-4 me-1" id="kt_charts_widget_2_year_btn">Year</a>
+            <a class="btn btn-sm btn-color-muted btn-active btn-active-primary px-4 me-1" id="kt_charts_widget_2_month_btn">Month</a>
+            <a class="btn btn-sm btn-color-muted btn-active btn-active-primary px-4" id="kt_charts_widget_2_week_btn">Week</a>
+        </div>*@
+                <!--end::Toolbar-->
                 <!--end::Header-->
                 <!--begin::Body-->
                 <div class="card-body">
@@ -245,17 +297,17 @@
             </div>
             <!--end::Charts Widget 2-->
             <!--begin::Card-->
-            <div class="card card-custom gutter-b">
+            <div class="card card-title gutter-b justify-content-around d-flex align-items-center">
                 <div class="card-header">
-                    <div class="card-title">
-                        <h3 class="card-label">Spending by Category</h3>
+                    <div class="card-title font-weight-bolder text-dark-75 text-hover-primary font-size-h2 m-0 pt-7 pb-1">
+                        <h3 class="card-label card-title font-weight-bolder  justify-content-around d-flex align-items-center text-dark-75 text-hover-primary font-size-h2 m-0 pt-7 pb-1">Spending by Category</h3>
                     </div>
                 </div>
-                <div class="card-toolbar" data-kt-buttons="true">
+                @*<div class="card-toolbar" data-kt-buttons="true">
                     <a class="btn btn-sm btn-color-muted btn-active btn-active-primary active px-4 me-1" id="kt_charts_widget_2_year_btn">Year</a>
                     <a class="btn btn-sm btn-color-muted btn-active btn-active-primary px-4 me-1" id="kt_charts_widget_2_month_btn">Month</a>
                     <a class="btn btn-sm btn-color-muted btn-active btn-active-primary px-4" id="kt_charts_widget_2_week_btn">Week</a>
-                </div>
+                </div>*@
                 <div class="card-body">
                     <!--begin::Chart-->
                     <div id="chart_11" class="d-flex justify-content-center"></div>
@@ -265,68 +317,6 @@
             <!--end::Card-->
         </div>
     </div>
-
-    <div class="row">
-        <div class="col-12">
-            <div class="small-box elevation-2">
-
-                @using (Html.BeginForm("Create", "Transactions", FormMethod.Post))
-                {
-                    @Html.AntiForgeryToken()
-                    @Html.Hidden("Transaction.AccountId", Model.BankAccount.Id)
-                    <br />
-                    <div class="row">
-                        <div class="col" style="text-align:center">
-                            <div class="form-horizontal">
-                                <div class="form-group">
-                                    <b>Amount</b>
-                                    @Html.Label("", htmlAttributes: new { @class = "control-label col-md-2" })
-                                    <div class="col">
-                                        @Html.EditorFor(model => model.Transaction.Amount, new { htmlAttributes = new { @class = "form-control" } })
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col" style="text-align:center">
-                            <div class="form-group">
-                                <b>Transaction Type</b>
-                                @Html.Label("", htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col">
-                                    @Html.EnumDropDownListFor(model => model.Transaction.TransactionType, htmlAttributes: new { @class = "form-control" })
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col" style="text-align:center">
-                            <div class="form-group">
-                                <b>Memo</b>
-                                @Html.Label("", htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col">
-                                    @Html.EditorFor(model => model.Transaction.Memo, new { htmlAttributes = new { @class = "form-control" } })
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col" style="text-align:center">
-                            <div class="form-group">
-                                <b>Category</b>
-                                <div class="col">
-                                    @Html.DropDownListFor(model => model.Transaction.BudgetItemId, Model.BudgetItemId, new { @class = "form-control" })
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col" style="text-align:center">
-                            <div class="form-group">
-                                <div class="col">
-                                    <input id="button1" type="submit" class="btn" value="ADD TRANSACTION" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                }
-            </div>
-        </div>
-    </div>
-
-
 
     <div class="row">
         <div class="col">
@@ -380,7 +370,7 @@
                         <div class="col">
 
                             <span style="text-align:center">
-                                <h3><b>Transactions</b></h3>
+                                <h3><b> All Transactions</b></h3>
                             </span>
                             <table class="table">
                                 <thead>
