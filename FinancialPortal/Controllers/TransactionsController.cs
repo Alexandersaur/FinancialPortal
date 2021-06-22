@@ -20,7 +20,7 @@ namespace FinancialPortal.Controllers
         public ActionResult Index()
         {
             int hhId = User.Identity.GetHouseholdId().Value;
-            var transactions = db.Transactions.Include(t => t.Account).Include(t => t.BudgetItem).Include(t => t.Owner).Where(t => t.AccountId == hhId && t.IsDeleted == false);
+            var transactions = db.Transactions.Include(t => t.Account).Include(t => t.BudgetItem).Include(t => t.Owner).Where(t => t.BudgetItem.Budget.HouseholdId == hhId && t.IsDeleted == false);
             return View(transactions.ToList());
         }
 
