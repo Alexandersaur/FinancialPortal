@@ -5,82 +5,7 @@
 }
 
 
-@*@using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-horizontal">
-            <h4>Transaction</h4>
-            <hr />*@
-@*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
-@*<div class="form-group">
-        @Html.LabelFor(model => model.AccountId, "AccountId", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("AccountId", null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.AccountId, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.BudgetItemId, "BudgetItemId", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("BudgetItemId", null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.BudgetItemId, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.OwnerId, "OwnerId", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("OwnerId", null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.OwnerId, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.TransactionType, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EnumDropDownListFor(model => model.TransactionType, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.TransactionType, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Created, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Created, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Created, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Memo, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Memo, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Memo, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.IsDeleted, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            <div class="checkbox">
-                @Html.EditorFor(model => model.IsDeleted)
-                @Html.ValidationMessageFor(model => model.IsDeleted, "", new { @class = "text-danger" })
-            </div>
-        </div>
-    </div>*@
-
 <div class="container-fluid">
-
     <div class="card card-custom">
         <div class="card-header" style="justify-content:center; display:flex; align-items:center; vertical-align:middle">
             <h3 class="card-title">
@@ -99,7 +24,7 @@
                     <div class="form-group form-group-last">
 
                         <div class="alert alert-custom alert-default" role="alert">
-                            <span class="svg-icon svg-icon-success svg-icon-4x">
+                            <span class="svg-icon svg-icon-success svg-icon-4x" style="padding-right:20px">
                                 <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Shopping\Dollar.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                         <rect x="0" y="0" width="24" height="24" />
@@ -110,17 +35,17 @@
                                 </svg><!--end::Svg Icon-->
                             </span>
                             <div class="alert-text">
-                                Information about adding a new transaction.
+                                Here you can add a new Transaction. Note that you can also use the quick-add button within the details page of your Bank Account. Make sure when creating a new Transaction to specify the Bank Account and Budget it is associated with, as well as indicating whether it was a withdrawal or a deposit. You can also include a memo!
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            @*<div class="form-group">
-            @Html.LabelFor(model => model.AccountId, "AccountId", htmlAttributes: new { @class = "control-label" })
-                @Html.DropDownList("AccountId", null, htmlAttributes: new { @class = "form-control form-control-solid" })
-                @Html.ValidationMessageFor(model => model.AccountId, "", new { @class = "text-danger" })
-        </div>*@
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.AccountId, "Select Bank Account", htmlAttributes: new { @class = "control-label" })
+                                @Html.DropDownList("AccountId", null, htmlAttributes: new { @class = "form-control form-control-solid" })
+                                @Html.ValidationMessageFor(model => model.AccountId, "", new { @class = "text-danger" })
+                            </div>
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.BudgetItemId, "Select Budget", htmlAttributes: new { @class = "control-label" })
@@ -129,10 +54,10 @@
                             </div>
 
                             @*<div class="form-group">
-            @Html.LabelFor(model => model.OwnerId, "OwnerId", htmlAttributes: new { @class = "control-label" })
-                @Html.DropDownList("OwnerId", null, htmlAttributes: new { @class = "form-control form-control-solid" })
-                @Html.ValidationMessageFor(model => model.OwnerId, "", new { @class = "text-danger" })
-        </div>*@
+                                    @Html.LabelFor(model => model.OwnerId, "OwnerId", htmlAttributes: new { @class = "control-label" })
+                                        @Html.DropDownList("OwnerId", null, htmlAttributes: new { @class = "form-control form-control-solid" })
+                                        @Html.ValidationMessageFor(model => model.OwnerId, "", new { @class = "text-danger" })
+                                </div>*@
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.TransactionType, "Transaction Type", htmlAttributes: new { @class = "control-label" })
@@ -141,10 +66,10 @@
                             </div>
 
                             @*<div class="form-group">
-            @Html.LabelFor(model => model.Created, htmlAttributes: new { @class = "control-label" })
-                @Html.EditorFor(model => model.Created, new { htmlAttributes = new { @class = "form-control form-control-solid" } })
-                @Html.ValidationMessageFor(model => model.Created, "", new { @class = "text-danger" })
-        </div>*@
+                                    @Html.LabelFor(model => model.Created, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.Created, new { htmlAttributes = new { @class = "form-control form-control-solid" } })
+                                        @Html.ValidationMessageFor(model => model.Created, "", new { @class = "text-danger" })
+                                </div>*@
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "control-label" })
@@ -163,7 +88,7 @@
                         <div class="col">
                             <div class="d-flex flex-column flex-center">
                                 <!--begin::Image-->
-                                <div class="bgi-no-repeat bgi-size-cover rounded min-h-180px w-100" style="background-image: url('../../assets/media/stock-600x400/img-70.jpg');"></div>
+                                <div class="bgi-no-repeat bgi-size-cover rounded min-h-500px w-100" style="background-image: url('../../images/pexels-vie-studio-4856564.jpg');"></div>
                                 <!--end::Image-->
                             </div>
                         </div>

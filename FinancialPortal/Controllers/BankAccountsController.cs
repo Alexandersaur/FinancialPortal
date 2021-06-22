@@ -21,7 +21,7 @@ namespace FinancialPortal.Controllers
         public ActionResult Index()
         {
             int hhId = User.Identity.GetHouseholdId().Value;
-            var bankAccounts = db.BankAccounts.Include(b => b.Household).Include(b => b.Owner).Where(b => b.HouseholdId == hhId);
+            var bankAccounts = db.BankAccounts.Include(b => b.Household).Include(b => b.Owner).Where(b => b.HouseholdId == hhId && b.IsDeleted == false);
             return View(bankAccounts.ToList());
         }
 
@@ -155,7 +155,7 @@ namespace FinancialPortal.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             BankAccount bankAccount = db.BankAccounts.Find(id);
-            db.BankAccounts.Remove(bankAccount);
+            bankAccount.IsDeleted = true;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

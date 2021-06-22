@@ -16,6 +16,8 @@ namespace FinancialPortal.Models
         public virtual Household Household { get; set; }
         public string OwnerId { get; set; }
         public virtual ApplicationUser Owner { get; set; }
+        public bool IsDeleted { get; set; }
+
         public DateTime Created { get; set; }
         [Display(Name = "Name")]
         public string BudgetName { get; set; }
@@ -39,7 +41,7 @@ namespace FinancialPortal.Models
         {
             Items = new HashSet<BudgetItem>();
             Created = DateTime.Now;
-            OwnerId = HttpContext.Current.User.Identity.GetUserId();
+            //OwnerId = HttpContext.Current.User.Identity.GetUserId();
             CurrentAmount = 0;
         }
     }

@@ -20,7 +20,7 @@ namespace FinancialPortal.Controllers
         public ActionResult Index()
         {
             int hhId = User.Identity.GetHouseholdId().Value;
-            var budgets = db.Budgets.Include(b => b.Household).Include(b => b.Owner).Where(b => b.HouseholdId == hhId);
+            var budgets = db.Budgets.Include(b => b.Household).Include(b => b.Owner).Where(b => b.HouseholdId == hhId && b.IsDeleted == false);
             return View(budgets.ToList());
         }
 
@@ -125,7 +125,7 @@ namespace FinancialPortal.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Budget budget = db.Budgets.Find(id);
-            db.Budgets.Remove(budget);
+            budget.IsDeleted = true;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

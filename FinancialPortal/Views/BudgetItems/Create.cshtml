@@ -4,76 +4,7 @@
     ViewBag.Title = "Create";
 }
 
-@*<h2>Create</h2>
-
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-horizontal">
-            <h4>BudgetItem</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
-@*<div class="form-group">
-        @Html.LabelFor(model => model.BudgetId, "BudgetId", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("BudgetId", null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.BudgetId, "", new { @class = "text-danger" })
-        </div>
-    </div>*@
-
-@*<div class="form-group">
-        @Html.LabelFor(model => model.Created, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Created, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Created, "", new { @class = "text-danger" })
-        </div>
-    </div>*@
-
-@*<div class="form-group">
-        @Html.LabelFor(model => model.ItemName, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.ItemName, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.ItemName, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.TargetAmount, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.TargetAmount, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.TargetAmount, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.CurrentAmount, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.CurrentAmount, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.CurrentAmount, "", new { @class = "text-danger" })
-        </div>
-    </div>*@
-
-@*<div class="form-group">
-        @Html.LabelFor(model => model.IsDeleted, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            <div class="checkbox">
-                @Html.EditorFor(model => model.IsDeleted)
-                @Html.ValidationMessageFor(model => model.IsDeleted, "", new { @class = "text-danger" })
-            </div>
-        </div>
-    </div>*@
-
-@*<div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
-                </div>
-            </div>
-        </div>
-    }*@
-
 <div class="container-fluid">
-
     <div class="card card-custom">
         <div class="card-header" style="justify-content:center; display:flex; align-items:center; vertical-align:middle">
             <h3 class="card-title">
@@ -84,15 +15,12 @@
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
-
             <form class="form">
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
                 <div class="card-body">
                     <div class="form-group form-group-last">
-
                         <div class="alert alert-custom alert-default" role="alert">
-                            <span class="svg-icon svg-icon-success svg-icon-4x">
+                            <span class="svg-icon svg-icon-success svg-icon-4x" style="padding-right:20px">
                                 <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Code\Git4.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                         <rect x="0" y="0" width="24" height="24" />
@@ -104,7 +32,7 @@
                                 </svg><!--end::Svg Icon-->
                             </span>
                             <div class="alert-text">
-                                Information about adding a new category.
+                                Here you can create a new Category within your existing Budgets. This allows you to track your spending in a more granular way within a Budget, but still being able to group Categories of Transactions together. For example, within a "Food" Budget, you may want to track Categories such as groceries, eating out, and ordering delivery.
                             </div>
                         </div>
                     </div>
@@ -126,22 +54,23 @@
                                 @Html.ValidationMessageFor(model => model.TargetAmount, "", new { @class = "text-danger" })
                             </div>
 
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.CurrentAmount, htmlAttributes: new { @class = "control-label" })
-                                @Html.EditorFor(model => model.CurrentAmount, new { htmlAttributes = new { @class = "form-control form-control-solid" } })
-                                @Html.ValidationMessageFor(model => model.CurrentAmount, "", new { @class = "text-danger" })
-                            </div>
+                            @*<div class="form-group">
+                                    @Html.LabelFor(model => model.CurrentAmount, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.CurrentAmount, new { htmlAttributes = new { @class = "form-control form-control-solid" } })
+                                    @Html.ValidationMessageFor(model => model.CurrentAmount, "", new { @class = "text-danger" })
+                                </div>*@
 
                             <input type="submit" class="btn btn-success mr-2 w-100" />
                         </div>
                         <div class="col">
                             <div class="d-flex flex-column flex-center">
                                 <!--begin::Image-->
-                                <div class="bgi-no-repeat bgi-size-cover rounded min-h-180px w-100" style="background-image: url('../../assets/media/stock-600x400/img-70.jpg');"></div>
+                                <div class="bgi-no-repeat bgi-size-cover rounded min-h-275px w-100" style="background-image: url('../../images/pexels-scott-webb-323391.jpg');"></div>
                                 <!--end::Image-->
                             </div>
                         </div>
                     </div>
+                </div>
             </form>
         }
     </div>

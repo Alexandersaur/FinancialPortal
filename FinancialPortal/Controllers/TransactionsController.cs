@@ -19,7 +19,8 @@ namespace FinancialPortal.Controllers
         // GET: Transactions
         public ActionResult Index()
         {
-            var transactions = db.Transactions.Include(t => t.Account).Include(t => t.BudgetItem).Include(t => t.Owner);
+            int hhId = User.Identity.GetHouseholdId().Value;
+            var transactions = db.Transactions.Include(t => t.Account).Include(t => t.BudgetItem).Include(t => t.Owner).Where(t => t.AccountId == hhId && t.IsDeleted == false);
             return View(transactions.ToList());
         }
 
@@ -133,7 +134,7 @@ namespace FinancialPortal.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Transaction transaction = db.Transactions.Find(id);
-            db.Transactions.Remove(transaction);
+            transaction.IsDeleted = true;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -28,7 +28,7 @@ namespace FinancialPortal.Models
         public Transaction()
         {
             Created = DateTime.Now;
-            OwnerId = HttpContext.Current.User.Identity.GetUserId();
+            //OwnerId = HttpContext.Current.User.Identity.GetUserId();
         }
     }
 }
