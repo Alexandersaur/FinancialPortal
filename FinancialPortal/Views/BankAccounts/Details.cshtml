@@ -308,9 +308,9 @@
                     <a class="btn btn-sm btn-color-muted btn-active btn-active-primary px-4 me-1" id="kt_charts_widget_2_month_btn">Month</a>
                     <a class="btn btn-sm btn-color-muted btn-active btn-active-primary px-4" id="kt_charts_widget_2_week_btn">Week</a>
                 </div>*@
-                <div class="card-body">
+                <div class="card-body" >
                     <!--begin::Chart-->
-                    <div id="chart_11" class="d-flex justify-content-center"></div>
+                    <div id="chartBudgetItem" class="d-flex justify-content-center"></div>
                     <!--end::Chart-->
                 </div>
             </div>
@@ -510,3 +510,47 @@
         @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
         @Html.ActionLink("Back to List", "Index")
     </p>*@
+
+<script type="text/javascript">
+        $(function () {
+            $.ajax({
+                type: 'GET',
+                /*url: '/BankAccounts/DonutMethod',*/
+                url: '@Url.Action("DonutMethod", "BankAccounts")',
+                data: { accountId: @Model.BankAccount.Id  },
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: function (result) {
+                    const apexChart = '#chartBudgetItem';
+                    var options = {
+                        labels: result.labels,
+                        series: result.series,
+                        chart: {
+                            width: 380,
+                            type: 'donut',
+                        },
+                        responsive: [{
+                            breakpoint: 480,
+                            options: {
+                                chart: {
+                                    width: 200
+                                },
+                                legend: {
+                                    position: 'bottom'
+                                }
+                            }
+                        }],
+                        colors: result.colors
+                    };
+                    var chart = new ApexCharts(document.querySelector(apexChart), options);
+                    chart.render();
+                },
+                failure: function (result) {
+                    alert(result.responseText);
+                },
+                error: function (result) {
+                    alert(result.responseText);
+                }
+            });
+        });
+</script>

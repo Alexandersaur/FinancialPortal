@@ -10,6 +10,7 @@ using FinancialPortal.Models;
 using FinancialPortal.ViewModels;
 using FinancialPortal.Helpers;
 using FinancialPortal.Extensions;
+using System.Threading.Tasks;
 
 namespace FinancialPortal.Controllers
 {
@@ -23,6 +24,47 @@ namespace FinancialPortal.Controllers
             int hhId = User.Identity.GetHouseholdId().Value;
             var bankAccounts = db.BankAccounts.Include(b => b.Household).Include(b => b.Owner).Where(b => b.HouseholdId == hhId && b.IsDeleted == false);
             return View(bankAccounts.ToList());
+        }
+
+
+        public async Task<JsonResult> DonutMethod(int accountId)
+        {
+            //Initialization of data structures & lists
+            string[] basecolors = new string[] { "#6993FF", "#1BC5BD", "#8950FC", "#FFA800", "#F64E60" };
+            DonutChartData chartData = new DonutChartData();
+            List<string> labels = new List<string>();
+            List<int> series = new List<int>();
+            List<string> colors = new List<string>();
+            //Initialize dataset form database query of Transactions based on the account Id parameter
+            List<Transaction> transactions = await db.Transactions.Include(t => t.BudgetItem).Where(t => t.AccountId == accountId).OrderBy(t => t.Id).ToListAsync();
+
+            //Focus the dataset based on the results needed for the chart by Grouping the data
+            List<ResultItem> budgetItems = transactions
+                            .GroupBy(t => t.BudgetItem)
+                            .Select(tb => new ResultItem     //This supplemental class helps to contain the data
+                            {
+                                ItemName = tb.FirstOrDefault().BudgetItem.ItemName,
+                                Quantity = tb.Count(),
+                                Total = tb.Sum(s => s.Amount)
+                            }).ToList();
+            //Control variable for varying the colors
+            int colorIndex = 0;
+            //Loop over data results to load data in to lists
+            foreach (ResultItem result in budgetItems)
+            {
+                labels.Add(result.ItemName);
+                series.Add(result.Quantity);
+                colors.Add(basecolors[colorIndex]);
+                //Manage control variable for color variance
+                _ = colorIndex < basecolors.Length ? colorIndex++ : colorIndex = 0;
+            }
+
+            //Convert data lists to arrays to return to the View
+            chartData.labels = labels.ToArray();
+            chartData.series = series.ToArray();
+            chartData.colors = colors.ToArray();
+            //Return results
+            return Json(chartData, JsonRequestBehavior.AllowGet);
         }
 
         // GET: BankAccounts/Details/5
